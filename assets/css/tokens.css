@@ -1,0 +1,34 @@
+:root {
+  /* Palette — Plaster, Patina, and Light */
+  --ground: #EFEBE4;
+  --ground-soft: #E8E3DA;
+  --hush: #1A1A1C;
+  --hush-soft: rgba(26, 26, 28, 0.72);
+  --hush-faint: rgba(26, 26, 28, 0.40);
+  --material: #8B6F47;
+  --material-deep: #6B5436;
+  --patina: #3D4A40;
+  --whisper: rgba(26, 26, 28, 0.04);
+  --line: rgba(26, 26, 28, 0.08);
+
+  /* Type Scale */
+  --display-xxl: clamp(4.5rem, 11vw, 11rem);
+  --display-xl:  clamp(3rem, 7vw, 6.5rem);
+  --display-l:   clamp(2rem, 4.5vw, 4rem);
+  --display-m:   clamp(1.5rem, 2.4vw, 2.25rem);
+  --body-l:      1.125rem;
+  --body:        1rem;
+  --caption:     0.75rem;
+  --micro:       0.6875rem;
+
+  /* Spatial */
+  --gutter: clamp(1.5rem, 4vw, 3rem);
+  --frame:  100svh;
+
+  /* Motion */
+  --ease-quiet: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-material: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 240ms;
+  --dur: 480ms;
+  --dur-slow: 980ms;
+}
