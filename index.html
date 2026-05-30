@@ -6,6 +6,8 @@
 <meta name="description" content="Design Station — a private showroom and atelier for architects and designers. Palladium Mall, Tehran. By appointment." />
 <title>Design Station — by appointment, in Tehran.</title>
 <link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/v2.css" />
+<link rel="stylesheet" href="assets/css/v3.css" />
 </head>
 <body>
 
@@ -23,29 +25,30 @@
   <a href="reserve.html" class="nav__cta">Reserve the Hub</a>
 </nav>
 
-<!-- 01 — Hero / The Quiet Room -->
-<section class="hero" id="quiet">
-  <div class="hero__canvas" id="hero-canvas"></div>
-  <div class="hero__veil"></div>
-  <div class="hero__inner">
+<!-- 01 — Hero / The Cinematic Gateway -->
+<section class="hero-cinematic" id="quiet">
+  <div class="hero-cinematic__canvas" id="hero-cinematic-canvas"></div>
+  <div class="hero-cinematic__vignette"></div>
+  <div class="hero-cinematic__grain"></div>
+  <div class="hero-cinematic__inner">
     <div>
-      <span class="eyebrow" style="display:block; margin-bottom:2rem; color:rgba(239,235,228,0.5);">01 · The Quiet Room</span>
-      <h1>Designed for<br/>the people <em>who design.</em></h1>
+      <span class="hero-cinematic__eyebrow">01 · The Cinematic Gateway</span>
+      <h1 class="hero-cinematic__title">Designed for<br/>the people <em>who design.</em></h1>
     </div>
-    <div class="hero__foot">
-      <div class="hero__meta">
+    <div class="hero-cinematic__foot">
+      <div class="hero-cinematic__meta">
         <span>Palladium Mall</span>
         <span>Floor 4</span>
         <span>By appointment, since 2019</span>
       </div>
-      <div class="hero__scroll">Continue</div>
+      <div class="hero-cinematic__scroll">Move the cursor · Continue</div>
     </div>
   </div>
 </section>
 
 <!-- 02 — The Hub -->
 <section class="hub" id="hub">
-  <span class="frame__index">02 / 06</span>
+  <span class="frame__index">02 / 08</span>
   <div class="hub__text reveal">
     <span class="eyebrow">The Hub</span>
     <h2>A room you can <em>borrow.</em></h2>
@@ -81,27 +84,27 @@
 
 <!-- 03 — Disciplines -->
 <section class="disciplines">
-  <span class="frame__index">03 / 06</span>
+  <span class="frame__index">03 / 08</span>
   <div class="disciplines__head reveal">
     <h2>One showroom,<br/>three trades.</h2>
     <p>We do not stock everything. We stock what an architect can specify without an apology — assembled, lit, and ready to be touched.</p>
   </div>
   <div class="disciplines__grid">
-    <a href="collections.html#smart" class="discipline discipline--smart reveal">
+    <a href="collections.html#smart" class="discipline discipline--smart reveal" data-material="glass">
       <div class="discipline__visual"></div>
       <div class="discipline__label">
         <span class="discipline__name">Smart Home</span>
         <span class="discipline__count">22 systems</span>
       </div>
     </a>
-    <a href="collections.html#fixtures" class="discipline discipline--fixtures reveal">
+    <a href="collections.html#fixtures" class="discipline discipline--fixtures reveal" data-material="brass">
       <div class="discipline__visual"></div>
       <div class="discipline__label">
         <span class="discipline__name">Fixtures</span>
         <span class="discipline__count">47 lots</span>
       </div>
     </a>
-    <a href="collections.html#lighting" class="discipline discipline--lighting reveal">
+    <a href="collections.html#lighting" class="discipline discipline--lighting reveal" data-material="light">
       <div class="discipline__visual"></div>
       <div class="discipline__label">
         <span class="discipline__name">Lighting</span>
@@ -111,9 +114,132 @@
   </div>
 </section>
 
-<!-- 04 — Curation -->
+<!-- 04 — Scenario Simulator -->
+<section class="scenario" id="scenario">
+  <span class="frame__index">04 / 08</span>
+  <div class="scenario__head reveal">
+    <div>
+      <span class="eyebrow">A day in the room</span>
+      <h2>Choose a moment.<br/>The room <em>remembers.</em></h2>
+    </div>
+    <span class="lot">— Lutron HomeWorks · live scene —</span>
+  </div>
+
+  <div class="scenario__toggle" role="tablist">
+    <button type="button" data-mood="morning">Morning</button>
+    <button type="button" data-mood="studio">Studio</button>
+    <button type="button" data-mood="evening">Evening</button>
+    <button type="button" data-mood="late">Late</button>
+  </div>
+
+  <div class="scenario__stage">
+    <div class="floorplan reveal" data-material="stone">
+      <span class="floorplan__caption">Apartment · live trace · 1:80</span>
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+        <!-- Walls -->
+        <path class="fp-wall" d="M 20 30 L 380 30 L 380 270 L 20 270 Z"/>
+        <!-- Internal partitions -->
+        <path class="fp-wall" d="M 200 30 L 200 130 M 200 170 L 200 270"/>
+        <path class="fp-wall" d="M 20 170 L 130 170 M 170 170 L 200 170"/>
+        <!-- Doors (arc-like, just gaps with thin guides) -->
+        <path class="fp-door" d="M 130 170 Q 150 160 170 170"/>
+        <path class="fp-door" d="M 200 130 Q 210 150 200 170"/>
+        <!-- Window blinds (south & west) -->
+        <rect class="fp-blind" x="60" y="32" width="80" height="6"/>
+        <rect class="fp-blind" x="240" y="32" width="100" height="6"/>
+        <rect class="fp-blind" x="14" y="80" width="6" height="60"/>
+        <!-- Lights — 16 nodes -->
+        <circle class="fp-light" cx="80"  cy="80"  r="6"/>
+        <circle class="fp-light" cx="130" cy="80"  r="6"/>
+        <circle class="fp-light" cx="80"  cy="130" r="6"/>
+        <circle class="fp-light" cx="130" cy="130" r="6"/>
+        <circle class="fp-light" cx="260" cy="70"  r="6"/>
+        <circle class="fp-light" cx="320" cy="70"  r="6"/>
+        <circle class="fp-light" cx="260" cy="110" r="6"/>
+        <circle class="fp-light" cx="320" cy="110" r="6"/>
+        <circle class="fp-light" cx="80"  cy="210" r="6"/>
+        <circle class="fp-light" cx="130" cy="210" r="6"/>
+        <circle class="fp-light" cx="80"  cy="240" r="6"/>
+        <circle class="fp-light" cx="130" cy="240" r="6"/>
+        <circle class="fp-light" cx="240" cy="200" r="6"/>
+        <circle class="fp-light" cx="290" cy="200" r="6"/>
+        <circle class="fp-light" cx="240" cy="240" r="6"/>
+        <circle class="fp-light" cx="290" cy="240" r="6"/>
+        <!-- Audio path — runs ceiling spine -->
+        <path class="fp-audio" d="M 50 50 L 350 50 L 350 220 L 250 220 L 250 250"/>
+      </svg>
+      <div class="floorplan__hvac">21.0°C<small>HVAC setpoint</small></div>
+    </div>
+
+    <div class="scenario__notes reveal">
+      <h3>The default day.</h3>
+      <p>Even light, even shadows. The room is for working — drawings flat, materials weighed, fixtures considered without theatre.</p>
+      <div class="scenario__sequence">
+        <div class="seq"><span class="seq__time">11:00</span><span class="seq__name">Living pendants</span><span class="seq__val">30% · 3500K</span></div>
+        <div class="seq"><span class="seq__time">11:00</span><span class="seq__name">Spot — bench</span><span class="seq__val">80% · 3500K</span></div>
+        <div class="seq"><span class="seq__time">11:00</span><span class="seq__name">Blinds — south</span><span class="seq__val">half open</span></div>
+        <div class="seq"><span class="seq__time">11:00</span><span class="seq__name">HVAC</span><span class="seq__val">21.0°C — steady</span></div>
+      </div>
+      <p class="scenario__attest">"Studio" is what your client sees the first time they walk into our Hub. It is the honest light.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — Live Light -->
+<section class="livelight" id="livelight">
+  <span class="frame__index" style="color: var(--hush-faint);">05 / 08</span>
+  <div class="livelight__text reveal">
+    <span class="eyebrow">Live Light</span>
+    <h2>The fixture you see<br/>is the fixture <em>we install.</em></h2>
+    <p>Same driver. Same temperature. Same fall. We do not photograph our lighting — we render it, live, at the same Kelvin we will commission in your home. Scroll past, and watch it warm.</p>
+    <dl class="livelight__readout">
+      <div><dt>Color temperature</dt><dd><em>3500K</em></dd></div>
+      <div><dt>Output</dt><dd>420 lm</dd></div>
+      <div><dt>State</dt><dd>Neutral · half</dd></div>
+      <div><dt>Dim level</dt><dd>30%</dd></div>
+    </dl>
+  </div>
+  <div class="livelight__stage reveal" id="livelight-canvas" data-material="light">
+    <span class="livelight__caption">Catellani &amp; Smith · Macchina della Luce · live render</span>
+  </div>
+</section>
+
+<!-- 05b — Spectrum (color temperature scrubber) -->
+<section class="spectrum">
+  <div class="spectrum__head reveal">
+    <h2>Eleven <em>famous</em> fixtures,<br/>across the visible spectrum.</h2>
+    <p>Move the cursor across the band — the room reads the temperature. Tap a fixture to set the scene to its true Kelvin.</p>
+  </div>
+  <div class="spectrum__track" data-material="light">
+    <div class="spectrum__band"></div>
+    <div class="spectrum__pointer"></div>
+    <div class="spectrum__readout">3500K<small>color temperature</small></div>
+  </div>
+  <div class="spectrum__labels">
+    <span>1800K · candle</span>
+    <span>2700K · halogen</span>
+    <span>3500K · studio</span>
+    <span>5500K · daylight</span>
+    <span>6500K · overcast</span>
+  </div>
+  <div class="spectrum__fixtures">
+    <button type="button" data-k="1800">Hand-blown candle<small>1800K</small></button>
+    <button type="button" data-k="2200">Sampei<small>2200K</small></button>
+    <button type="button" data-k="2700">Flos 2097<small>2700K</small></button>
+    <button type="button" data-k="3000">Apparatus Trapeze<small>3000K</small></button>
+    <button type="button" data-k="3500">Macchina della Luce<small>3500K</small></button>
+    <button type="button" data-k="4000">Erco Quintessence<small>4000K</small></button>
+    <button type="button" data-k="4500">Vibia Wireflow<small>4500K</small></button>
+    <button type="button" data-k="5000">Artemide Tolomeo<small>5000K</small></button>
+    <button type="button" data-k="5500">iGuzzini Laser<small>5500K</small></button>
+    <button type="button" data-k="6000">Davide Groppi Nulla<small>6000K</small></button>
+    <button type="button" data-k="6500">North-light skylight<small>6500K</small></button>
+  </div>
+</section>
+
+<!-- 06 — Curation -->
 <section class="curation">
-  <span class="frame__index">04 / 06</span>
+  <span class="frame__index">06 / 08</span>
   <div class="curation__head reveal">
     <h2>The current<br/>curation.</h2>
     <span class="lot">— Twelve lots, rotated monthly —</span>
@@ -170,9 +296,59 @@
   </div>
 </section>
 
-<!-- 05 — Archive -->
+<!-- 07 — Lot teaser -->
+<section class="lot-teaser">
+  <span class="frame__index">07 / 08</span>
+  <span class="eyebrow">A single lot</span>
+  <h2 class="display" style="font-size: var(--display-l); max-width: 16ch; margin: 1.5rem auto 0; font-style: italic;">Every <em>Lot</em> specifies itself.<br/>Open one to begin.</h2>
+  <div class="lot-teaser__visual reveal">
+    <!-- A small still preview — actual page does the full sequence -->
+    <svg viewBox="0 0 700 400" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
+      <defs>
+        <linearGradient id="brassGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#c9a96e"/>
+          <stop offset="1" stop-color="#6b5436"/>
+        </linearGradient>
+      </defs>
+      <!-- exploded faucet diagram -->
+      <line x1="350" y1="60" x2="350" y2="100" stroke="var(--hush-faint)" stroke-width="0.5"/>
+      <line x1="350" y1="180" x2="350" y2="220" stroke="var(--hush-faint)" stroke-width="0.5"/>
+      <line x1="450" y1="240" x2="510" y2="240" stroke="var(--hush-faint)" stroke-width="0.5"/>
+      <line x1="240" y1="200" x2="180" y2="160" stroke="var(--hush-faint)" stroke-width="0.5"/>
+
+      <!-- aerator (top) -->
+      <rect x="334" y="40" width="32" height="20" fill="url(#brassGrad)" rx="2"/>
+      <text x="380" y="55" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">aerator</text>
+      <!-- cartridge -->
+      <rect x="320" y="100" width="60" height="40" fill="#e8e3d5" stroke="var(--hush)" stroke-width="0.5" rx="2"/>
+      <text x="395" y="125" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">cartridge</text>
+      <!-- O-rings -->
+      <ellipse cx="350" cy="155" rx="32" ry="3" fill="#1a1a1c"/>
+      <ellipse cx="350" cy="165" rx="32" ry="3" fill="#1a1a1c"/>
+      <text x="395" y="163" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">o-rings</text>
+      <!-- body + spout -->
+      <rect x="330" y="200" width="40" height="80" fill="url(#brassGrad)" rx="3"/>
+      <path d="M 370 220 L 460 220 L 460 260 L 450 260 L 450 230 L 370 230 Z" fill="url(#brassGrad)"/>
+      <text x="520" y="245" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">spout · body</text>
+      <!-- handle -->
+      <rect x="240" y="195" width="80" height="10" fill="url(#brassGrad)" rx="3"/>
+      <circle cx="232" cy="200" r="8" fill="#6b5436"/>
+      <text x="170" y="155" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">handle</text>
+      <!-- collar -->
+      <rect x="320" y="290" width="60" height="20" fill="#6b5436" rx="2"/>
+      <text x="395" y="305" font-size="9" letter-spacing="2" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">collar</text>
+
+      <!-- title hint -->
+      <text x="20" y="380" font-size="9" letter-spacing="3" fill="var(--hush-faint)" style="text-transform:uppercase; font-family: Inter, sans-serif;">Lot 02 · Vola FS1 · exploded view · 1:1</text>
+    </svg>
+  </div>
+  <p class="lot-teaser__line">Scroll to take an object apart.<br/>Hover a piece to learn what it does.<br/><em>Keep scrolling to put it back.</em></p>
+  <a href="lot.html" class="lot-teaser__cta">Open Lot 02 → Vola FS1</a>
+</section>
+
+<!-- 08 — Archive -->
 <section class="archive" id="archive">
-  <span class="frame__index" style="color:rgba(239,235,228,0.4);">05 / 06</span>
+  <span class="frame__index" style="color:rgba(239,235,228,0.4);">07 / 08</span>
   <div class="archive__head reveal">
     <h2>Specified through<br/>this room.</h2>
     <span class="lot" style="color:rgba(239,235,228,0.5);">— Selected residences, 2021–2025 —</span>
@@ -198,7 +374,7 @@
 
 <!-- 06 — Access -->
 <section class="access" id="access">
-  <span class="frame__index">06 / 06</span>
+  <span class="frame__index">08 / 08</span>
   <div class="access__copy reveal">
     <span class="eyebrow">Access</span>
     <h2>Open by <em>appointment.</em></h2>
@@ -227,13 +403,17 @@
 
 <footer>
   <span>Design Station · MMXXV</span>
-  <span>Palladium, Tehran</span>
+  <button type="button" class="quiet-toggle"><span class="quiet-toggle__dot"></span><span class="quiet-toggle__label">Quiet Mode · Off</span></button>
   <span>By appointment</span>
 </footer>
 
-<script type="module" src="assets/js/hero-3d.js"></script>
+<script src="assets/js/lighting-bus.js"></script>
+<script type="module" src="assets/js/hero-cinematic.js"></script>
 <script type="module" src="assets/js/hub-3d.js"></script>
+<script type="module" src="assets/js/live-light.js"></script>
 <script src="assets/js/cursor.js"></script>
 <script src="assets/js/scroll.js"></script>
+<script src="assets/js/scenario.js"></script>
+<script src="assets/js/spectrum.js"></script>
 </body>
 </html>

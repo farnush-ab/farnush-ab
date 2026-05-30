@@ -1,4 +1,5 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import { getStudioEnv } from './env-map.js';
 
 function buildHub(container) {
   if (!container) return;
@@ -13,6 +14,10 @@ function buildHub(container) {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  scene.environment = getStudioEnv(renderer);
   const resize = () => {
     const w = container.clientWidth;
     const h = container.clientHeight;
