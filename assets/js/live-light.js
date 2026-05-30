@@ -133,6 +133,13 @@ function buildPendant(container) {
   let targetEmit = 0.5;
   let kelvin = 3500;
   let emit = 0.5;
+  let scrollVisibility = 0;
+
+  // Register with the global lighting bus (if loaded)
+  const BUS_ID = 'live-light';
+  if (window.DSBus) {
+    window.DSBus.register(BUS_ID, { kelvin: 3500, intensity: 0, visibility: 0 });
+  }
 
   function moodToTarget(mood) {
     const map = {
@@ -148,7 +155,7 @@ function buildPendant(container) {
   moodToTarget(document.documentElement.dataset.mood || 'studio');
   window.addEventListener('moodchange', (e) => moodToTarget(e.detail.mood));
 
-  // Scroll modulation — when section is in view, scroll progress within it amplifies the emit
+  // Scroll modulation — visibility = proximity to viewport center
   let scrollMul = 1;
   const section = container.closest('.livelight');
   if (section) {
@@ -158,7 +165,8 @@ function buildPendant(container) {
       const center = rect.top + rect.height / 2;
       const dist = Math.abs(center - vh / 2);
       const prox = Math.max(0, 1 - dist / vh);
-      scrollMul = 0.6 + prox * 0.7; // 0.6 at edges, ~1.3 at center
+      scrollMul = 0.6 + prox * 0.7;
+      scrollVisibility = prox;
     }, { passive: true });
   }
 
@@ -183,6 +191,15 @@ function buildPendant(container) {
     cast.material.opacity = e * 0.32;
     beam.material.color.copy(color);
     beam.material.opacity = e * 0.18;
+
+    // Broadcast to lighting bus — visibility-weighted intensity
+    if (window.DSBus) {
+      window.DSBus.update(BUS_ID, {
+        kelvin: kelvin,
+        intensity: emit,
+        visibility: scrollVisibility
+      });
+    }
 
     shadeGroup.rotation.y += 0.0008;
     renderer.render(scene, camera);

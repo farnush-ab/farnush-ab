@@ -1,4 +1,5 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import { getStudioEnv } from './env-map.js';
 
 const container = document.getElementById('lot-canvas');
 if (container) {
@@ -13,7 +14,13 @@ if (container) {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
   container.appendChild(renderer.domElement);
+
+  // Apply studio PBR environment for proper reflections on brass/ceramic
+  scene.environment = getStudioEnv(renderer);
 
   const resize = () => {
     renderer.setSize(container.clientWidth, container.clientHeight, false);
@@ -33,13 +40,28 @@ if (container) {
   scene.add(fill);
 
   // ---- Faucet, built from primitives ----
-  // Materials
-  const brassMat = new THREE.MeshStandardMaterial({ color: 0x8b6f47, roughness: 0.28, metalness: 0.88 });
-  const brassDark = new THREE.MeshStandardMaterial({ color: 0x6b5436, roughness: 0.4, metalness: 0.8 });
-  const ceramic = new THREE.MeshStandardMaterial({ color: 0xe8e3d5, roughness: 0.32, metalness: 0.0 });
-  const rubber = new THREE.MeshStandardMaterial({ color: 0x1a1a1c, roughness: 0.8, metalness: 0.0 });
-  const splineMat = new THREE.MeshStandardMaterial({ color: 0x4a3a2a, roughness: 0.55, metalness: 0.4 });
-  const aeratorMat = new THREE.MeshStandardMaterial({ color: 0xa88c5a, roughness: 0.4, metalness: 0.7 });
+  // PBR materials — env map provides reflections; anisotropy + iridescence for brushed feel.
+  const brassMat = new THREE.MeshPhysicalMaterial({
+    color: 0x9a7e54, roughness: 0.24, metalness: 0.95,
+    anisotropy: 0.6, anisotropyRotation: Math.PI / 2,
+    envMapIntensity: 1.2, clearcoat: 0.15, clearcoatRoughness: 0.4
+  });
+  const brassDark = new THREE.MeshPhysicalMaterial({
+    color: 0x6b5436, roughness: 0.38, metalness: 0.88,
+    anisotropy: 0.4, envMapIntensity: 1.0
+  });
+  const ceramic = new THREE.MeshPhysicalMaterial({
+    color: 0xeae5d7, roughness: 0.3, metalness: 0.0,
+    clearcoat: 0.6, clearcoatRoughness: 0.18, envMapIntensity: 0.9
+  });
+  const rubber = new THREE.MeshStandardMaterial({ color: 0x141414, roughness: 0.85, metalness: 0.0 });
+  const splineMat = new THREE.MeshPhysicalMaterial({
+    color: 0x3a2e22, roughness: 0.5, metalness: 0.6, envMapIntensity: 0.9
+  });
+  const aeratorMat = new THREE.MeshPhysicalMaterial({
+    color: 0xb89668, roughness: 0.35, metalness: 0.85, anisotropy: 0.7,
+    envMapIntensity: 1.1
+  });
 
   // Group structure: each part has its own offset target for "explode"
   const parts = [];
@@ -156,13 +178,29 @@ if (container) {
   stream.position.set(1.05, 0.25, 0);
   scene.add(stream);
 
-  // Counter (floor under faucet)
+  // Counter (floor under faucet) — soft polished stone
   const counter = new THREE.Mesh(
     new THREE.BoxGeometry(6, 0.06, 3),
-    new THREE.MeshStandardMaterial({ color: 0xC0B6A2, roughness: 0.85 })
+    new THREE.MeshPhysicalMaterial({
+      color: 0xC0B6A2, roughness: 0.55, metalness: 0.0,
+      clearcoat: 0.3, clearcoatRoughness: 0.4, envMapIntensity: 0.6
+    })
   );
   counter.position.y = -0.62;
   scene.add(counter);
+
+  // Register with the lighting bus — emits when the lot page is in view
+  if (window.DSBus) {
+    window.DSBus.register('lot-faucet', { kelvin: 3000, intensity: 0, visibility: 0 });
+  }
+  let pageVisibility = 0;
+  window.addEventListener('scroll', () => {
+    const rect = container.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const center = rect.top + rect.height / 2;
+    const dist = Math.abs(center - vh / 2);
+    pageVisibility = Math.max(0, 1 - dist / vh);
+  }, { passive: true });
 
   // ---- Beats ----
   // Beat 0..1 — Object (rotate in)
@@ -262,6 +300,17 @@ if (container) {
     streamMat.opacity = waterOn * 0.8;
     stream.scale.y = 0.3 + waterOn * 1.6;
     stream.position.y = 0.25 - (0.3 + waterOn * 0.8) * 0.5;
+
+    // Broadcast lot scene state to the lighting bus
+    if (window.DSBus) {
+      // Beat 4 (Open) makes the scene "alive" — emit warm light
+      const sceneEmit = 0.25 + effectiveExplode * 0.15 + waterOn * 0.35;
+      window.DSBus.update('lot-faucet', {
+        kelvin: 3000 - waterOn * 200,
+        intensity: sceneEmit,
+        visibility: pageVisibility
+      });
+    }
 
     // Camera
     camera.position.lerp(camTarget, 0.06);

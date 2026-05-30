@@ -7,6 +7,7 @@
 <title>Design Station — by appointment, in Tehran.</title>
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="assets/css/v2.css" />
+<link rel="stylesheet" href="assets/css/v3.css" />
 </head>
 <body>
 
@@ -24,22 +25,23 @@
   <a href="reserve.html" class="nav__cta">Reserve the Hub</a>
 </nav>
 
-<!-- 01 — Hero / The Quiet Room -->
-<section class="hero" id="quiet">
-  <div class="hero__canvas" id="hero-canvas"></div>
-  <div class="hero__veil"></div>
-  <div class="hero__inner">
+<!-- 01 — Hero / The Cinematic Gateway -->
+<section class="hero-cinematic" id="quiet">
+  <div class="hero-cinematic__canvas" id="hero-cinematic-canvas"></div>
+  <div class="hero-cinematic__vignette"></div>
+  <div class="hero-cinematic__grain"></div>
+  <div class="hero-cinematic__inner">
     <div>
-      <span class="eyebrow" style="display:block; margin-bottom:2rem; color:rgba(239,235,228,0.5);">01 · The Quiet Room</span>
-      <h1>Designed for<br/>the people <em>who design.</em></h1>
+      <span class="hero-cinematic__eyebrow">01 · The Cinematic Gateway</span>
+      <h1 class="hero-cinematic__title">Designed for<br/>the people <em>who design.</em></h1>
     </div>
-    <div class="hero__foot">
-      <div class="hero__meta">
+    <div class="hero-cinematic__foot">
+      <div class="hero-cinematic__meta">
         <span>Palladium Mall</span>
         <span>Floor 4</span>
         <span>By appointment, since 2019</span>
       </div>
-      <div class="hero__scroll">Continue</div>
+      <div class="hero-cinematic__scroll">Move the cursor · Continue</div>
     </div>
   </div>
 </section>
@@ -199,6 +201,39 @@
   </div>
   <div class="livelight__stage reveal" id="livelight-canvas" data-material="light">
     <span class="livelight__caption">Catellani &amp; Smith · Macchina della Luce · live render</span>
+  </div>
+</section>
+
+<!-- 05b — Spectrum (color temperature scrubber) -->
+<section class="spectrum">
+  <div class="spectrum__head reveal">
+    <h2>Eleven <em>famous</em> fixtures,<br/>across the visible spectrum.</h2>
+    <p>Move the cursor across the band — the room reads the temperature. Tap a fixture to set the scene to its true Kelvin.</p>
+  </div>
+  <div class="spectrum__track" data-material="light">
+    <div class="spectrum__band"></div>
+    <div class="spectrum__pointer"></div>
+    <div class="spectrum__readout">3500K<small>color temperature</small></div>
+  </div>
+  <div class="spectrum__labels">
+    <span>1800K · candle</span>
+    <span>2700K · halogen</span>
+    <span>3500K · studio</span>
+    <span>5500K · daylight</span>
+    <span>6500K · overcast</span>
+  </div>
+  <div class="spectrum__fixtures">
+    <button type="button" data-k="1800">Hand-blown candle<small>1800K</small></button>
+    <button type="button" data-k="2200">Sampei<small>2200K</small></button>
+    <button type="button" data-k="2700">Flos 2097<small>2700K</small></button>
+    <button type="button" data-k="3000">Apparatus Trapeze<small>3000K</small></button>
+    <button type="button" data-k="3500">Macchina della Luce<small>3500K</small></button>
+    <button type="button" data-k="4000">Erco Quintessence<small>4000K</small></button>
+    <button type="button" data-k="4500">Vibia Wireflow<small>4500K</small></button>
+    <button type="button" data-k="5000">Artemide Tolomeo<small>5000K</small></button>
+    <button type="button" data-k="5500">iGuzzini Laser<small>5500K</small></button>
+    <button type="button" data-k="6000">Davide Groppi Nulla<small>6000K</small></button>
+    <button type="button" data-k="6500">North-light skylight<small>6500K</small></button>
   </div>
 </section>
 
@@ -372,11 +407,13 @@
   <span>By appointment</span>
 </footer>
 
-<script type="module" src="assets/js/hero-3d.js"></script>
+<script src="assets/js/lighting-bus.js"></script>
+<script type="module" src="assets/js/hero-cinematic.js"></script>
 <script type="module" src="assets/js/hub-3d.js"></script>
 <script type="module" src="assets/js/live-light.js"></script>
 <script src="assets/js/cursor.js"></script>
 <script src="assets/js/scroll.js"></script>
 <script src="assets/js/scenario.js"></script>
+<script src="assets/js/spectrum.js"></script>
 </body>
 </html>
