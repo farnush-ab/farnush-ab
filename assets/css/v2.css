@@ -1,0 +1,456 @@
+/* ---------- mood transitions on base elements ---------- */
+body {
+  transition: background var(--dur-mood) var(--ease-material),
+              color var(--dur-mood) var(--ease-material);
+  font-weight: var(--type-weight);
+}
+.hero { transition: background var(--dur-mood) var(--ease-material); }
+.curation, .access, .hub, .threshold { transition: background var(--dur-mood) var(--ease-material); }
+
+/* ---------- Scenario Simulator ---------- */
+.scenario {
+  background: var(--ground);
+  color: var(--hush);
+  padding: 14vh var(--gutter);
+  position: relative;
+  overflow: hidden;
+  transition: background var(--dur-mood) var(--ease-material),
+              color var(--dur-mood) var(--ease-material);
+}
+
+.scenario__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.scenario__head h2 { max-width: 12ch; }
+.scenario__head h2 em { font-style: italic; color: var(--material); }
+.scenario__head .lot { display: block; }
+
+.scenario__toggle {
+  display: flex;
+  gap: 0;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 5rem;
+  width: 100%;
+}
+.scenario__toggle button {
+  flex: 1;
+  padding: 1.4rem 1rem;
+  background: transparent;
+  color: var(--hush-faint);
+  border: none;
+  border-left: 1px solid var(--line);
+  font-family: inherit;
+  cursor: none;
+  transition: color var(--dur) var(--ease-quiet), background var(--dur) var(--ease-quiet);
+  position: relative;
+}
+.scenario__toggle button:first-child { border-left: none; }
+.scenario__toggle button:hover { color: var(--hush); background: var(--whisper); }
+.scenario__toggle button.is-active { color: var(--hush); }
+.scenario__toggle button.is-active::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: -1px;
+  width: 30px; height: 1px;
+  background: var(--material);
+  transform: translateX(-50%);
+}
+
+.scenario__stage {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  min-height: 60vh;
+}
+@media (max-width: 900px) {
+  .scenario__stage { grid-template-columns: 1fr; }
+}
+
+/* Floor-plan */
+.floorplan {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--ground-soft);
+  overflow: hidden;
+  transition: background var(--dur-mood) var(--ease-material), border-color var(--dur-mood) var(--ease-material);
+}
+.floorplan svg { width: 100%; height: 100%; display: block; }
+.floorplan__caption {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hush-faint);
+}
+.floorplan__hvac {
+  position: absolute;
+  bottom: 1rem; right: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--material);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-mood) var(--ease-material);
+}
+.floorplan__hvac small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hush-faint);
+  margin-top: 0.2rem;
+}
+
+.fp-wall { stroke: var(--hush); stroke-width: 1.5; fill: none; transition: stroke var(--dur-mood) var(--ease-material); }
+.fp-door { stroke: var(--hush-faint); stroke-width: 1; fill: none; }
+.fp-blind {
+  fill: var(--patina);
+  transition: fill var(--dur-mood) var(--ease-material), transform var(--dur-mood) var(--ease-material);
+  transform-origin: center;
+}
+.fp-light {
+  fill: var(--material);
+  transition: r var(--dur-mood) var(--ease-material), opacity var(--dur-mood) var(--ease-material), fill var(--dur-mood) var(--ease-material);
+}
+.fp-audio {
+  stroke: var(--material);
+  stroke-width: 0.8;
+  stroke-dasharray: 3 3;
+  fill: none;
+  transition: opacity var(--dur-mood) var(--ease-material), stroke var(--dur-mood) var(--ease-material);
+}
+
+.scenario__notes { display: flex; flex-direction: column; gap: 1.5rem; }
+.scenario__notes h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.05;
+}
+.scenario__notes h3 em { font-style: italic; color: var(--material); }
+.scenario__notes p { color: var(--hush-soft); max-width: 36ch; line-height: 1.65; }
+.scenario__sequence {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.scenario__sequence .seq {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.scenario__sequence .seq__time { font-variant-numeric: tabular-nums; color: var(--hush-faint); font-size: var(--caption); letter-spacing: 0.12em; }
+.scenario__sequence .seq__name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+.scenario__sequence .seq__val { font-size: var(--caption); letter-spacing: 0.18em; text-transform: uppercase; color: var(--hush-soft); font-variant-numeric: tabular-nums; }
+
+.scenario__attest {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--line);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--hush);
+  max-width: 38ch;
+  line-height: 1.4;
+}
+
+/* ---------- Live Light ---------- */
+.livelight {
+  background: var(--hush);
+  color: var(--ground);
+  padding: 14vh var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 100vh;
+  transition: background var(--dur-mood) var(--ease-material), color var(--dur-mood) var(--ease-material);
+}
+html[data-mood="evening"] .livelight,
+html[data-mood="late"] .livelight {
+  background: var(--ground);
+  color: var(--hush);
+}
+@media (max-width: 900px) { .livelight { grid-template-columns: 1fr; } }
+
+.livelight__text { display: flex; flex-direction: column; gap: 2rem; max-width: 36ch; }
+.livelight__text h2 { font-size: var(--display-l); }
+.livelight__text h2 em { font-style: italic; color: var(--material); }
+.livelight__text p { opacity: 0.8; line-height: 1.65; }
+.livelight__readout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid currentColor;
+  padding-top: 1.5rem;
+  border-color: var(--line);
+}
+.livelight__readout dt { font-size: var(--micro); letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.3rem; }
+.livelight__readout dd {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+.livelight__readout dd em { font-style: normal; color: var(--material); }
+
+.livelight__stage {
+  aspect-ratio: 4 / 5;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0c;
+  transition: background var(--dur-mood) var(--ease-material);
+}
+html[data-mood="evening"] .livelight__stage,
+html[data-mood="late"] .livelight__stage { background: #1a1612; }
+.livelight__stage canvas { width: 100% !important; height: 100% !important; display: block; }
+.livelight__caption {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(239, 235, 228, 0.5);
+  z-index: 2;
+}
+
+/* ---------- Lot teaser (frame 06) ---------- */
+.lot-teaser {
+  padding: 14vh var(--gutter);
+  background: var(--ground);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.lot-teaser__visual {
+  height: 50vh;
+  margin: 4rem auto 3rem;
+  max-width: 700px;
+  position: relative;
+  background: var(--ground-soft);
+  overflow: hidden;
+}
+.lot-teaser__visual canvas { width: 100% !important; height: 100% !important; display: block; }
+.lot-teaser__line {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 32ch;
+  margin: 0 auto 2rem;
+  line-height: 1.3;
+}
+.lot-teaser__line em { color: var(--material); font-style: normal; }
+.lot-teaser__cta {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  border: 1px solid var(--hush);
+  border-radius: 999px;
+  font-size: var(--caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background var(--dur) var(--ease-quiet), color var(--dur) var(--ease-quiet);
+}
+.lot-teaser__cta:hover { background: var(--hush); color: var(--ground); }
+
+/* ---------- Material-aware cursor ---------- */
+.cursor.material-brass { background: #c9a96e; mix-blend-mode: normal; box-shadow: 0 0 16px rgba(201, 169, 110, 0.4); }
+.cursor.material-light { background: #FFD89A; mix-blend-mode: screen; box-shadow: 0 0 28px rgba(255, 216, 154, 0.7); }
+.cursor.material-glass { background: rgba(180, 200, 220, 0.4); mix-blend-mode: lighten; backdrop-filter: blur(2px); }
+.cursor.material-stone { background: #6e6760; mix-blend-mode: difference; }
+
+.cursor__trail {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: difference;
+}
+
+/* Material hint markers — used in pages */
+[data-material] { position: relative; }
+
+/* ---------- Lot page (Smart-Product View) ---------- */
+.lot-page { background: var(--ground); color: var(--hush); }
+
+.lot-head {
+  padding: 10rem var(--gutter) 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) { .lot-head { grid-template-columns: 1fr; } }
+.lot-head .eyebrow { display: block; margin-bottom: 1rem; }
+.lot-head h1 { font-size: var(--display-xl); }
+.lot-head h1 em { font-style: italic; color: var(--material); }
+.lot-head__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2.5rem; }
+.lot-head__meta dt { font-size: var(--micro); letter-spacing: 0.22em; text-transform: uppercase; color: var(--hush-faint); margin-bottom: 0.3rem; }
+.lot-head__meta dd { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; }
+
+/* The scrollytelling stage */
+.lot-stage {
+  position: relative;
+  height: 500vh;
+  margin-top: 8vh;
+}
+.lot-stage__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  align-items: center;
+  padding: 0 var(--gutter);
+  max-width: 1640px;
+  margin: 0 auto;
+}
+@media (max-width: 1000px) {
+  .lot-stage__sticky { grid-template-columns: 1fr; }
+  .lot-stage__side { display: none; }
+}
+.lot-stage__canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.lot-stage__canvas canvas { width: 100% !important; height: 100% !important; display: block; }
+
+/* Side panel */
+.lot-stage__side {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.lot-stage__beat-num {
+  font-size: var(--micro);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--hush-faint);
+  font-variant-numeric: tabular-nums;
+}
+.lot-stage__beat-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.05;
+  font-style: italic;
+}
+.lot-stage__beat-name em { color: var(--material); font-style: normal; }
+.lot-stage__copy {
+  color: var(--hush-soft);
+  line-height: 1.65;
+  font-size: 0.95rem;
+  max-width: 32ch;
+}
+.lot-stage__copy strong { font-weight: 500; color: var(--hush); display: block; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+.lot-stage__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.lot-stage__progress-bar {
+  height: 1px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.lot-stage__progress-bar::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--hush);
+  width: var(--scroll-progress, 0%);
+  transition: width 80ms linear;
+}
+
+/* Lot end */
+.lot-end {
+  padding: 14vh var(--gutter);
+  text-align: center;
+  background: var(--ground-soft);
+}
+.lot-end h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--display-l);
+  max-width: 18ch;
+  margin: 0 auto 2rem;
+}
+.lot-end h2 em { color: var(--material); font-style: normal; }
+.lot-end__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border: 1px solid var(--hush);
+  border-radius: 999px;
+  font-size: var(--caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background var(--dur) var(--ease-quiet), color var(--dur) var(--ease-quiet);
+}
+.lot-end__cta:hover { background: var(--hush); color: var(--ground); }
+
+/* Quiet Mode toggle (footer) */
+.quiet-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hush-faint);
+  cursor: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+.quiet-toggle__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--material);
+  transition: background var(--dur) var(--ease-quiet), opacity var(--dur) var(--ease-quiet);
+}
+html[data-quiet="true"] .quiet-toggle__dot { background: var(--hush-faint); opacity: 0.4; }
+
+/* Mood persistence — fix the dark sections under late/evening */
+html[data-mood="evening"] .hero,
+html[data-mood="late"] .hero { background: var(--ground); color: var(--hush); }
+html[data-mood="evening"] .archive,
+html[data-mood="late"] .archive { background: var(--ground-soft); }
+html[data-mood="late"] body { font-weight: 200; }
+
+/* Threshold word mood-keyed */
+.threshold__word em { color: var(--material); transition: color var(--dur-mood) var(--ease-material); }
+
+/* Reveal default in dark moods */
+html[data-mood="evening"] .reveal,
+html[data-mood="late"] .reveal { color: var(--hush); }

@@ -1,5 +1,5 @@
 :root {
-  /* Palette — Plaster, Patina, and Light */
+  /* Default mood: Studio */
   --ground: #EFEBE4;
   --ground-soft: #E8E3DA;
   --hush: #1A1A1C;
@@ -10,6 +10,12 @@
   --patina: #3D4A40;
   --whisper: rgba(26, 26, 28, 0.04);
   --line: rgba(26, 26, 28, 0.08);
+
+  /* Light identity — keyed to mood */
+  --light-kelvin: 3500;
+  --light-emit: 0.5;
+  --shadow-len: 1;
+  --type-weight: 300;
 
   /* Type Scale */
   --display-xxl: clamp(4.5rem, 11vw, 11rem);
@@ -31,4 +37,72 @@
   --dur-fast: 240ms;
   --dur: 480ms;
   --dur-slow: 980ms;
+  --dur-mood: 2200ms;
 }
+
+/* Mood: Morning — cool plaster, low fixture light, awake */
+html[data-mood="morning"] {
+  --ground: #F0EDE6;
+  --ground-soft: #E5E1D8;
+  --hush: #2A2A2C;
+  --material: #A88860;
+  --light-kelvin: 4500;
+  --light-emit: 0.18;
+  --shadow-len: 0.6;
+}
+
+/* Mood: Studio — default neutral */
+html[data-mood="studio"] {
+  --ground: #EFEBE4;
+  --ground-soft: #E8E3DA;
+  --hush: #1A1A1C;
+  --material: #8B6F47;
+  --light-kelvin: 3500;
+  --light-emit: 0.5;
+  --shadow-len: 1;
+}
+
+/* Mood: Evening — warm umber, raised fixture light */
+html[data-mood="evening"] {
+  --ground: #2A2520;
+  --ground-soft: #1F1A15;
+  --hush: #F0E8D8;
+  --hush-soft: rgba(240, 232, 216, 0.72);
+  --hush-faint: rgba(240, 232, 216, 0.40);
+  --material: #D9B27A;
+  --material-deep: #B0884F;
+  --patina: #6D8074;
+  --whisper: rgba(240, 232, 216, 0.04);
+  --line: rgba(240, 232, 216, 0.10);
+  --light-kelvin: 2700;
+  --light-emit: 0.85;
+  --shadow-len: 3;
+}
+
+/* Mood: Late — near black, single lamp lit */
+html[data-mood="late"] {
+  --ground: #0E0D0B;
+  --ground-soft: #050505;
+  --hush: #BFB6A4;
+  --hush-soft: rgba(191, 182, 164, 0.55);
+  --hush-faint: rgba(191, 182, 164, 0.25);
+  --material: #D9B27A;
+  --material-deep: #A8814A;
+  --patina: #4A5650;
+  --whisper: rgba(191, 182, 164, 0.04);
+  --line: rgba(191, 182, 164, 0.08);
+  --light-kelvin: 2200;
+  --light-emit: 1.0;
+  --shadow-len: 5;
+  --type-weight: 200;
+}
+
+/* Quiet mode: freeze everything */
+html[data-quiet="true"] *,
+html[data-quiet="true"] *::before,
+html[data-quiet="true"] *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+html[data-quiet="true"] .cursor { display: none; }
+html[data-quiet="true"] body { cursor: auto; }
