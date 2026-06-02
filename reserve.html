@@ -3,159 +3,122 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Reserve the Hub — Design Station</title>
-<link rel="stylesheet" href="assets/css/main.css" />
+<title>Reserve the Hub — INHABITED · Design Station</title>
+<link rel="stylesheet" href="assets/css/inhabited.css" />
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav__brand">
-    Design Station
-    <small>Palladium · Tehran</small>
-  </a>
-  <div class="nav__menu">
-    <a href="index.html#hub">The Hub</a>
-    <a href="collections.html">Collections</a>
-    <a href="index.html#archive">Archive</a>
-    <a href="index.html#access">Access</a>
+<nav class="masthead">
+  <div class="masthead__left">
+    <a href="index.html#contents">Issue IV</a>
+    <a href="index.html#atelier">Atelier</a>
+    <a href="index.html#index">Directory</a>
   </div>
-  <a href="index.html" class="nav__cta">Return</a>
+  <div class="masthead__center">INHABITED</div>
+  <div class="masthead__right">
+    <a href="index.html">Return</a>
+  </div>
 </nav>
 
-<main class="reserve-page">
-  <header class="reserve-page__head reveal">
+<main class="reserve-inhabited">
+  <header class="reserve-inhabited__head reveal">
     <span class="eyebrow">The Atelier Reservation</span>
     <h1>Hold a studio,<br/>then <em>bring the work.</em></h1>
     <p>Three steps. Roughly two minutes. You will receive a typeset invitation by post-confirmation — forwardable to your client, with the address, the studio, and the staged pieces noted.</p>
   </header>
 
-  <div class="reserve-grid">
+  <div class="reserve-inhabited__grid">
 
-    <div class="reserve__form">
-
-      <section class="reserve__step reveal">
-        <h3><span class="num">01</span>Intent</h3>
+    <div>
+      <section class="reserve-step reveal">
+        <h3><span class="n">01 ·</span> Intent</h3>
         <p>Tell us what the visit is for. The staging changes accordingly.</p>
-        <div class="intent-list">
-          <label><input type="radio" name="intent" checked /> <span>Specifying a project</span></label>
-          <label><input type="radio" name="intent" /> <span>Client presentation</span></label>
-          <label><input type="radio" name="intent" /> <span>Material consultation</span></label>
-          <label><input type="radio" name="intent" /> <span>A quiet visit, alone</span></label>
+        <div class="choice-list">
+          <label><input type="radio" name="intent" checked /><span>Specifying a project</span></label>
+          <label><input type="radio" name="intent" /><span>Client presentation</span></label>
+          <label><input type="radio" name="intent" /><span>Material consultation</span></label>
+          <label><input type="radio" name="intent" /><span>A quiet visit, alone</span></label>
         </div>
       </section>
 
-      <section class="reserve__step reveal">
-        <h3><span class="num">02</span>Studio</h3>
+      <section class="reserve-step reveal">
+        <h3><span class="n">02 ·</span> Studio</h3>
         <p>Each studio has a different scale and a different light. Choose the one your meeting deserves.</p>
-        <div class="studio-list">
-          <button type="button" class="studio is-selected" data-studio="Bronze">
-            <span class="studio__name">Bronze</span>
-            <span class="studio__cap">Seats 4 · Warm light</span>
-            <span class="studio__body">A small, west-facing room. Best for intimate decisions.</span>
+        <div class="studio-cards">
+          <button type="button" class="is-on" data-studio="Bronze">
+            <span class="name">Bronze</span>
+            <span class="cap">Seats 4 · Warm light</span>
+            <span class="body">A small, west-facing room. Best for intimate decisions.</span>
           </button>
-          <button type="button" class="studio" data-studio="Plaster">
-            <span class="studio__name">Plaster</span>
-            <span class="studio__cap">Seats 6 · Even light</span>
-            <span class="studio__body">Neutral, considered. The default for first meetings.</span>
+          <button type="button" data-studio="Plaster">
+            <span class="name">Plaster</span>
+            <span class="cap">Seats 6 · Even light</span>
+            <span class="body">Neutral, considered. The default for first meetings.</span>
           </button>
-          <button type="button" class="studio" data-studio="North Light">
-            <span class="studio__name">North Light</span>
-            <span class="studio__cap">Seats 8 · Cool light</span>
-            <span class="studio__body">High ceiling, raked glazing. For drawings and large boards.</span>
+          <button type="button" data-studio="North Light">
+            <span class="name">North Light</span>
+            <span class="cap">Seats 8 · Cool light</span>
+            <span class="body">High ceiling, raked glazing. For drawings and large boards.</span>
           </button>
-          <button type="button" class="studio" data-studio="The Bench">
-            <span class="studio__name">The Bench</span>
-            <span class="studio__cap">Standing · Task light</span>
-            <span class="studio__body">An open work surface for samples, finishes, and mock-ups.</span>
+          <button type="button" data-studio="The Bench">
+            <span class="name">The Bench</span>
+            <span class="cap">Standing · Task light</span>
+            <span class="body">An open work surface for samples, finishes, and mock-ups.</span>
           </button>
         </div>
       </section>
 
-      <section class="reserve__step reveal">
-        <h3><span class="num">03</span>Date &amp; Time</h3>
-        <p>We hold two consultations per studio per day. Pick a date — we will respond with the available windows.</p>
-        <div class="calendar">
-          <div class="calendar__head">
-            <h4>June, 2026</h4>
-            <div class="calendar__nav"><span>← May</span><span>July →</span></div>
-          </div>
-          <div class="calendar__grid" id="cal-grid"></div>
+      <section class="reserve-step reveal">
+        <h3><span class="n">03 ·</span> Chapter (optional)</h3>
+        <p>Name a chapter from the current issue, and we will stage the pieces that were specified into it.</p>
+        <div class="choice-list">
+          <label><input type="radio" name="chapter" /><span>No. 01 — House in Two Plasters</span></label>
+          <label><input type="radio" name="chapter" /><span>No. 02 — Apartment, North Light</span></label>
+          <label><input type="radio" name="chapter" /><span>No. 03 — A Quiet Penthouse</span></label>
+          <label><input type="radio" name="chapter" checked /><span>None — bring my own brief</span></label>
         </div>
       </section>
-
     </div>
 
-    <aside class="summary reveal">
-      <h3>Your reservation</h3>
+    <aside class="reserve-summary reveal">
+      <span class="eyebrow">Your reservation</span>
+      <h3>An invitation,<br/>by post-confirmation.</h3>
       <dl>
-        <div class="summary__line">
-          <dt>Intent</dt>
-          <dd>Specifying a project</dd>
-        </div>
-        <div class="summary__line">
-          <dt>Studio</dt>
-          <dd id="sum-studio">Bronze</dd>
-        </div>
-        <div class="summary__line">
-          <dt>Date</dt>
-          <dd id="sum-date">— to be selected —</dd>
-        </div>
-        <div class="summary__line">
-          <dt>Window</dt>
-          <dd>16:00 — 17:30</dd>
-        </div>
-        <div class="summary__line">
-          <dt>Staging</dt>
-          <dd>None requested</dd>
-        </div>
+        <div><dt>Intent</dt><dd data-sum="intent">Specifying a project</dd></div>
+        <div><dt>Studio</dt><dd data-sum="studio">Bronze</dd></div>
+        <div><dt>Window</dt><dd>By return</dd></div>
+        <div><dt>Reply within</dt><dd>4 hours</dd></div>
       </dl>
-      <p style="color:var(--hush-soft); font-size:0.85rem; line-height:1.6;">After submission, we will reply within four working hours with a typeset PDF invitation. You may forward it directly to your client.</p>
-      <a href="#" class="summary__submit">Hold the studio <span>→</span></a>
+      <p style="color: var(--ink-soft); font-size: 0.85rem; line-height: 1.6; margin-top: 1rem;">After submission, we reply with a typeset PDF invitation, forwardable to your client.</p>
+      <a href="#" class="reserve-submit">Hold the studio →</a>
     </aside>
 
   </div>
 </main>
 
-<footer>
-  <span>Design Station · MMXXV</span>
-  <span>Palladium, Tehran</span>
-  <span>By appointment</span>
+<footer class="masthead-foot">
+  <div>
+    <h3>INHABITED</h3>
+    <p style="color: var(--ink-soft); max-width: 32ch; line-height: 1.7;">A quarterly index of homes specified through this room.</p>
+  </div>
+  <dl>
+    <dt>Atelier</dt>
+    <dd>Palladium Mall<br/>Floor 4, Zafraniyeh<br/>Tehran</dd>
+  </dl>
+  <dl>
+    <dt>Hours</dt>
+    <dd>Tue — Sat<br/>11:00 — 22:00</dd>
+  </dl>
+  <dl>
+    <dt>Direct line</dt>
+    <dd>+98 21 8888 0000</dd>
+  </dl>
+  <div class="masthead-foot__bottom">
+    <span>© Design Station · MMXXVI</span>
+    <span>By appointment, since 2019</span>
+  </div>
 </footer>
 
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/scroll.js"></script>
-<script>
-  // Studio selector
-  document.querySelectorAll('.studio').forEach((s) => {
-    s.addEventListener('click', () => {
-      document.querySelectorAll('.studio').forEach(x => x.classList.remove('is-selected'));
-      s.classList.add('is-selected');
-      document.getElementById('sum-studio').textContent = s.dataset.studio;
-    });
-  });
-
-  // Calendar
-  const grid = document.getElementById('cal-grid');
-  if (grid) {
-    const head = ['M','T','W','T','F','S','S'];
-    head.forEach(d => { const c = document.createElement('div'); c.className = 'calendar__day is-head'; c.textContent = d; grid.appendChild(c); });
-    const offset = 0; // June 1, 2026 is Monday
-    for (let i = 0; i < offset; i++) { const c = document.createElement('div'); c.className = 'calendar__day is-disabled'; grid.appendChild(c); }
-    for (let d = 1; d <= 30; d++) {
-      const c = document.createElement('div');
-      const dow = (offset + d - 1) % 7;
-      c.className = 'calendar__day ' + (dow === 6 ? 'is-disabled' : 'is-avail');
-      c.textContent = d;
-      if (dow !== 6) {
-        c.addEventListener('click', () => {
-          document.querySelectorAll('.calendar__day').forEach(x => x.classList.remove('is-selected'));
-          c.classList.add('is-selected');
-          document.getElementById('sum-date').textContent = d + ' June 2026';
-        });
-      }
-      grid.appendChild(c);
-    }
-  }
-</script>
+<script src="assets/js/inhabited.js"></script>
 </body>
 </html>
