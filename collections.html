@@ -3,171 +3,149 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Collections — Design Station</title>
-<link rel="stylesheet" href="assets/css/main.css" />
+<title>Directory — INHABITED · Design Station</title>
+<link rel="stylesheet" href="assets/css/inhabited.css" />
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav__brand">
-    Design Station
-    <small>Palladium · Tehran</small>
-  </a>
-  <div class="nav__menu">
-    <a href="index.html#hub">The Hub</a>
-    <a href="collections.html">Collections</a>
-    <a href="index.html#archive">Archive</a>
-    <a href="index.html#access">Access</a>
+<nav class="masthead">
+  <div class="masthead__left">
+    <a href="index.html#contents">Issue IV</a>
+    <a href="index.html#atelier">Atelier</a>
   </div>
-  <a href="reserve.html" class="nav__cta">Reserve the Hub</a>
+  <div class="masthead__center">INHABITED</div>
+  <div class="masthead__right">
+    <a href="reserve.html" class="is-cta">Reserve the Hub</a>
+  </div>
 </nav>
 
-<header class="collections-page__head reveal" style="padding-top:10rem; padding-left:var(--gutter); padding-right:var(--gutter);">
-  <span class="eyebrow">Collections</span>
-  <h1>The three trades,<br/><em>specified.</em></h1>
-  <p>Each section is a working inventory — what we hold, what we ship, what we install. Tap a piece to add it to a Specifier's Folio, which travels with you back to the studio.</p>
-</header>
+<section class="cover" style="min-height: 65svh; padding-top: 8rem; background: var(--paper); color: var(--ink);">
+  <header class="cover__rule-top" style="color: var(--ink-faint);">
+    <span>Directory · MMXXVI</span>
+    <span></span>
+    <span>Every product, alphabetised</span>
+  </header>
+  <h1 class="cover__title" style="font-size: clamp(3rem, 9vw, 10rem); color: var(--ink); text-shadow: none;">
+    <span class="line">The</span>
+    <span class="line"><em>directory.</em></span>
+  </h1>
+  <footer class="cover__rule-bottom" style="color: var(--ink-faint);">
+    <span class="lead" style="color: var(--ink-soft);">Every product held in our room — <em>three trades, one inventory.</em></span>
+    <span></span>
+    <span>By appointment, since 2019</span>
+  </footer>
+</section>
 
 <!-- Smart Home -->
-<section class="collection" id="smart">
-  <div class="collection__inner">
-    <div class="collection__text reveal">
-      <span class="eyebrow">01 · Smart Home</span>
-      <h2>Systems that <em>disappear</em><br/>into the wall, and into the day.</h2>
-      <p>Whole-residence control, climate, blinds, audio, and security — installed by trades who have done the work in houses the press cannot photograph.</p>
-      <div class="collection__brands">
-        Crestron · Lutron · Bang &amp; Olufsen<br/>
-        Savant · Control4 · ABB Free@Home<br/>
-        BTicino Living Now
-      </div>
-    </div>
-    <div class="collection__items">
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(140deg,#2a2a2c 0%,#1a1a1c 60%),radial-gradient(circle at 70% 30%,rgba(139,111,71,0.3),transparent 50%);"></div>
-        <div class="collection__item__meta"><span>Lot 03</span><span>Whole-house</span></div>
-        <div class="collection__item__name">Lutron HomeWorks QSX</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(180deg,#1a1a1c 0%,#3a3a3c 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 08</span><span>Keypad</span></div>
-        <div class="collection__item__name">Crestron Horizon</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(220deg,#2a2e30 0%,#1a1a1c 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 11</span><span>In-wall</span></div>
-        <div class="collection__item__name">Beolab 28</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:radial-gradient(ellipse at 50% 20%,#3a3a3c 0%,#1a1a1c 70%);"></div>
-        <div class="collection__item__meta"><span>Lot 15</span><span>Climate</span></div>
-        <div class="collection__item__name">Daikin VRV Discreet</div>
-      </a>
-    </div>
+<section class="indexlist">
+  <header class="indexlist__head reveal">
+    <h2>Smart <em>Home.</em></h2>
+    <p>Whole-residence control, climate, blinds, audio, and security — installed by trades who have done the work in houses the press cannot photograph.</p>
+  </header>
+
+  <div class="indexlist__group">
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Bang &amp; Olufsen</span><span class="product">Beolab 28 · in-wall</span><span class="place">Struer</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Control4</span><span class="product">Triad · architectural audio</span><span class="place">Salt Lake City</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Crestron</span><span class="product">Horizon · keypad</span><span class="place">Rockleigh</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Daikin</span><span class="product">VRV · discreet climate</span><span class="place">Osaka</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Lutron</span><span class="product">HomeWorks QSX · whole-house</span><span class="place">Coopersburg</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Savant</span><span class="product">Pro System · processor</span><span class="place">Hyannis</span><span class="arrow">→</span></a>
   </div>
 </section>
 
 <!-- Fixtures -->
-<section class="collection" id="fixtures">
-  <div class="collection__inner">
-    <div class="collection__text reveal">
-      <span class="eyebrow">02 · Fixtures</span>
-      <h2><em>Brass</em> that will outlive<br/>the contract.</h2>
-      <p>Bath, kitchen, hardware — chosen by feel, not by catalogue. Every fixture in this room has been turned by hand and weighed in ours before it earned its shelf.</p>
-      <div class="collection__brands">
-        Dornbracht · Vola · Fantini<br/>
-        Boffi · Agape · CEA<br/>
-        Olivari · Karcher Design
-      </div>
-    </div>
-    <div class="collection__items">
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(160deg,#8B6F47 0%,#4a3a26 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 02</span><span>Mixer</span></div>
-        <div class="collection__item__name">Vola FS1</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(200deg,#a89880 0%,#5a4a36 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 05</span><span>Mixer</span></div>
-        <div class="collection__item__name">Dornbracht Tara</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(140deg,#c9a96e 0%,#6b5436 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 12</span><span>Bath</span></div>
-        <div class="collection__item__name">Agape Vieques</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(180deg,#7a6446 0%,#3a2e18 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 19</span><span>Hardware</span></div>
-        <div class="collection__item__name">Olivari Diana</div>
-      </a>
-    </div>
+<section class="indexlist">
+  <header class="indexlist__head reveal">
+    <h2><em>Fixtures.</em></h2>
+    <p>Bath, kitchen, hardware — chosen by feel, not by catalogue. Every fixture in this room has been turned by hand and weighed in ours before it earned its shelf.</p>
+  </header>
+
+  <div class="indexlist__group">
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Agape</span><span class="product">Vieques · monolithic bath</span><span class="place">Mantova</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Boffi</span><span class="product">Cut · basin mixer</span><span class="place">Brianza</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">CEA</span><span class="product">Innovo · stainless</span><span class="place">Brescia</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Dornbracht</span><span class="product">Tara · platinum matte</span><span class="place">Iserlohn</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Fantini</span><span class="product">Milano · single-lever</span><span class="place">Pella</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Olivari</span><span class="product">Diana · door hardware</span><span class="place">Borgomanero</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Vola</span><span class="product">FS1 · brushed brass</span><span class="place">Horsens</span><span class="arrow">→</span></a>
   </div>
 </section>
 
 <!-- Lighting -->
-<section class="collection" id="lighting">
-  <div class="collection__inner">
-    <div class="collection__text reveal">
-      <span class="eyebrow">03 · Lighting</span>
-      <h2>We specify <em>the light,</em><br/>not the lamp.</h2>
-      <p>Architectural lighting begins with a calculation and ends with a mood. We carry both — luminaires the photographer will frame, and the unseen drivers, profiles, and controls behind them.</p>
-      <div class="collection__brands">
-        Flos · Artemide · Davide Groppi<br/>
-        Vibia · Catellani &amp; Smith · Apparatus<br/>
-        Erco · iGuzzini
-      </div>
-    </div>
-    <div class="collection__items">
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:radial-gradient(ellipse at 50% 30%,#f3e9d3 0%,#c9a96e 30%,#6b5436 80%);"></div>
-        <div class="collection__item__meta"><span>Lot 01</span><span>Suspension</span></div>
-        <div class="collection__item__name">Flos 2097/30</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:radial-gradient(ellipse at 30% 70%,#e3d4a8 0%,#7a6446 80%);"></div>
-        <div class="collection__item__meta"><span>Lot 04</span><span>Floor</span></div>
-        <div class="collection__item__name">Davide Groppi Sampei</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:radial-gradient(ellipse at 60% 40%,#fff3d4 0%,#a88c5a 60%,#3a2e18 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 07</span><span>Task</span></div>
-        <div class="collection__item__name">Artemide Tolomeo</div>
-      </a>
-      <a href="#" class="collection__item reveal">
-        <div class="collection__item__visual" style="background:linear-gradient(180deg,#1a1a1c 0%,#c9a96e 100%);"></div>
-        <div class="collection__item__meta"><span>Lot 14</span><span>Architectural</span></div>
-        <div class="collection__item__name">Erco Quintessence</div>
-      </a>
-    </div>
+<section class="indexlist">
+  <header class="indexlist__head reveal">
+    <h2><em>Lighting.</em></h2>
+    <p>Architectural lighting begins with a calculation and ends with a mood. We carry both — luminaires the photographer will frame, and the unseen drivers, profiles, and controls behind them.</p>
+  </header>
+
+  <div class="indexlist__group">
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Apparatus</span><span class="product">Trapeze · suspended brass</span><span class="place">New York</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Artemide</span><span class="product">Tolomeo · task</span><span class="place">Pregnana</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Catellani &amp; Smith</span><span class="product">Macchina della Luce</span><span class="place">Bergamo</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Davide Groppi</span><span class="product">Sampei · floor lamp</span><span class="place">Parma</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Erco</span><span class="product">Quintessence · architectural</span><span class="place">Lüdenscheid</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Flos</span><span class="product">2097/30 · suspension</span><span class="place">Milano</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">iGuzzini</span><span class="product">Laser · downlight</span><span class="place">Recanati</span><span class="arrow">→</span></a>
+    <a href="chapter.html" class="indexlist__row"><span class="brand">Vibia</span><span class="product">Wireflow · linear suspended</span><span class="place">Barcelona</span><span class="arrow">→</span></a>
   </div>
 </section>
 
-<section class="access" id="access" style="margin-top:8vh;">
-  <div class="access__copy reveal">
+<!-- Atelier callback -->
+<section class="atelier" id="atelier">
+  <div class="atelier__text">
     <span class="eyebrow">Specify in person</span>
-    <h2>Bring this folio<br/>to <em>the Hub.</em></h2>
-    <p>Save any item to a private Folio. When you reserve a studio, we will stage your selection on the bench before you arrive.</p>
-    <a href="reserve.html" class="access__cta">Reserve the Hub</a>
+    <h2>Hold a piece<br/>before you <em>specify</em> it.</h2>
+    <p>Reserve a studio, and we will stage your selection on the bench in the right light before you arrive.</p>
+    <a href="reserve.html" class="atelier__cta">Reserve the studio</a>
   </div>
-  <dl class="access__info reveal">
-    <div>
-      <dt>Lead times</dt>
-      <dd>From 3 weeks<br/>(stocked) to 14 weeks<br/>(commissioned).</dd>
-    </div>
-    <div>
-      <dt>Installation</dt>
-      <dd>By appointment.<br/>Our trades, or yours.</dd>
-    </div>
-  </dl>
+  <figure class="atelier__visual">
+    <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dirBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a2218"/>
+          <stop offset="1" stop-color="#0a0805"/>
+        </linearGradient>
+        <radialGradient id="dirGlow" cx="0.5" cy="0.45" r="0.45">
+          <stop offset="0" stop-color="#FFD89A" stop-opacity="0.55"/>
+          <stop offset="1" stop-color="#FFD89A" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="800" height="1000" fill="url(#dirBg)"/>
+      <rect x="120" y="640" width="560" height="14" fill="#3D4A40"/>
+      <rect x="370" y="500" width="60" height="140" fill="#A87B45"/>
+      <rect x="363" y="495" width="74" height="10" fill="#7D5829"/>
+      <ellipse cx="400" cy="476" rx="25" ry="6" fill="#A87B45"/>
+      <line x1="400" y1="0" x2="400" y2="280" stroke="#1a1410" stroke-width="2"/>
+      <rect x="380" y="280" width="40" height="40" fill="#A87B45"/>
+      <ellipse cx="400" cy="370" rx="240" ry="280" fill="url(#dirGlow)"/>
+    </svg>
+    <figcaption>One Lot · staged · awaiting visit</figcaption>
+  </figure>
 </section>
 
-<footer>
-  <span>Design Station · MMXXV</span>
-  <span>Palladium, Tehran</span>
-  <span>By appointment</span>
+<footer class="masthead-foot">
+  <div>
+    <h3>INHABITED</h3>
+    <p style="color: var(--ink-soft); max-width: 32ch; line-height: 1.7;">Every product Design Station holds in Tehran, listed once, taken seriously each.</p>
+  </div>
+  <dl>
+    <dt>Trades</dt>
+    <dd>Smart Home<br/>Fixtures<br/>Lighting</dd>
+  </dl>
+  <dl>
+    <dt>Lead times</dt>
+    <dd>From 3 weeks<br/>(stocked)<br/>to 14 weeks<br/>(commissioned)</dd>
+  </dl>
+  <dl>
+    <dt>Installation</dt>
+    <dd>By appointment<br/>Our trades, or yours</dd>
+  </dl>
+  <div class="masthead-foot__bottom">
+    <span>© Design Station · MMXXVI</span>
+    <span>By appointment</span>
+  </div>
 </footer>
 
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/scroll.js"></script>
+<script src="assets/js/inhabited.js"></script>
 </body>
 </html>
