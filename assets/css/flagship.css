@@ -801,3 +801,178 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: non
 .reveal-stagger.is-in > *:nth-child(6) { transition-delay: 400ms; }
 .reveal-stagger.is-in > *:nth-child(7) { transition-delay: 480ms; }
 .reveal-stagger.is-in > *:nth-child(8) { transition-delay: 560ms; }
+
+/* ============================================================ */
+/* Persian / RTL extension                                      */
+/* ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500&display=swap');
+
+html[lang="fa"] {
+  direction: rtl;
+}
+html[lang="fa"] body {
+  font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+/* Persian numerals for tabular elements */
+html[lang="fa"] .nav__meta,
+html[lang="fa"] [data-nav-time],
+html[lang="fa"] [data-time],
+html[lang="fa"] .hero__index,
+html[lang="fa"] .tile__label-meta,
+html[lang="fa"] .contact__info dd {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Persian display: Vazirmatn with editorial-italic feel using oblique transform */
+html[lang="fa"] .concept__text h2,
+html[lang="fa"] .brands__head h2,
+html[lang="fa"] .experience__head h2,
+html[lang="fa"] .contact__head h2 {
+  font-family: 'Vazirmatn', serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+html[lang="fa"] .concept__text h2 em,
+html[lang="fa"] .brands__head h2 em,
+html[lang="fa"] .experience__head h2 em,
+html[lang="fa"] .contact__head h2 em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+/* Hero quote — Persian doesn't have italic, use Vazirmatn 200 + small caps removed */
+html[lang="fa"] .hero__caption .quote {
+  font-family: 'Vazirmatn', sans-serif;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+}
+html[lang="fa"] .hero__caption .quote::before,
+html[lang="fa"] .hero__caption .quote::after {
+  content: '«';
+  font-family: 'Vazirmatn', serif;
+  font-style: normal;
+  color: var(--accent);
+  font-size: 1.3em;
+  margin: 0 0.15em;
+}
+html[lang="fa"] .hero__caption .quote::after { content: '»'; }
+html[lang="fa"] .hero__caption .pre {
+  font-family: 'Vazirmatn', sans-serif;
+  text-transform: none;
+  letter-spacing: 0.18em;
+}
+
+/* Eyebrows: Persian doesn't render uppercase well; tighten letter-spacing */
+html[lang="fa"] .eyebrow,
+html[lang="fa"] .caption,
+html[lang="fa"] .nav__menu,
+html[lang="fa"] .nav__brand,
+html[lang="fa"] .nav__meta,
+html[lang="fa"] .nav,
+html[lang="fa"] .foot,
+html[lang="fa"] .hero__scroll,
+html[lang="fa"] .hero__caption .pre,
+html[lang="fa"] .concept__caption,
+html[lang="fa"] .concept__caption-img,
+html[lang="fa"] .smart-switch__label,
+html[lang="fa"] .brand__caption,
+html[lang="fa"] .tile__label-meta,
+html[lang="fa"] .contact__info dt,
+html[lang="fa"] .map__marker-label,
+html[lang="fa"] .submit,
+html[lang="fa"] .field input + label,
+html[lang="fa"] .field select + label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+/* Nav brand serif fallback for Persian */
+html[lang="fa"] .nav__brand small {
+  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+}
+
+/* Hero index vertical text — Persian writing-mode tweak */
+html[lang="fa"] .hero__index { left: auto; right: var(--gutter); align-items: flex-end; text-align: right; }
+html[lang="fa"] .hero__index .vert { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* Concept layout — text flows right in RTL */
+html[lang="fa"] .concept__text { max-width: 38ch; }
+
+/* Smart switch: in RTL, place switch on right side of image */
+html[lang="fa"] .smart-switch { left: auto; right: 24%; }
+
+/* Brand mark — restore some that use Latin */
+html[lang="fa"] .brand__mark {
+  font-family: 'Vazirmatn', 'Inter', sans-serif;
+}
+/* But brand wordmarks should stay Latin (Dornbracht, Gessi, etc) for authenticity */
+html[lang="fa"] .brand__mark[lang="en"],
+html[lang="fa"] .brand--dornbracht .brand__mark,
+html[lang="fa"] .brand--gessi .brand__mark,
+html[lang="fa"] .brand--lutron .brand__mark,
+html[lang="fa"] .brand--savant .brand__mark,
+html[lang="fa"] .brand--fantini .brand__mark,
+html[lang="fa"] .brand--crestron .brand__mark,
+html[lang="fa"] .brand--vola .brand__mark,
+html[lang="fa"] .brand--bo .brand__mark {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+html[lang="fa"] .brand--dornbracht .brand__mark { font-family: 'Inter', sans-serif; font-weight: 500; }
+html[lang="fa"] .brand--gessi .brand__mark { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; }
+html[lang="fa"] .brand--fantini .brand__mark { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.5rem; letter-spacing: 0.04em; text-transform: none; }
+html[lang="fa"] .brand--bo .brand__mark { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.05rem; letter-spacing: 0.06em; text-transform: none; }
+
+/* Submit arrow flip — RTL arrows point left */
+html[lang="fa"] .submit__arrow { transform: scaleX(-1); }
+html[lang="fa"] .submit:hover .submit__arrow { transform: scaleX(-1) translateX(6px); }
+html[lang="fa"] .tile__arrow { transform: scaleX(-1); }
+html[lang="fa"] .tile:hover .tile__arrow { transform: scale(1) scaleX(-1); }
+
+/* Field labels — RTL alignment */
+html[lang="fa"] .field label { left: auto; right: 0; transform-origin: right top; }
+
+/* Map marker position stays */
+html[lang="fa"] .map__marker { direction: ltr; }
+
+/* Submit padding flip on hover */
+html[lang="fa"] .submit:hover { padding-right: 2.5rem; padding-left: 3.2rem; }
+
+/* Pulsing dot — slightly smaller for fa */
+html[lang="fa"] .nav__meta .dot { width: 6px; height: 6px; }
+
+/* Force LTR isolates on time strings to keep `19:43` readable */
+html[lang="fa"] [data-nav-time],
+html[lang="fa"] [data-time] {
+  unicode-bidi: isolate;
+}
+
+/* Nav grid — swap brand to start (right) and menu to end (left) in RTL */
+html[lang="fa"] .nav { direction: rtl; }
+html[lang="fa"] .nav__menu { justify-self: start; }
+html[lang="fa"] .nav__meta { justify-self: center; }
+
+/* Foot also RTL */
+html[lang="fa"] .foot__right { justify-self: start; }
+
+/* Subtle: cormorant italic display chars look odd in Persian; use brand-accent serif lookup only for em accents */
+html[lang="fa"] .concept__text h2 em,
+html[lang="fa"] .brands__head h2 em,
+html[lang="fa"] .experience__head h2 em,
+html[lang="fa"] .contact__head h2 em {
+  font-family: 'Cormorant Garamond', 'Vazirmatn', serif;
+  font-style: italic;
+}
+
+/* For Persian em accents we use serif (Cormorant Garamond) only when accent has Latin/digit content */

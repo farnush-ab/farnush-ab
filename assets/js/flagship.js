@@ -129,11 +129,12 @@
   function setFootTime() {
     const el = document.querySelector('[data-time]');
     if (!el) return;
+    const isFa = document.documentElement.lang === 'fa';
     const now = new Date();
-    // Approx Tehran time — UTC+3:30. Use Intl with explicit timezone.
+    const locale = isFa ? 'fa-IR' : 'en-GB';
     let str;
     try {
-      str = new Intl.DateTimeFormat('en-GB', {
+      str = new Intl.DateTimeFormat(locale, {
         hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Tehran'
       }).format(now);
     } catch (e) {
@@ -142,12 +143,28 @@
       const mm = (m % 60).toString().padStart(2,'0');
       str = `${hh}:${mm}`;
     }
-    const hh = Number(str.slice(0,2));
-    let greet = 'Good evening';
-    if (hh < 5) greet = 'Late night';
-    else if (hh < 12) greet = 'Good morning';
-    else if (hh < 17) greet = 'Good afternoon';
-    el.innerHTML = `${greet}, Tehran &nbsp;·&nbsp; ${str}`;
+    // For greeting calc, get hour in latin digits
+    let hourStr;
+    try {
+      hourStr = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit', hour12: false, timeZone: 'Asia/Tehran'
+      }).format(now);
+    } catch (e) { hourStr = '12'; }
+    const hh = Number(hourStr.slice(0,2));
+    let greet;
+    if (isFa) {
+      if (hh < 5) greet = 'شب بخیر';
+      else if (hh < 12) greet = 'صبح بخیر';
+      else if (hh < 17) greet = 'ظهر بخیر';
+      else greet = 'غروب بخیر';
+      el.innerHTML = `${greet}، تهران &nbsp;·&nbsp; ${str}`;
+    } else {
+      if (hh < 5) greet = 'Late night';
+      else if (hh < 12) greet = 'Good morning';
+      else if (hh < 17) greet = 'Good afternoon';
+      else greet = 'Good evening';
+      el.innerHTML = `${greet}, Tehran &nbsp;·&nbsp; ${str}`;
+    }
   }
   setFootTime();
   setInterval(setFootTime, 30000);
@@ -156,13 +173,15 @@
   function setNavMeta() {
     const el = document.querySelector('[data-nav-time]');
     if (!el) return;
+    const isFa = document.documentElement.lang === 'fa';
+    const locale = isFa ? 'fa-IR' : 'en-GB';
     let str;
     try {
-      str = new Intl.DateTimeFormat('en-GB', {
+      str = new Intl.DateTimeFormat(locale, {
         hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Tehran'
       }).format(new Date());
     } catch (e) { str = '—'; }
-    el.textContent = `Tehran · ${str}`;
+    el.textContent = isFa ? `تهران · ${str}` : `Tehran · ${str}`;
   }
   setNavMeta();
   setInterval(setNavMeta, 30000);
