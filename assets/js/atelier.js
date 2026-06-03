@@ -74,6 +74,89 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => io.observe(el));
 
+  // ---------- Hero — Inspect Product (rotation + carousel + shine) ----------
+  const stage = document.getElementById('inspect-stage');
+  const product = document.getElementById('inspect-product');
+  const productImgs = product ? product.querySelectorAll('img') : [];
+  const pagerBtns = document.querySelectorAll('.hero-inspect__pager button');
+  const pagerCount = document.querySelector('[data-pager-count]');
+  const heroIndex = document.querySelector('[data-hero-index]');
+  const productNameEl = document.querySelector('[data-product-name]');
+  const productTagEl = document.querySelector('[data-product-tag]');
+
+  let activeProduct = 0;
+
+  function isFa() { return document.documentElement.lang === 'fa'; }
+  function fmtIdx(n, total) {
+    if (isFa()) {
+      return new Intl.NumberFormat('fa-IR', { minimumIntegerDigits: 2 }).format(n) + ' / ' +
+             new Intl.NumberFormat('fa-IR', { minimumIntegerDigits: 2 }).format(total);
+    }
+    return String(n).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  }
+
+  function setActiveProduct(i) {
+    if (!productImgs.length) return;
+    activeProduct = (i + productImgs.length) % productImgs.length;
+    productImgs.forEach((img, idx) => img.classList.toggle('is-active', idx === activeProduct));
+    pagerBtns.forEach((b, idx) => b.classList.toggle('is-on', idx === activeProduct));
+    const cur = productImgs[activeProduct];
+    if (cur) {
+      if (productNameEl) productNameEl.textContent = isFa() ? cur.dataset.nameFa || cur.dataset.name : cur.dataset.name;
+      if (productTagEl) productTagEl.textContent = cur.dataset.tag || '';
+    }
+    const idxStr = fmtIdx(activeProduct + 1, productImgs.length);
+    if (pagerCount) pagerCount.textContent = idxStr;
+    if (heroIndex) heroIndex.textContent = idxStr;
+  }
+  if (productImgs.length) setActiveProduct(0);
+  pagerBtns.forEach((b, i) => b.addEventListener('click', () => setActiveProduct(i)));
+
+  // Auto-advance every 7s (paused on hover)
+  let productTimer = null;
+  function startProductTimer() {
+    clearInterval(productTimer);
+    productTimer = setInterval(() => setActiveProduct(activeProduct + 1), 7000);
+  }
+  if (productImgs.length > 1) {
+    startProductTimer();
+    if (stage) {
+      stage.addEventListener('pointerenter', () => clearInterval(productTimer));
+      stage.addEventListener('pointerleave', startProductTimer);
+    }
+  }
+
+  // Cursor-driven 3D rotation
+  let rx = 0, ry = 0, trx = 0, try_ = 0;
+  if (stage && product) {
+    stage.addEventListener('pointermove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      // Max rotation: ±18deg horizontally, ±10deg vertically — feels like inspecting an object
+      trx = -ny * 10;
+      try_ = nx * 18;
+      // Update shine position
+      stage.style.setProperty('--shine-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      stage.style.setProperty('--shine-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    });
+    stage.addEventListener('pointerleave', () => { trx = 0; try_ = 0; });
+
+    function inspectLoop() {
+      rx += (trx - rx) * 0.08;
+      ry += (try_ - ry) * 0.08;
+      product.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      requestAnimationFrame(inspectLoop);
+    }
+    inspectLoop();
+
+    // Arrow keys for accessibility
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') setActiveProduct(activeProduct - 1);
+      if (e.key === 'ArrowRight') setActiveProduct(activeProduct + 1);
+    });
+  }
+
   // ---------- Hero — sticky scroll parallax ----------
   const hero = document.querySelector('.hero');
   const heroL1 = document.querySelector('.hero__layer--l1');

@@ -39,33 +39,54 @@
   <a href="#booking" class="nav__cta" data-book>رزرو ملاقات</a>
 </nav>
 
-<!-- Movement 1 — Hero (sticky cinematic parallax) -->
-<section class="hero" id="hero">
-  <div class="hero__sticky">
-    <div class="hero__layer hero__layer--l1"></div>
-    <div class="hero__layer hero__layer--l2"></div>
-    <div class="hero__layer hero__layer--l3"></div>
-    <div class="hero__layer hero__layer--l4"></div>
-    <div class="hero__vignette"></div>
-    <div class="hero__grain"></div>
+<!-- Movement 1 — Hero (Inspect Product, single rotating object) -->
+<section class="hero-inspect" id="hero">
+  <div class="hero-inspect__backdrop"></div>
 
-    <div class="hero__inner">
-      <header class="hero__top">
-        <span>اتلیه ۰۱ · دیزاین استیشن</span>
-        <span data-hero-meta>تهران · غروب طلایی</span>
-      </header>
+  <span class="hero-inspect__corner hero-inspect__corner--tl"></span>
+  <span class="hero-inspect__corner hero-inspect__corner--tr"></span>
+  <span class="hero-inspect__corner hero-inspect__corner--bl"></span>
+  <span class="hero-inspect__corner hero-inspect__corner--br"></span>
 
-      <div class="hero__title-wrap">
-        <h1 class="hero__title">چیزی برای فروش نداریم —<br/>یک <em>اتاق</em> داریم.</h1>
-        <p class="hero__sub">شش‌هزار مترمربع، در پالادیومِ تهران، با هماهنگی قبلی.</p>
+  <div class="hero-inspect__inner">
+    <header class="hero-inspect__top">
+      <span>اتلیه ۰۱ · دیزاین استیشن</span>
+      <span class="hero-inspect__index" data-hero-index>۰۱ / ۰۳</span>
+    </header>
+
+    <div class="hero-inspect__stage" id="inspect-stage">
+      <div class="hero-inspect__product" id="inspect-product">
+        <img src="assets/img/cosmos_321590197.jpeg" alt="Chrome basin mixer" class="is-active"
+             data-name="Basin Mixer" data-name-fa="شیر پایه‌بلند" data-tag="Lot 01 · Chrome on Black"/>
+        <img src="assets/img/cosmos_949244246.jpeg" alt="Tall slim chrome tap"
+             data-name="Tall Slim Tap" data-name-fa="شیر بلندِ مرمری" data-tag="Lot 02 · Brushed Chrome"/>
+        <img src="assets/img/cosmos_290186355.jpeg" alt="Bronze 3-piece on stone"
+             data-name="Three-piece Mixer" data-name-fa="مجموعه‌ی سه‌پارچه" data-tag="Lot 03 · Smoked Bronze"/>
+      </div>
+      <div class="hero-inspect__shine"></div>
+    </div>
+
+    <footer class="hero-inspect__bottom">
+      <div class="hero-inspect__name">
+        <span class="cap-tag" data-product-tag>Lot 01 · Chrome on Black</span>
+        <span data-product-name>شیر پایه‌بلند</span>
       </div>
 
-      <footer class="hero__bottom">
-        <a href="#booking" class="hero__cta" data-book>رزرو ملاقات</a>
-        <span class="hero__scroll">پایین بکشید</span>
-      </footer>
-    </div>
+      <div class="hero-inspect__pager" role="tablist">
+        <button type="button" class="is-on" aria-label="محصول ۱"></button>
+        <button type="button" aria-label="محصول ۲"></button>
+        <button type="button" aria-label="محصول ۳"></button>
+        <span class="hero-inspect__pager-count" data-pager-count>۰۱ / ۰۳</span>
+      </div>
+
+      <div class="hero-inspect__cta-wrap">
+        <a href="#booking" class="hero-inspect__cta" data-book>رزرو ملاقات</a>
+      </div>
+    </footer>
   </div>
+
+  <span class="hero-inspect__hint">با موس بچرخانید</span>
+  <span class="hero-inspect__scroll">پایین بکشید ↓</span>
 </section>
 
 <!-- Movement 2 — Statement -->
