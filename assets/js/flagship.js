@@ -185,4 +185,130 @@
   }
   setNavMeta();
   setInterval(setNavMeta, 30000);
+
+  // ---------- Scroll progress bar ----------
+  const sp = document.querySelector('.scroll-progress__bar');
+  if (sp) {
+    function onScrollProgress() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      sp.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', onScrollProgress, { passive: true });
+    onScrollProgress();
+  }
+
+  // ---------- Hero slideshow ----------
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots button');
+  let activeIdx = 0;
+  let slideTimer = null;
+
+  function showSlide(i) {
+    activeIdx = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === activeIdx));
+    dots.forEach((d, idx) => d.classList.toggle('is-on', idx === activeIdx));
+  }
+  function nextSlide() { showSlide(activeIdx + 1); }
+  function startTimer() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(nextSlide, 6000);
+  }
+  if (slides.length > 0) {
+    showSlide(0);
+    startTimer();
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => { showSlide(i); startTimer(); });
+    });
+    // Pause on hover
+    const heroEl = document.querySelector('.hero-slides');
+    if (heroEl) {
+      heroEl.addEventListener('pointerenter', () => clearInterval(slideTimer));
+      heroEl.addEventListener('pointerleave', () => startTimer());
+    }
+  }
+
+  // ---------- Booking modal ----------
+  const modal = document.querySelector('.modal');
+  const modalOpeners = document.querySelectorAll('[data-modal-open]');
+  const modalClose = modal && modal.querySelector('.modal__close');
+  const modalForm = modal && modal.querySelector('form');
+  const modalSuccess = modal && modal.querySelector('.modal__success');
+  const modalBody = modal && modal.querySelector('.modal__body');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (modalSuccess) modalSuccess.classList.remove('is-visible');
+      if (modalBody) modalBody.style.display = '';
+      if (modalForm) modalForm.reset();
+    }, 600);
+  }
+  modalOpeners.forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); openModal(); }));
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // Time-slot picker
+  document.querySelectorAll('.time-slot').forEach((s) => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.time-slot').forEach((x) => x.classList.remove('is-on'));
+      s.classList.add('is-on');
+    });
+  });
+
+  // Modal form submission (demo — just shows success state)
+  if (modalForm) {
+    modalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (modalBody) modalBody.style.display = 'none';
+      if (modalSuccess) modalSuccess.classList.add('is-visible');
+    });
+  }
+
+  // ---------- Stats counter animation ----------
+  const counters = document.querySelectorAll('[data-count]');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = Number(el.dataset.count) || 0;
+      const dur = 1800;
+      const start = performance.now();
+      const isFa = document.documentElement.lang === 'fa';
+      function tick(now) {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.floor(target * eased);
+        const str = isFa ? val.toLocaleString('fa-IR') : val.toLocaleString('en-US');
+        el.textContent = str;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      cio.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach((c) => cio.observe(c));
+
+  // ---------- Newsletter (demo) ----------
+  document.querySelectorAll('.newsletter').forEach((nl) => {
+    nl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inp = nl.querySelector('input');
+      const btn = nl.querySelector('button');
+      if (!inp.value.trim()) { inp.focus(); return; }
+      const isFa = document.documentElement.lang === 'fa';
+      btn.textContent = isFa ? 'ثبت شد ✓' : 'Subscribed ✓';
+      inp.value = '';
+      setTimeout(() => { btn.textContent = isFa ? 'عضو شو' : 'Subscribe'; }, 2400);
+    });
+  });
 })();
