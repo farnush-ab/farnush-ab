@@ -298,6 +298,18 @@
   }, { threshold: 0.4 });
   counters.forEach((c) => cio.observe(c));
 
+  // ---------- Showcase rows — trigger photo zoom on scroll-in ----------
+  const showcaseRows = document.querySelectorAll('[data-showcase]');
+  const sio = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        sio.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+  showcaseRows.forEach((r) => sio.observe(r));
+
   // ---------- Newsletter (demo) ----------
   document.querySelectorAll('.newsletter').forEach((nl) => {
     nl.addEventListener('submit', (e) => {

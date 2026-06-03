@@ -1595,3 +1595,356 @@ html[lang="fa"] .footer-big__bottom {
 
 /* Hide old simple footer when big footer present */
 .foot.is-hidden { display: none; }
+
+/* ============================================================ */
+/* v5.2 — Gessi-inspired: richer palette, dramatic showcase,    */
+/* marquee, deeper footer drama                                 */
+/* ============================================================ */
+
+:root {
+  /* Override to richer, more cinematic palette */
+  --sand:        #EFE9DD;          /* warm pearl */
+  --sand-soft:   #F7F2E8;          /* lighter ivory */
+  --sand-deep:   #DCD3C3;          /* warm wash */
+  --ink:         #14100C;          /* espresso (was #1F1F1D) */
+  --ink-soft:    rgba(20, 16, 12, 0.65);
+  --ink-faint:   rgba(20, 16, 12, 0.40);
+  --ink-mute:    rgba(20, 16, 12, 0.14);
+  --rule:        rgba(20, 16, 12, 0.10);
+  --accent:      #BC8F4F;          /* warm copper-gold (was #A89377) */
+  --accent-deep: #8A6532;          /* deep bronze */
+  --accent-soft: #D4B585;          /* light champagne */
+  --ember:       #6E2C1C;          /* deep burgundy */
+  --sage:        #4E5A4C;          /* deep sage */
+}
+
+body { font-feature-settings: "ss01"; }
+
+/* Bigger, darker hero title for drama */
+.hero-slide__title {
+  font-size: clamp(3.5rem, 9vw, 9rem);
+}
+.hero-slide__title em { color: var(--accent-soft); }
+
+/* ============================================================ */
+/* Product showcase — Gessi-style dark editorial spreads        */
+/* ============================================================ */
+.showcase {
+  background: var(--ink);
+  color: var(--sand);
+  padding: 0;
+  overflow: hidden;
+}
+
+.showcase__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 90vh;
+  align-items: stretch;
+}
+.showcase__row + .showcase__row { border-top: 1px solid rgba(239, 233, 221, 0.08); }
+.showcase__row.is-reverse { grid-template-columns: 1fr 1fr; }
+.showcase__row.is-reverse .showcase__photo { order: 2; }
+.showcase__row.is-reverse .showcase__text { order: 1; }
+
+@media (max-width: 900px) {
+  .showcase__row, .showcase__row.is-reverse { grid-template-columns: 1fr; }
+  .showcase__row.is-reverse .showcase__photo { order: 0; }
+  .showcase__row.is-reverse .showcase__text { order: 1; }
+}
+
+.showcase__photo {
+  position: relative;
+  min-height: 60vh;
+  overflow: hidden;
+  background: #0a0805;
+}
+.showcase__photo-inner {
+  position: absolute;
+  inset: -8%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.92) contrast(1.05);
+  transition: transform 1800ms var(--ease-out);
+  will-change: transform;
+}
+.showcase__row.is-in .showcase__photo-inner { transform: scale(1.06); }
+
+.showcase__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.45) 100%);
+  z-index: 1;
+}
+
+.showcase__text {
+  padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+}
+.showcase__num {
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+html[lang="fa"] .showcase__num {
+  text-transform: none;
+  letter-spacing: 0.18em;
+  font-family: 'Vazirmatn', sans-serif;
+}
+.showcase__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--sand);
+}
+html[lang="fa"] .showcase__title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+.showcase__title em { font-style: normal; color: var(--accent-soft); }
+
+.showcase__meta {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 221, 0.55);
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+html[lang="fa"] .showcase__meta {
+  text-transform: none;
+  letter-spacing: 0.12em;
+  font-family: 'Vazirmatn', sans-serif;
+  gap: 1.8rem;
+}
+.showcase__meta div { display: flex; flex-direction: column; gap: 0.4rem; }
+.showcase__meta strong {
+  color: var(--sand);
+  font-weight: 400;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+html[lang="fa"] .showcase__meta strong {
+  font-family: 'Vazirmatn', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.showcase__body {
+  color: rgba(239, 233, 221, 0.75);
+  max-width: 42ch;
+  line-height: 1.75;
+  font-size: 0.98rem;
+}
+html[lang="fa"] .showcase__body {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.showcase__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.4rem;
+  width: fit-content;
+  margin-top: 1rem;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease), gap var(--dur) var(--ease);
+}
+html[lang="fa"] .showcase__cta {
+  text-transform: none;
+  letter-spacing: 0.12em;
+  font-family: 'Vazirmatn', sans-serif;
+}
+.showcase__cta:hover { color: var(--sand); gap: 1.4rem; }
+.showcase__cta::after { content: '→'; }
+html[lang="fa"] .showcase__cta::after { transform: scaleX(-1); }
+
+/* Index number that floats over the photo */
+.showcase__photo-num {
+  position: absolute;
+  top: 2rem;
+  inset-inline-start: 2rem;
+  z-index: 2;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(4rem, 9vw, 10rem);
+  line-height: 1;
+  color: rgba(239, 233, 221, 0.92);
+  letter-spacing: -0.02em;
+}
+html[lang="fa"] .showcase__photo-num {
+  font-family: 'Vazirmatn', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+}
+
+/* ============================================================ */
+/* Marquee — auto-scrolling tagline                             */
+/* ============================================================ */
+.marquee {
+  background: var(--ink);
+  color: var(--sand);
+  overflow: hidden;
+  padding: 1.4rem 0;
+  position: relative;
+  border-top: 1px solid rgba(239, 233, 221, 0.08);
+  border-bottom: 1px solid rgba(239, 233, 221, 0.08);
+}
+.marquee__track {
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  animation: marquee 38s linear infinite;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3.5vw, 3.2rem);
+  letter-spacing: -0.01em;
+  align-items: center;
+}
+html[lang="fa"] .marquee__track {
+  font-family: 'Vazirmatn', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+}
+.marquee__track span { display: inline-flex; align-items: center; gap: 4rem; }
+.marquee__track .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+.marquee__track em { font-style: normal; color: var(--accent); }
+html[lang="fa"] .marquee__track {
+  /* Reverse direction for RTL */
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+/* ============================================================ */
+/* Color update: refresh existing components with new palette   */
+/* ============================================================ */
+
+/* Brand grid: subtler tile, copper highlight on hover */
+.brands { background: var(--sand-soft); }
+.brand { background: var(--sand-soft); }
+.brand:hover { background: var(--sand); }
+.brand::after { background: var(--accent); }
+.brand:hover::before { background: var(--accent); }
+
+/* Concept caption: copper-deep for emphasis */
+.concept__caption strong { color: var(--accent-deep); font-weight: 500; letter-spacing: 0.32em; }
+.concept__caption em { color: var(--accent-deep); }
+
+/* Stats: copper accent on the labels */
+.stat__num em { color: var(--accent-deep); }
+
+/* Footer drama — giant brand mark + richer palette */
+.footer-big {
+  background: var(--ink);
+  padding-top: 0;
+}
+.footer-big__hero {
+  padding: clamp(4rem, 10vw, 8rem) var(--gutter);
+  border-bottom: 1px solid rgba(239, 233, 221, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.footer-big__hero h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 200;
+  font-size: clamp(4rem, 14vw, 16rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--sand);
+  max-width: 14ch;
+}
+html[lang="fa"] .footer-big__hero h2 {
+  font-family: 'Vazirmatn', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.footer-big__hero h2 em { font-style: normal; color: var(--accent); }
+.footer-big__hero p {
+  color: rgba(239, 233, 221, 0.62);
+  max-width: 38ch;
+  margin-top: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+html[lang="fa"] .footer-big__hero p {
+  font-family: 'Vazirmatn', sans-serif;
+}
+.footer-big__hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.2rem 2.4rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  background: transparent;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+html[lang="fa"] .footer-big__hero__cta {
+  text-transform: none;
+  letter-spacing: 0.1em;
+  font-family: 'Vazirmatn', sans-serif;
+}
+.footer-big__hero__cta:hover { background: var(--accent); color: var(--ink); }
+.footer-big__hero__cta::after { content: '→'; }
+html[lang="fa"] .footer-big__hero__cta::after { transform: scaleX(-1); }
+
+.footer-big__grid { padding: 5rem var(--gutter) 0; }
+
+/* Footer column links: copper hover */
+.footer-big__col a:hover { color: var(--accent-soft); }
+.footer-big__col a::after { background: var(--accent); }
+
+.newsletter button { background: var(--accent); }
+.newsletter button:hover { background: var(--accent-soft); color: var(--ink); }
+.social a:hover { background: var(--accent); border-color: var(--accent); }
+
+/* Section spacing on light → dark transitions: tighten */
+.brands + .marquee, .concept + .marquee { margin-top: 0; }
+
+/* Cursor: keep current behavior but copper accent on hover */
+.cursor.is-hover { background: rgba(188, 143, 79, 0.20); border-color: var(--accent); }
+
+/* Submit button: copper-deep on water-fill */
+.submit::before { background: var(--accent-deep); }
