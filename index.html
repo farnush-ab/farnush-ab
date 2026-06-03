@@ -1,239 +1,516 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Design Station — a private showroom and atelier for architects and designers. Palladium Mall, Tehran. By appointment." />
-<title>Design Station — by appointment, in Tehran.</title>
-<link rel="stylesheet" href="assets/css/main.css" />
+<meta name="description" content="دیزاین استیشن — گلچینی از بهترین برندهای جهان در شیرآلات لاکچری، نور معماری و خانه‌ی هوشمند. مرکز خرید پالادیوم، تهران." />
+<title>دیزاین استیشن — سکوت، نور، جریان</title>
+<link rel="stylesheet" href="assets/css/flagship.css" />
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav__brand">
-    Design Station
-    <small>Palladium · Tehran</small>
-  </a>
-  <div class="nav__menu">
-    <a href="#hub">The Hub</a>
-    <a href="collections.html">Collections</a>
-    <a href="#archive">Archive</a>
-    <a href="#access">Access</a>
+<!-- Scroll progress -->
+<div class="scroll-progress"><div class="scroll-progress__bar"></div></div>
+
+<!-- ===== Nav ===== -->
+<nav class="nav has-cta" id="top">
+  <div class="nav__brand">
+    دیزاین استیشن
+    <small>پالادیوم · تهران</small>
   </div>
-  <a href="reserve.html" class="nav__cta">Reserve the Hub</a>
+  <div class="nav__meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span data-nav-time>تهران · --:--</span>
+  </div>
+  <div class="nav__menu">
+    <a href="#concept">مفهوم</a>
+    <a href="#brands">برندها</a>
+    <a href="#experience">تجربه</a>
+    <a href="#footer">تماس</a>
+  </div>
+  <button type="button" class="nav__cta" data-modal-open>رزرو ملاقات</button>
 </nav>
 
-<!-- 01 — Hero / The Quiet Room -->
-<section class="hero" id="quiet">
-  <div class="hero__canvas" id="hero-canvas"></div>
-  <div class="hero__veil"></div>
-  <div class="hero__inner">
-    <div>
-      <span class="eyebrow" style="display:block; margin-bottom:2rem; color:rgba(239,235,228,0.5);">01 · The Quiet Room</span>
-      <h1>Designed for<br/>the people <em>who design.</em></h1>
+<!-- ===== Hero — slideshow with real photos ===== -->
+<section class="hero-slides" id="hero">
+  <!-- Slide 01 — Bath -->
+  <article class="hero-slide is-active">
+    <div class="hero-slide__photo" style="background-image: url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide__svg" aria-hidden="true">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="s1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3a312a"/>
+            <stop offset="1" stop-color="#1c1814"/>
+          </linearGradient>
+        </defs>
+        <rect width="1600" height="900" fill="url(#s1)"/>
+      </svg>
     </div>
-    <div class="hero__foot">
-      <div class="hero__meta">
-        <span>Palladium Mall</span>
-        <span>Floor 4</span>
-        <span>By appointment, since 2019</span>
+    <div class="hero-slide__overlay"></div>
+    <div class="hero-slide__inner">
+      <div class="hero-slide__title-wrap">
+        <span class="hero-slide__pre">— روایت اول · حمام</span>
+        <h1 class="hero-slide__title">سکوت، نور،<br/><em>جریان.</em></h1>
+        <p class="hero-slide__sub">روایتی مدرن از جریان زندگی در فضای معماری. هر شیر یک تصمیم، هر بازتاب یک سکوت.</p>
+        <button type="button" class="hero-slide__cta" data-modal-open>رزرو بازدید از نمایشگاه</button>
       </div>
-      <div class="hero__scroll">Continue</div>
+      <div class="hero-slide__foot">
+        <div class="hero-slide__meta">
+          <span>پالادیوم · طبقه ۴</span>
+          <span>سه‌شنبه — شنبه</span>
+          <span>با هماهنگی قبلی</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Slide 02 — Kitchen / Brass -->
+  <article class="hero-slide">
+    <div class="hero-slide__photo" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide__svg" aria-hidden="true">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="s2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3d2f1f"/>
+            <stop offset="1" stop-color="#1d160d"/>
+          </linearGradient>
+        </defs>
+        <rect width="1600" height="900" fill="url(#s2)"/>
+      </svg>
+    </div>
+    <div class="hero-slide__overlay"></div>
+    <div class="hero-slide__inner">
+      <div class="hero-slide__title-wrap">
+        <span class="hero-slide__pre">— روایت دوم · آشپزخانه</span>
+        <h1 class="hero-slide__title">برنزی که با شما<br/><em>پیر می‌شود.</em></h1>
+        <p class="hero-slide__sub">هر شیر آشپزخانه‌ی ما، نه از کاتالوگ، که از روی کاربری روزمره انتخاب شده. لمس می‌کنی و می‌دانی چرا.</p>
+        <button type="button" class="hero-slide__cta" data-modal-open>مشاوره‌ی حضوری</button>
+      </div>
+      <div class="hero-slide__foot">
+        <div class="hero-slide__meta">
+          <span>۸ برند معتبر</span>
+          <span>نصب توسط استاد‌کاران</span>
+          <span>گارانتی اصلی</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Slide 03 — Smart Home -->
+  <article class="hero-slide">
+    <div class="hero-slide__photo" style="background-image: url('https://images.unsplash.com/photo-1545454675-3531b543be5d?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide__svg" aria-hidden="true">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="s3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2a2a2c"/>
+            <stop offset="1" stop-color="#0f0e0d"/>
+          </linearGradient>
+        </defs>
+        <rect width="1600" height="900" fill="url(#s3)"/>
+      </svg>
+    </div>
+    <div class="hero-slide__overlay"></div>
+    <div class="hero-slide__inner">
+      <div class="hero-slide__title-wrap">
+        <span class="hero-slide__pre">— روایت سوم · هوشمند</span>
+        <h1 class="hero-slide__title">خانه‌ای که<br/><em>به فکر شماست.</em></h1>
+        <p class="hero-slide__sub">از نور و پرده تا صدا و دما — یک سامانه، بی‌صدا، بی‌مزاحمت. زندگی شما، آرام‌تر.</p>
+        <button type="button" class="hero-slide__cta" data-modal-open>دموی هوشمندسازی</button>
+      </div>
+      <div class="hero-slide__foot">
+        <div class="hero-slide__meta">
+          <span>Sonos · Lutron · Crestron</span>
+          <span>کنترل سراسری</span>
+          <span>نصب دیسکریت</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Pagination dots -->
+  <div class="hero-dots" role="tablist">
+    <button type="button" class="is-on" aria-label="اسلاید ۱"></button>
+    <button type="button" aria-label="اسلاید ۲"></button>
+    <button type="button" aria-label="اسلاید ۳"></button>
+  </div>
+</section>
+
+<!-- ===== Stats strip ===== -->
+<section class="stats reveal-stagger">
+  <div class="stat">
+    <span class="stat__num"><span data-count="6000">0</span><em>m²</em></span>
+    <span class="stat__label">فضای نمایشگاه</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num"><span data-count="8">0</span></span>
+    <span class="stat__label">برند معتبر</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num"><span data-count="240">0</span><em>+</em></span>
+    <span class="stat__label">پروژه‌ی اجرا شده</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num"><span data-count="2019">0</span></span>
+    <span class="stat__label">از سال</span>
+  </div>
+</section>
+
+<!-- ===== Concept — about + smart switch ===== -->
+<section class="concept" id="concept">
+  <div class="concept__text reveal">
+    <span class="eyebrow">— مفهوم</span>
+    <h2>جایی برای <em>دیدن،</em> پیش از خریدن.</h2>
+    <p>ما در «دیزاین استیشن»، گلچینی از بهترین‌های دنیا را دور هم جمع کرده‌ایم؛ از شیرآلات خاص گرفته تا نور و هوشمندیِ خانه. فضای ما، بیشتر از اینکه فروشگاه باشد، یک فضای کاریِ مشترک برای شماست.</p>
+    <p>بیایید دور «میز اجتماعی» ما بنشینید، قهوه‌ای بخوریم و فارغ از دغدغه‌های خرید، درباره‌ی جزئیاتِ پروژه‌تان گپ بزنیم. ما دوست داریم کنار شما باشیم، نه فقط فروشنده‌ی کالا.</p>
+    <div class="concept__caption">
+      <strong>میز اجتماعی</strong> — فضایی اختصاصی برای <em>گفت‌وگو، هم‌فکری و خلق مشترک</em>.
+    </div>
+  </div>
+
+  <figure class="concept__visual reveal is-photo" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop');">
+    <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cw" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#EFEAD9"/>
+          <stop offset="1" stop-color="#9A9281"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="1000" fill="url(#cw)"/>
+    </svg>
+    <button type="button" class="smart-switch is-on" aria-label="تغییر روشنایی صحنه">
+      <div class="smart-switch__plate">
+        <div class="smart-switch__rocker"><span></span><span></span></div>
+        <div class="smart-switch__label">لوترون · صحنه‌ی ۰۲</div>
+      </div>
+    </button>
+    <figcaption class="concept__caption-img">منتخب · Crestron · Sonos · میز اجتماعی</figcaption>
+  </figure>
+</section>
+
+<!-- ===== Showcase — dramatic editorial product spreads ===== -->
+<section class="showcase" id="showcase">
+
+  <!-- Spread 01 — Faucet -->
+  <article class="showcase__row" data-showcase>
+    <div class="showcase__photo">
+      <div class="showcase__photo-num">۰۱</div>
+      <div class="showcase__photo-inner" style="background-image: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1600&q=85&auto=format&fit=crop');"></div>
+    </div>
+    <div class="showcase__text">
+      <span class="showcase__num">حمام · مجموعه‌ی ۰۱</span>
+      <h2 class="showcase__title">آب،<br/>به <em>سکوت.</em></h2>
+      <p class="showcase__body">شیر دیواری Gessi 316، در گرمایِ مات استیل ضدزنگ. جریانی آرام، بدون پاشش — به یاریِ کاهنده‌ی هوای اتمسفری. در میز اجتماعی، در دست بگیرید.</p>
+      <div class="showcase__meta">
+        <div><span>برند</span><strong>Gessi 316</strong></div>
+        <div><span>طراح</span><strong>Prospero Rasulo</strong></div>
+        <div><span>سال</span><strong>2017</strong></div>
+      </div>
+      <button type="button" class="showcase__cta" data-modal-open>رزرو بازدید</button>
+    </div>
+  </article>
+
+  <!-- Spread 02 — Smart switch -->
+  <article class="showcase__row is-reverse" data-showcase>
+    <div class="showcase__photo">
+      <div class="showcase__photo-num">۰۲</div>
+      <div class="showcase__photo-inner" style="background-image: url('https://images.unsplash.com/photo-1545454675-3531b543be5d?w=1600&q=85&auto=format&fit=crop');"></div>
+    </div>
+    <div class="showcase__text">
+      <span class="showcase__num">هوشمند · سامانه‌ی ۰۲</span>
+      <h2 class="showcase__title">کنترلِ<br/><em>نامرئی.</em></h2>
+      <p class="showcase__body">یک پنل، چهارده صحنه. کنترل سراسری روشنایی، پرده، صوت و دما — بی‌مزاحمتِ صفحه‌نمایش و بی‌اطوار رنگ. Lutron HomeWorks QSX، نصب شده در دیوار، نه روی آن.</p>
+      <div class="showcase__meta">
+        <div><span>برند</span><strong>Lutron · Crestron</strong></div>
+        <div><span>پروژه</span><strong>۱۲ کلیدِ بی‌صدا</strong></div>
+        <div><span>گارانتی</span><strong>۱۰ ساله</strong></div>
+      </div>
+      <button type="button" class="showcase__cta" data-modal-open>دموی هوشمندسازی</button>
+    </div>
+  </article>
+
+  <!-- Spread 03 — Kitchen brass -->
+  <article class="showcase__row" data-showcase>
+    <div class="showcase__photo">
+      <div class="showcase__photo-num">۰۳</div>
+      <div class="showcase__photo-inner" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=85&auto=format&fit=crop');"></div>
+    </div>
+    <div class="showcase__text">
+      <span class="showcase__num">آشپزخانه · مجموعه‌ی ۰۳</span>
+      <h2 class="showcase__title">برنزی<br/>که <em>پیر می‌شود.</em></h2>
+      <p class="showcase__body">شیرِ تک‌اهرمی Kohler Purist، در پرداختِ Vibrant Brushed Bronze. سطحی که با هر استفاده، عمیق‌تر می‌شود — نه پاک‌تر. هنرِ اسپانیایی، در ظرفِ روزانه‌تان.</p>
+      <div class="showcase__meta">
+        <div><span>برند</span><strong>Kohler · Purist</strong></div>
+        <div><span>پرداخت</span><strong>Vibrant Bronze</strong></div>
+        <div><span>زمان تحویل</span><strong>۸ هفته</strong></div>
+      </div>
+      <button type="button" class="showcase__cta" data-modal-open>سفارش با مشاوره</button>
+    </div>
+  </article>
+
+</section>
+
+<!-- ===== Marquee — auto-scrolling tagline ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>گلچینِ <em>هشت</em> برند</span>
+    <span class="dot"></span>
+    <span>شش‌هزار مترمربع</span>
+    <span class="dot"></span>
+    <span>میز اجتماعی</span>
+    <span class="dot"></span>
+    <span>پالادیوم، تهران</span>
+    <span class="dot"></span>
+    <span>از سال <em>۲۰۱۹</em></span>
+    <span class="dot"></span>
+    <span>با هماهنگی قبلی</span>
+    <span class="dot"></span>
+    <!-- duplicate for seamless loop -->
+    <span>گلچینِ <em>هشت</em> برند</span>
+    <span class="dot"></span>
+    <span>شش‌هزار مترمربع</span>
+    <span class="dot"></span>
+    <span>میز اجتماعی</span>
+    <span class="dot"></span>
+    <span>پالادیوم، تهران</span>
+    <span class="dot"></span>
+    <span>از سال <em>۲۰۱۹</em></span>
+    <span class="dot"></span>
+    <span>با هماهنگی قبلی</span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<!-- ===== Brands ===== -->
+<section class="brands" id="brands">
+  <header class="brands__head reveal">
+    <h2><em>اکوسیستم</em><br/>برندها.</h2>
+    <p>هشت برندی که در تهران نمایندگی می‌کنیم — هر کدام در حوزه‌ی خود، طرازِ جهانی.</p>
+  </header>
+
+  <div class="brands__grid reveal-stagger">
+    <div class="brand brand--kohler">
+      <span class="brand__mark" dir="ltr">KOHLER</span>
+      <span class="brand__caption">آمریکا · از ۱۸۷۳</span>
+    </div>
+    <div class="brand brand--sonos">
+      <span class="brand__mark" dir="ltr">SONOS</span>
+      <span class="brand__caption">سانتا باربارا · از ۲۰۰۲</span>
+    </div>
+    <div class="brand brand--amstandard">
+      <span class="brand__mark" dir="ltr">American Standard</span>
+      <span class="brand__caption">پیسکاتاوی · از ۱۸۷۵</span>
+    </div>
+    <div class="brand brand--grohe">
+      <span class="brand__mark" dir="ltr">GROHE</span>
+      <span class="brand__caption">دوسلدورف · از ۱۹۳۶</span>
+    </div>
+    <div class="brand brand--hansgrohe">
+      <span class="brand__mark" dir="ltr">hansgrohe</span>
+      <span class="brand__caption">شیلتاخ · از ۱۹۰۱</span>
+    </div>
+    <div class="brand brand--toto">
+      <span class="brand__mark" dir="ltr">TOTO</span>
+      <span class="brand__caption">کیتاکیوشو · از ۱۹۱۷</span>
+    </div>
+    <div class="brand brand--frigidaire">
+      <span class="brand__mark" dir="ltr">Frigidaire</span>
+      <span class="brand__caption">شارلوت · از ۱۹۱۸</span>
+    </div>
+    <div class="brand brand--moen">
+      <span class="brand__mark" dir="ltr">MOEN</span>
+      <span class="brand__caption">نورت اولمستد · از ۱۹۳۷</span>
     </div>
   </div>
 </section>
 
-<!-- 02 — The Hub -->
-<section class="hub" id="hub">
-  <span class="frame__index">02 / 06</span>
-  <div class="hub__text reveal">
-    <span class="eyebrow">The Hub</span>
-    <h2>A room you can <em>borrow.</em></h2>
-    <p class="hub__body">Bring the architect. Bring the client. Bring the drawings. We will stage the rest — products on the bench, the catalog open, the right light overhead. The Hub is where six thousand square metres becomes a conversation.</p>
-    <div class="hub__zones">
-      <div class="zone">
-        <span class="zone__num">01</span>
-        <span class="zone__name">Consult</span>
-        <span class="zone__meta">Brief · Sample · Sign</span>
+<!-- ===== Experience tiles with real photos ===== -->
+<section class="experience" id="experience">
+  <header class="experience__head reveal">
+    <h2><em>تجربه،</em><br/>در سه اتاق.</h2>
+    <p>هر سطحی که دستی شکل داده. هر کنترلی که صفحه‌ای تمرین کرده. هر نوری، محاسبه‌ای‌ست که به حسی می‌انجامد.</p>
+  </header>
+
+  <div class="experience__grid">
+    <button type="button" class="tile tile--lg" data-modal-open>
+      <div class="tile__visual">
+        <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=1200&q=80&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+        <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute; inset:0; opacity:0;"><rect width="800" height="1000" fill="#2a2620"/></svg>
       </div>
-      <div class="zone">
-        <span class="zone__num">02</span>
-        <span class="zone__name">Specify</span>
-        <span class="zone__meta">Stage · Compare · Resolve</span>
+      <div class="tile__arrow">↗</div>
+      <div class="tile__label">
+        <span class="tile__label-text">شیرآلاتِ<br/>آشپزخانه</span>
+        <span class="tile__label-meta">۰۱</span>
       </div>
-      <div class="zone">
-        <span class="zone__num">03</span>
-        <span class="zone__name">Meet</span>
-        <span class="zone__meta">Present · Persuade · Close</span>
+    </button>
+
+    <button type="button" class="tile" data-modal-open>
+      <div class="tile__visual">
+        <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1558002038-1055e2e28cd7?w=1200&q=80&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
       </div>
-    </div>
-  </div>
-  <div class="hub__visual reveal" id="hub-canvas">
-    <span class="hub__caption">Hub · cutaway · 1:24</span>
+      <div class="tile__arrow">↗</div>
+      <div class="tile__label">
+        <span class="tile__label-text">وسایلِ<br/>هوشمند خانه</span>
+        <span class="tile__label-meta">۰۲</span>
+      </div>
+    </button>
+
+    <button type="button" class="tile" data-modal-open>
+      <div class="tile__visual">
+        <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&q=80&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="tile__arrow">↗</div>
+      <div class="tile__label">
+        <span class="tile__label-text">شیرآلاتِ<br/>حمام</span>
+        <span class="tile__label-meta">۰۳</span>
+      </div>
+    </button>
   </div>
 </section>
 
-<!-- Threshold -->
-<section class="threshold">
-  <div class="threshold__word">Three <em>disciplines.</em></div>
-  <div class="threshold__sub">— Smart Home · Fixtures · Lighting —</div>
-</section>
+<!-- ===== Big Footer ===== -->
+<footer class="footer-big" id="footer">
 
-<!-- 03 — Disciplines -->
-<section class="disciplines">
-  <span class="frame__index">03 / 06</span>
-  <div class="disciplines__head reveal">
-    <h2>One showroom,<br/>three trades.</h2>
-    <p>We do not stock everything. We stock what an architect can specify without an apology — assembled, lit, and ready to be touched.</p>
-  </div>
-  <div class="disciplines__grid">
-    <a href="collections.html#smart" class="discipline discipline--smart reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Smart Home</span>
-        <span class="discipline__count">22 systems</span>
+  <!-- Dramatic giant brand mark + final CTA -->
+  <section class="footer-big__hero">
+    <h2>یک عصر،<br/>در <em>میز اجتماعی.</em></h2>
+    <p>قهوه‌ای می‌نوشیم، شیرهای انتخابی‌تان را روی بنچ می‌چینیم، و درباره‌ی پروژه‌تان گپ می‌زنیم. بدون فروش، با هماهنگی قبلی.</p>
+    <button type="button" class="footer-big__hero__cta" data-modal-open>رزرو وقت ملاقات</button>
+  </section>
+
+  <div class="footer-big__grid">
+
+    <div class="footer-big__brand">
+      <h3>دیزاین استیشن</h3>
+      <p>گلچینی از بهترین برندهای جهان در شیرآلات لاکچری، نور معماری و خانه‌ی هوشمند. در قلب پالادیوم، تهران — با هماهنگی قبلی، از سال ۲۰۱۹.</p>
+      <div class="social">
+        <a href="#" aria-label="اینستاگرام">IG</a>
+        <a href="#" aria-label="لینکدین">in</a>
+        <a href="#" aria-label="پینترست">P</a>
+        <a href="#" aria-label="واتساپ">W</a>
       </div>
-    </a>
-    <a href="collections.html#fixtures" class="discipline discipline--fixtures reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Fixtures</span>
-        <span class="discipline__count">47 lots</span>
-      </div>
-    </a>
-    <a href="collections.html#lighting" class="discipline discipline--lighting reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Lighting</span>
-        <span class="discipline__count">63 lots</span>
-      </div>
-    </a>
-  </div>
-</section>
+    </div>
 
-<!-- 04 — Curation -->
-<section class="curation">
-  <span class="frame__index">04 / 06</span>
-  <div class="curation__head reveal">
-    <h2>The current<br/>curation.</h2>
-    <span class="lot">— Twelve lots, rotated monthly —</span>
-  </div>
-  <div class="curation__list">
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 01</span>
-      <h4>Flos 2097/30<em>Milano · 1958</em></h4>
-      <span class="meta">Suspension · Brass</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 02</span>
-      <h4>Vola FS1<em>Copenhagen · 1969</em></h4>
-      <span class="meta">Mixer · Brushed steel</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 03</span>
-      <h4>Lutron HomeWorks QSX<em>Coopersburg · system</em></h4>
-      <span class="meta">Control · Whole-residence</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 04</span>
-      <h4>Davide Groppi Sampei<em>Parma · 2003</em></h4>
-      <span class="meta">Floor lamp · Carbon</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 05</span>
-      <h4>Dornbracht Tara<em>Iserlohn · 1991</em></h4>
-      <span class="meta">Mixer · Platinum matte</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 06</span>
-      <h4>Bang &amp; Olufsen Beolab 28<em>Struer · in-wall</em></h4>
-      <span class="meta">Audio · Architectural</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 07</span>
-      <h4>Artemide Tolomeo<em>Pregnana · 1987</em></h4>
-      <span class="meta">Task · Aluminium</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 08</span>
-      <h4>Crestron Horizon<em>Rockleigh · keypad</em></h4>
-      <span class="meta">Control · Hidden installation</span>
-      <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
+    <div class="footer-big__col">
+      <h4>پیمایش</h4>
+      <ul>
+        <li><a href="#hero">خانه</a></li>
+        <li><a href="#concept">مفهوم</a></li>
+        <li><a href="#brands">برندها</a></li>
+        <li><a href="#experience">تجربه</a></li>
+        <li><a href="#" data-modal-open>رزرو ملاقات</a></li>
+      </ul>
+    </div>
 
-<!-- 05 — Archive -->
-<section class="archive" id="archive">
-  <span class="frame__index" style="color:rgba(239,235,228,0.4);">05 / 06</span>
-  <div class="archive__head reveal">
-    <h2>Specified through<br/>this room.</h2>
-    <span class="lot" style="color:rgba(239,235,228,0.5);">— Selected residences, 2021–2025 —</span>
-  </div>
-  <div class="archive__grid">
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 014</span><span>Lavasan</span></div>
-      <div class="archive__title">House in Two Plasters</div>
+    <div class="footer-big__col">
+      <h4>تماس</h4>
+      <dl>
+        <dt>نشانی</dt>
+        <dd>مرکز خرید پالادیوم<br/>طبقه‌ی ۴، زعفرانیه<br/>تهران</dd>
+        <dt>ساعت کاری</dt>
+        <dd>سه‌شنبه — شنبه<br/>۱۱:۰۰ — ۲۲:۰۰</dd>
+        <dt>تماس مستقیم</dt>
+        <dd dir="ltr">+98 21 8888 0000</dd>
+      </dl>
     </div>
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 018</span><span>Niavaran</span></div>
-      <div class="archive__title">Apartment, North Light</div>
-    </div>
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 021</span><span>Farmanieh</span></div>
-      <div class="archive__title">A Quiet Penthouse</div>
-    </div>
-  </div>
-</section>
 
-<!-- 06 — Access -->
-<section class="access" id="access">
-  <span class="frame__index">06 / 06</span>
-  <div class="access__copy reveal">
-    <span class="eyebrow">Access</span>
-    <h2>Open by <em>appointment.</em></h2>
-    <p>Reserve a studio at the Hub for a private consultation, a client presentation, or a quiet morning of material work. Confirmations arrive as a typeset invitation, suitable for forwarding.</p>
-    <a href="reserve.html" class="access__cta">Reserve the Hub</a>
-  </div>
-  <dl class="access__info reveal">
-    <div>
-      <dt>Address</dt>
-      <dd>Palladium Mall<br/>Floor 4, Zafraniyeh<br/>Tehran, Iran</dd>
+    <div class="footer-big__col">
+      <h4>خبرنامه</h4>
+      <dl>
+        <dd style="margin-bottom:1rem; color:rgba(232,228,218,0.6); font-size:0.92rem; line-height:1.6;">
+          هر دو ماه یک‌بار، گزیده‌ای از محصولات تازه، پروژه‌های اجرا شده، و یک یادداشت کوتاه از طراحان. بدون اسپم.
+        </dd>
+      </dl>
+      <form class="newsletter">
+        <input type="email" placeholder="ایمیل شما" required dir="ltr"/>
+        <button type="submit">عضو شو</button>
+      </form>
+      <dl style="margin-top:2rem;">
+        <dt>استودیو</dt>
+        <dd dir="ltr">studio@designstation.ir</dd>
+      </dl>
     </div>
-    <div>
-      <dt>Hours</dt>
-      <dd>Tue — Sat<br/>11:00 — 22:00<br/>By appointment</dd>
-    </div>
-    <div>
-      <dt>Direct Line</dt>
-      <dd>+98 21 8888 0000</dd>
-    </div>
-    <div>
-      <dt>Correspondence</dt>
-      <dd>studio@designstation.ir</dd>
-    </div>
-  </dl>
-</section>
 
-<footer>
-  <span>Design Station · MMXXV</span>
-  <span>Palladium, Tehran</span>
-  <span>By appointment</span>
+  </div>
+
+  <div class="footer-big__bottom">
+    <span>© دیزاین استیشن · ۱۴۰۵</span>
+    <span class="footer-big__bottom__center">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-time>غروب بخیر، تهران · --:--</span>
+      <span class="dot" aria-hidden="true"></span>
+    </span>
+    <span class="footer-big__bottom__right">با هماهنگی قبلی، از ۲۰۱۹</span>
+  </div>
 </footer>
 
-<script type="module" src="assets/js/hero-3d.js"></script>
-<script type="module" src="assets/js/hub-3d.js"></script>
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/scroll.js"></script>
+<!-- ===== Booking Modal ===== -->
+<div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+  <div class="modal__panel">
+    <button type="button" class="modal__close" aria-label="بستن">×</button>
+
+    <div class="modal__body">
+      <header class="modal__head">
+        <span class="eyebrow">— رزرو ملاقات</span>
+        <h2 id="modal-title">یک عصر آرام، در <em>میز اجتماعی</em>.</h2>
+        <p>زمان مورد نظرتان را انتخاب کنید. ظرف چهار ساعت کاری با تأیید نهایی و یک بنچِ آماده، تماس می‌گیریم.</p>
+      </header>
+
+      <form class="modal__form">
+        <div class="fieldset">
+          <div class="field">
+            <input type="text" id="m-name" placeholder=" " required />
+            <label for="m-name">نام و نام خانوادگی</label>
+          </div>
+          <div class="field">
+            <input type="tel" id="m-phone" placeholder=" " required dir="ltr" />
+            <label for="m-phone">شماره‌ی تماس</label>
+          </div>
+          <div class="field">
+            <input type="email" id="m-email" placeholder=" " dir="ltr" />
+            <label for="m-email">ایمیل (اختیاری)</label>
+          </div>
+          <div class="field">
+            <input type="text" id="m-project" placeholder=" " />
+            <label for="m-project">نام پروژه (اختیاری)</label>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:0.5rem;">
+          <input type="date" id="m-date" placeholder=" " required />
+          <label for="m-date">تاریخ ترجیحی</label>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <span class="field-label-static">ساعت ترجیحی</span>
+          <div class="time-grid">
+            <button type="button" class="time-slot">۱۱:۰۰</button>
+            <button type="button" class="time-slot">۱۲:۳۰</button>
+            <button type="button" class="time-slot">۱۴:۰۰</button>
+            <button type="button" class="time-slot">۱۵:۳۰</button>
+            <button type="button" class="time-slot">۱۷:۰۰</button>
+            <button type="button" class="time-slot">۱۸:۳۰</button>
+            <button type="button" class="time-slot">۲۰:۰۰</button>
+            <button type="button" class="time-slot">۲۱:۳۰</button>
+          </div>
+        </div>
+
+        <button type="submit" class="submit" style="margin-top:2rem;">
+          <span>ثبت درخواست</span>
+          <span class="submit__arrow">→</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="modal__success">
+      <div class="modal__success-icon">✓</div>
+      <h3>درخواست شما ثبت شد.</h3>
+      <p>ظرف چهار ساعت کاری با شما تماس می‌گیریم — با زمانِ تأیید شده و یک دعوت‌نامه‌ی پی‌دی‌اف برای فوروارد به مشتری.</p>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/flagship.js"></script>
 </body>
 </html>
