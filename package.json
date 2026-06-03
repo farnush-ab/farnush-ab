@@ -30,5 +30,11 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "three-mesh-bvh": "^0.8.3"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
