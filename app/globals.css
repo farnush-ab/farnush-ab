@@ -1,19 +1,8 @@
-@import 'tailwindcss';
-
-@theme {
-  /* Re-declare the key tokens for Tailwind v4 to pick up at the CSS layer too */
-  --color-bone: #ECE6D3;
-  --color-bone-soft: #F4EFE0;
-  --color-bone-deep: #D9D3BD;
-  --color-ink: #1F1A12;
-  --color-earth: #8C846C;
-  --color-terracotta: #BC846C;
-  --color-terracotta-soft: #D4A188;
-  --color-umber: #1A140E;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   html {
     scroll-behavior: smooth;
@@ -21,22 +10,19 @@
     text-rendering: geometricPrecision;
   }
   body {
-    background: theme(colors.bone);
-    color: theme(colors.ink);
+    @apply bg-bone text-ink;
     font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
     font-weight: 300;
     line-height: 1.7;
     overflow-x: hidden;
     cursor: none;
   }
-  ::selection { background: theme(colors.ink); color: theme(colors.bone); }
+  ::selection { @apply bg-ink text-bone; }
 
   /* Persian-numeral tabular feature */
-  [lang="fa"] {
-    font-feature-settings: 'ss01';
-  }
+  [lang="fa"] { font-feature-settings: 'ss01'; }
 
-  /* Hide native cursor everywhere except form fields */
+  /* Hide native cursor on interactive elements except form fields */
   a, button { cursor: none; }
   input, textarea, select { cursor: text; }
 
@@ -46,37 +32,33 @@
 }
 
 @layer components {
-  /* Type primitives — accessed via <Type> atom but classes available for raw HTML */
   .type-display {
-    font-family: theme(fontFamily.display);
-    font-weight: 300;
-    font-style: italic;
+    @apply font-display italic font-light;
     letter-spacing: -0.02em;
     line-height: 0.95;
   }
   [lang="fa"] .type-display {
-    font-family: theme(fontFamily.fa);
-    font-style: normal;
+    @apply font-fa not-italic;
     font-weight: 200;
     letter-spacing: -0.005em;
     line-height: 1.15;
   }
 
   .type-cap {
-    font-size: theme(fontSize.cap[0]);
+    font-size: 0.66rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     font-weight: 400;
-    color: theme(colors.ink.soft);
+    color: rgb(31 26 18 / 0.65);
   }
   [lang="fa"] .type-cap {
     text-transform: none;
     letter-spacing: 0.08em;
-    font-family: theme(fontFamily.fa);
+    @apply font-fa;
   }
 }
 
-/* Smooth-scroll Lenis integration */
+/* Lenis smooth-scroll integration */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
