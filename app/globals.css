@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+  body {
+    @apply bg-bone text-ink;
+    font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  ::selection { @apply bg-ink text-bone; }
+
+  /* Persian-numeral tabular feature */
+  [lang="fa"] { font-feature-settings: 'ss01'; }
+
+  /* Hide native cursor on interactive elements except form fields */
+  a, button { cursor: none; }
+  input, textarea, select { cursor: text; }
+
+  @media (hover: none) {
+    body, a, button { cursor: auto; }
+  }
+}
+
+@layer components {
+  .type-display {
+    @apply font-display italic font-light;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  [lang="fa"] .type-display {
+    @apply font-fa not-italic;
+    font-weight: 200;
+    letter-spacing: -0.005em;
+    line-height: 1.15;
+  }
+
+  .type-cap {
+    font-size: 0.66rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: rgb(31 26 18 / 0.65);
+  }
+  [lang="fa"] .type-cap {
+    text-transform: none;
+    letter-spacing: 0.08em;
+    @apply font-fa;
+  }
+}
+
+/* Lenis smooth-scroll integration */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }

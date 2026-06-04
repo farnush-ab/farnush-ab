@@ -1,32 +1,106 @@
-Hi ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif)My name is frnush abdollahi
-========================================================================================================================================
+# Design Station — Atelier (Next.js)
 
-UI/UX designer
---------------
+A premium digital atelier for **Design Station**, the 6,000 m² luxury showroom at Palladium Mall, Tehran. Built as a library of "luxury primitives" composed into editorial pages.
 
-i'm an UI/UX designer, passionate about crafting visually stunning and user-friendly digital expriences using figma.
+## Stack
 
-*   🌍  I'm based in Iran, Kashan.
-*   ✉️  You can contact me at [farnush.wexen@gmail.com.](mailto:farnush.wexen@gmail.com.)
-*   🧠  I'm learning figma.
-*   🤝  I'm open to collaborating on projects.
-*   ⚡  I'm a wizard who turns pixels into magic.🪄### Skills 
-<p align="left">
-<a href="https://www.adobe.com/uk/products/illustrator.html" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/illustrator-colored.svg" width="36" height="36" alt="Illustrator" /></a><a href="https://www.figma.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/figma-colored.svg" width="36" height="36" alt="Figma" /></a>
-                    </p>
-                    
-                  ### Socials
-                  
-                  
-                <p align="left">
-                      <a href="https://www.github.com/farnush-ab" target="_blank" rel="noreferrer">
-                    <picture>
-                    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github-dark.svg" />
-                    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg" />
-                    <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg" width="32" height="32" />
-                    </picture>
-                    </a></p>### Badges<b>My GitHub Stats</b><a
-                      href="http://www.github.com/farnush-ab"><img src="https://github-readme-stats.vercel.app/api?username=farnush-ab&show_icons=true&hide=&count_private=true&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&show_icons=true" alt="farnush-ab's GitHub stats" /></a><a
-                      href="http://www.github.com/farnush-ab"><img
-                  src="https://github-readme-streak-stats.herokuapp.com/?user=farnush-ab&stroke=ffffff&background=1c1917&ring=0891b2&fire=0891b2&currStreakNum=ffffff&currStreakLabel=0891b2&sideNums=ffffff&sideLabels=ffffff&dates=ffffff&hide_border=true" /></a><a
-                      href="http://www.github.com/farnush-ab"><img src="https://github-readme-activity-graph.cyclic.app/graph?username=farnush-ab&bg_color=1c1917&color=ffffff&line=0891b2&point=ffffff&area_color=1c1917&area=true&hide_border=true&custom_title=GitHub%20Commits%20Graph" alt="GitHub Commits Graph" /></a><a href="https://github.com/farnush-ab" align="left"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=farnush-ab&langs_count=10&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&locale=en&custom_title=Top%20%Languages" alt="Top Languages" /></a>
+- **Next.js 15** (App Router, TypeScript)
+- **Tailwind CSS v4** (locked design tokens — bone / ink / earth / terracotta)
+- **Framer Motion 11** (named cadences: glance / reveal / heavy / cinema)
+- **Lenis 1.1** (smooth scroll, integrated with Framer)
+- **Zustand 5** (state primitives — folio, reservation, scene)
+
+## Quick start
+
+```bash
+pnpm install
+pnpm dev
+# open http://localhost:3000
+```
+
+Requires Node 20+.
+
+## Iteration 1 scope (shipped here)
+
+- ✅ `PageShell` with Lenis smooth-scroll, blend-mode cursor, scroll-progress bar
+- ✅ `Nav` — sticky transparent → blurred on scroll, RTL-aware, live Tehran time
+- ✅ `HeroInspect` — single rotating product, masked-headline (background image clipped through type with scroll-parallax), pagination, auto-advance, arrow-key navigation
+- ✅ `ReservationWidget` — 3-step inline booking (Intent / Date / Contact), Persian numerals, success state
+- ✅ `Footer` — 4-column dark spread with live Tehran greeting, newsletter, social
+
+## Iteration 2 (next)
+
+- `Lookbook` — sticky scroll-driven room dissolves with annotated hotspots (Grohe "Shop the Look" pattern)
+- `Brands` — 4×2 cabinet with hover provenance
+- `SmartLab` — glassmorphic scene picker with bg-filter scenes
+- `ShowroomHub` + `Stories` (horizontal snap scroller)
+- Sanity CMS wiring for chapters
+
+## Design system
+
+Tokens live in two places, kept in sync:
+
+- `tailwind.config.ts` — utility classes (colors, spacing, font sizes, cadences)
+- `app/globals.css` — Tailwind v4 `@theme` reflection + base layer
+
+### Palette
+
+```
+bone        #ECE6D3   (page background)
+bone-soft   #F4EFE0
+bone-deep   #D9D3BD
+ink         #1F1A12   (text + dark sections accent)
+earth       #8C846C   (captions, meta)
+terracotta  #BC846C   (interactive accent — ≤ 5% of any view)
+umber       #1A140E   (footer, dramatic dark sections)
+```
+
+### Motion cadences
+
+```
+glance   220ms   hover micro-feedback
+reveal   980ms   section entries on scroll
+heavy   2200ms   mood shifts, body tint
+cinema  4200ms   hero state changes, scene transitions
+```
+
+Use them as Tailwind utilities (`duration-glance`, `ease-cinema`) or pull from `lib/motion/presets.ts` for Framer Motion variants.
+
+## Folder map
+
+```
+app/                  # Next.js App Router (currently single-locale fa-RTL)
+components/
+  atoms/              # leaf, no state — Type, Cursor, Pin, NumeralFa, ScrollProgress
+  molecules/          # composed, one job — Nav, FloatingInput, TimeSlot, SubmitPill
+  organisms/          # major sections — HeroInspect, ReservationWidget, Footer
+  shells/             # layout shells — PageShell, SmoothScroll
+lib/
+  motion/             # Framer presets + cadences
+  content/            # typed brand/product data
+  utils/              # time, faNum
+public/photography/   # user-supplied moodboard photos
+```
+
+## Photography
+
+`public/photography/` contains the four hero/product images extracted from the supplied `claude.ds/` moodboard:
+
+- `hero-veil.jpeg` — warm-lit basin with brass faucet (used as the masked-headline background)
+- `product-01.jpeg` — chrome basin mixer on black
+- `product-02.jpeg` — tall slim chrome tap against travertine
+- `product-03.jpeg` — smoked-bronze three-piece mixer on concrete
+
+For production, replace with brand-licensed photography.
+
+## Deploy
+
+```bash
+pnpm build
+# deploys cleanly to Vercel via auto-detect, or:
+# vercel --prod
+```
+
+## License
+
+Private — Design Station, Palladium Mall, Tehran.
