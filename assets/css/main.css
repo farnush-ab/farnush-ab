@@ -169,14 +169,14 @@ a { color: inherit; text-decoration: none; }
 }
 .nav__brand-en {
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.25em;
-  color: rgba(255,255,255,0.9);
+  color: var(--c-text);
   transition: color 0.5s;
 }
 .nav__brand-fa {
   font-size: 0.65rem;
-  color: rgba(255,255,255,0.5);
+  color: var(--c-muted);
   font-weight: 300;
   letter-spacing: 0.1em;
   transition: color 0.5s;
@@ -191,9 +191,9 @@ a { color: inherit; text-decoration: none; }
 }
 .nav__links a {
   font-size: 0.8rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.8);
+  color: var(--c-text);
   position: relative;
   padding-bottom: 2px;
   transition: color 0.5s;
@@ -213,8 +213,8 @@ a { color: inherit; text-decoration: none; }
   font-weight: 400;
   letter-spacing: 0.1em;
   padding: 0.5rem 1.2rem;
-  border: 1px solid rgba(255,255,255,0.4);
-  color: rgba(255,255,255,0.85);
+  border: 1px solid var(--c-brown);
+  color: var(--c-brown);
   transition: all 0.4s var(--ease);
 }
 .nav.scrolled .nav__cta { border-color: var(--c-brown); color: var(--c-brown); }
@@ -242,25 +242,24 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   z-index: 0;
 }
-.hero__img {
+.hero__img,
+.hero__video {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center;
   transform: scale(1.06);
   transition: transform 9s ease-out;
   will-change: transform;
 }
-.hero__img.loaded { transform: scale(1); }
+.hero__img.loaded,
+.hero__video.loaded { transform: scale(1); }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(26, 20, 16, 0.65) 0%,
-    rgba(26, 20, 16, 0.3) 50%,
-    rgba(26, 20, 16, 0.7) 100%
-  );
+  background:
+    linear-gradient(180deg, rgba(245,240,235,0.55) 0%, rgba(245,240,235,0.05) 25%, rgba(245,240,235,0.05) 60%, rgba(245,240,235,0.85) 100%),
+    linear-gradient(90deg, rgba(245,240,235,0.45) 0%, rgba(245,240,235,0) 50%);
 }
 .hero__content {
   position: relative;
@@ -271,7 +270,7 @@ a { color: inherit; text-decoration: none; }
 .hero__eyebrow {
   font-size: 0.7rem;
   letter-spacing: 0.3em;
-  color: rgba(255,255,255,0.5);
+  color: rgba(108, 60, 46, 0.7);
   font-weight: 300;
   margin-bottom: 1.5rem;
   opacity: 0;
@@ -284,8 +283,9 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(3.5rem, 7vw, 7rem);
   font-weight: 200;
   line-height: 1.05;
-  color: var(--c-white);
+  color: var(--c-text);
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 30px rgba(245,240,235,0.5);
 }
 .hero__title-line {
   display: block;
@@ -297,14 +297,15 @@ a { color: inherit; text-decoration: none; }
 .hero__title-line:nth-child(2) { transition-delay: 0.58s; }
 .hero__title-line:nth-child(3) { transition-delay: 0.76s; }
 .hero__title-line.active { opacity: 1; transform: translateY(0); }
-.hero__title-line--accent { color: var(--c-green-soft); font-style: italic; font-weight: 300; }
+.hero__title-line--accent { color: var(--c-brown); font-style: italic; font-weight: 300; }
 
 .hero__sub {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.06em;
-  line-height: 1.8;
+  color: var(--c-muted);
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+  max-width: 560px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1s 1.05s var(--ease-out), transform 1s 1.05s var(--ease-out);
@@ -324,7 +325,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero__scroll-line {
   width: 40px; height: 1px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(108,60,46,0.3);
   position: relative;
   overflow: hidden;
 }
@@ -339,7 +340,7 @@ a { color: inherit; text-decoration: none; }
 .hero__scroll span {
   font-size: 0.6rem;
   letter-spacing: 0.25em;
-  color: rgba(255,255,255,0.35);
+  color: rgba(108,60,46,0.5);
   font-weight: 300;
 }
 .hero__label {
@@ -356,8 +357,8 @@ a { color: inherit; text-decoration: none; }
 .hero__label span {
   font-size: 0.6rem;
   letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.25);
-  font-weight: 300;
+  color: rgba(108,60,46,0.4);
+  font-weight: 400;
 }
 
 @keyframes fadeIn {

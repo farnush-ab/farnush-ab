@@ -39,13 +39,15 @@
     });
   });
 
-  /* ── Hero Image Ken Burns ── */
-  const heroImg = document.querySelector('.hero__img');
-  if (heroImg) {
-    if (heroImg.complete) {
-      heroImg.classList.add('loaded');
+  /* ── Hero Media Ken Burns ── */
+  const heroMedia = document.querySelector('.hero__img, .hero__video');
+  if (heroMedia) {
+    if (heroMedia.tagName === 'VIDEO') {
+      requestAnimationFrame(() => heroMedia.classList.add('loaded'));
+    } else if (heroMedia.complete) {
+      heroMedia.classList.add('loaded');
     } else {
-      heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+      heroMedia.addEventListener('load', () => heroMedia.classList.add('loaded'));
     }
   }
 
