@@ -13,9 +13,9 @@
   --c-stone:    #84746c;
   --c-light:    #ede8e3;
   --c-white:    #faf8f5;
-  --c-green:    #4d5d4b;
-  --c-green-soft: #7a8a72;
-  --c-green-deep: #2f3d2e;
+  --c-green:      #8c846c;
+  --c-green-soft: #a8a08a;
+  --c-green-deep: #5e5847;
 
   --font:       'Vazirmatn', sans-serif;
 
@@ -513,62 +513,70 @@ a { color: inherit; text-decoration: none; }
 }
 
 .brands__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(108, 60, 46, 0.12);
-}
-.brand-item {
-  position: relative;
-  overflow: hidden;
-  background: var(--c-white);
-  cursor: none;
-}
-.brand-item__inner {
-  position: relative;
-  z-index: 2;
-  padding: 2.5rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  border-top: 1px solid rgba(108, 60, 46, 0.18);
 }
-.brand-item__name {
-  font-size: 0.95rem;
+.brand-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 40px;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid rgba(108, 60, 46, 0.18);
+  position: relative;
+  cursor: none;
+  transition: padding 0.5s var(--ease), background 0.5s var(--ease);
+  overflow: hidden;
+}
+.brand-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-green);
+  transform: translateY(101%);
+  transition: transform 0.55s var(--ease-out);
+  z-index: 0;
+}
+.brand-item:hover::before { transform: translateY(0); }
+.brand-item:hover {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+.brand-item > * { position: relative; z-index: 1; transition: color 0.5s var(--ease); }
+.brand-item__index {
+  font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.18em;
+  color: var(--c-muted);
+  font-variant-numeric: tabular-nums;
+}
+.brand-item__name {
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+  font-weight: 200;
+  letter-spacing: 0.04em;
   color: var(--c-text);
-  transition: color 0.4s var(--ease);
 }
 .brand-item__origin {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 300;
   color: var(--c-muted);
   letter-spacing: 0.06em;
-  transition: color 0.4s var(--ease);
+  text-align: left;
 }
-.brand-item__img {
-  height: 200px;
-  overflow: hidden;
+.brand-item__arrow {
+  font-size: 1.2rem;
+  color: var(--c-brown);
+  text-align: left;
+  font-weight: 300;
+  transform: translateX(0);
+  transition: transform 0.4s var(--ease), color 0.5s var(--ease);
 }
-.brand-item__img img {
-  transition: transform 0.8s var(--ease), filter 0.6s var(--ease);
-  filter: grayscale(35%);
-}
-.brand-item:hover .brand-item__img img {
-  transform: scale(1.08);
-  filter: grayscale(0%);
-}
-.brand-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--c-green);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s var(--ease);
-}
-.brand-item:hover::after { transform: scaleX(1); transform-origin: left; }
+.brand-item:hover .brand-item__index,
+.brand-item:hover .brand-item__name,
+.brand-item:hover .brand-item__origin,
+.brand-item:hover .brand-item__arrow { color: var(--c-white); }
+.brand-item:hover .brand-item__arrow { transform: translateX(-10px); }
 
 /* =========================================
    SHOWROOM HERO (full-bleed)
@@ -793,11 +801,46 @@ a { color: inherit; text-decoration: none; }
 }
 .contact__map {
   position: relative;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   margin-top: 1rem;
+  background: var(--c-light);
 }
-.contact__map img { filter: grayscale(30%) sepia(15%); }
+.contact__map-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108,60,46,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,60,46,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.contact__map::before {
+  content: '';
+  position: absolute;
+  top: 50%; right: 40%;
+  width: 14px; height: 14px;
+  background: var(--c-brown);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  box-shadow: 0 0 0 6px rgba(108,60,46,0.15);
+  z-index: 2;
+}
+.contact__map::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 40%;
+  width: 40px; height: 40px;
+  border: 1px solid var(--c-brown);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  opacity: 0.4;
+  animation: pulse 2.5s ease-out infinite;
+  z-index: 1;
+}
+@keyframes pulse {
+  0%   { transform: translate(50%, -50%) scale(0.8); opacity: 0.5; }
+  100% { transform: translate(50%, -50%) scale(2.5); opacity: 0; }
+}
 .contact__map span {
   position: absolute;
   bottom: 1rem;
@@ -859,8 +902,14 @@ a { color: inherit; text-decoration: none; }
 /* =========================================
    RESPONSIVE
    ========================================= */
-@media (max-width: 1100px) {
-  .brands__grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) {
+  .brand-item {
+    grid-template-columns: 40px 1fr 30px;
+    gap: 1rem;
+    padding: 1.5rem 0.5rem;
+  }
+  .brand-item__origin { grid-column: 2; font-size: 0.7rem; opacity: 0.7; }
+  .brand-item__name { font-size: 1.2rem; }
 }
 
 @media (max-width: 900px) {
@@ -885,7 +934,6 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 600px) {
   .nav__links { display: none; }
-  .brands__grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
   .concept__stats { flex-wrap: wrap; gap: 2rem; }
