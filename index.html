@@ -1,239 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Design Station — a private showroom and atelier for architects and designers. Palladium Mall, Tehran. By appointment." />
-<title>Design Station — by appointment, in Tehran.</title>
-<link rel="stylesheet" href="assets/css/main.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دیزاین استیشن — نمایشگاه اختصاصی برندهای لوکس شیرآلات، روشنایی و هوشمندسازی خانه. پالادیوم، تهران.">
+  <title>Design Station — پالادیوم، تهران</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav__brand">
-    Design Station
-    <small>Palladium · Tehran</small>
-  </a>
-  <div class="nav__menu">
-    <a href="#hub">The Hub</a>
-    <a href="collections.html">Collections</a>
-    <a href="#archive">Archive</a>
-    <a href="#access">Access</a>
-  </div>
-  <a href="reserve.html" class="nav__cta">Reserve the Hub</a>
-</nav>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
 
-<!-- 01 — Hero / The Quiet Room -->
-<section class="hero" id="quiet">
-  <div class="hero__canvas" id="hero-canvas"></div>
-  <div class="hero__veil"></div>
-  <div class="hero__inner">
-    <div>
-      <span class="eyebrow" style="display:block; margin-bottom:2rem; color:rgba(239,235,228,0.5);">01 · The Quiet Room</span>
-      <h1>Designed for<br/>the people <em>who design.</em></h1>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#contact" class="nav__cta">رزرو بازدید</a>
+    <div class="nav__links">
+      <a href="#contact">تماس</a>
+      <a href="#showroom">نمایشگاه</a>
+      <a href="#brands">برندها</a>
+      <a href="#concept">مفهوم</a>
     </div>
-    <div class="hero__foot">
-      <div class="hero__meta">
-        <span>Palladium Mall</span>
-        <span>Floor 4</span>
-        <span>By appointment, since 2019</span>
+    <a href="#hero" class="nav__brand">
+      <span class="nav__brand-en">DESIGN STATION</span>
+      <span class="nav__brand-fa">تهران · پالادیوم</span>
+    </a>
+  </nav>
+
+  <!-- ——— 01. HERO ——— -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=85"
+      >
+        <source src="https://videos.pexels.com/video-files/4109317/4109317-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        <source src="https://videos.pexels.com/video-files/4109317/4109317-hd_1920_1080_25fps.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">DESIGN STATION · پالادیوم تهران</p>
+      <h1 class="hero__title">
+        <span class="hero__title-line">خانه‌ی</span>
+        <span class="hero__title-line">برندهای منتخبِ</span>
+        <span class="hero__title-line hero__title-line--accent">جهان.</span>
+      </h1>
+      <p class="hero__sub">
+        نمایشگاهی برای معماران، طراحان و سازندگان — جایی که برترین برندهای شیرآلات، روشنایی هوشمند و اتوماسیون خانه از سراسر جهان، برای نخستین‌بار در ایران گرد هم آمده‌اند.
+      </p>
+    </div>
+
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+
+    <div class="hero__label">
+      <span>01 / 06</span>
+      <span>DESIGN STATION</span>
+    </div>
+  </section>
+
+  <!-- ——— 02. CONCEPT ——— -->
+  <section class="concept" id="concept">
+    <div class="concept__inner">
+
+      <div class="concept__header reveal">
+        <span class="section-index">۰۲</span>
+        <h2 class="concept__title">دیزاین استیشن</h2>
       </div>
-      <div class="hero__scroll">Continue</div>
-    </div>
-  </div>
-</section>
 
-<!-- 02 — The Hub -->
-<section class="hub" id="hub">
-  <span class="frame__index">02 / 06</span>
-  <div class="hub__text reveal">
-    <span class="eyebrow">The Hub</span>
-    <h2>A room you can <em>borrow.</em></h2>
-    <p class="hub__body">Bring the architect. Bring the client. Bring the drawings. We will stage the rest — products on the bench, the catalog open, the right light overhead. The Hub is where six thousand square metres becomes a conversation.</p>
-    <div class="hub__zones">
-      <div class="zone">
-        <span class="zone__num">01</span>
-        <span class="zone__name">Consult</span>
-        <span class="zone__meta">Brief · Sample · Sign</span>
+      <div class="concept__grid">
+        <div class="concept__text reveal reveal--delay-1">
+          <p class="concept__lead">
+            ما اعتقاد داریم که طراحی واقعی از انتخاب ماده آغاز می‌شود.
+          </p>
+          <p class="concept__body">
+            دیزاین استیشن، فضایی اختصاصی در مجتمع تجاری پالادیوم تهران است که منتخب‌ترین برندهای شیرآلات، روشنایی هوشمند و اتوماسیون خانه را از سراسر جهان، برای اولین بار به بازار ایران معرفی می‌کند.
+          </p>
+          <p class="concept__body">
+            این نمایشگاه بستری است برای معماران، طراحان داخلی، هنرمندان و سازندگانی که به دنبال تجربه‌ای فراتر از خرید معمول هستند — فضایی برای لمس، انتخاب، و الهام گرفتن.
+          </p>
+          <div class="concept__stats">
+            <div class="stat reveal reveal--delay-2">
+              <span class="stat__num">۶۰۰</span>
+              <span class="stat__unit">متر مربع</span>
+              <span class="stat__label">نمایشگاه</span>
+            </div>
+            <div class="stat reveal reveal--delay-3">
+              <span class="stat__num">۸</span>
+              <span class="stat__unit">برند</span>
+              <span class="stat__label">برتر جهانی</span>
+            </div>
+            <div class="stat reveal reveal--delay-4">
+              <span class="stat__num">By</span>
+              <span class="stat__unit">Appointment</span>
+              <span class="stat__label">تنها با وقت قبلی</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept__visuals reveal reveal--delay-2">
+          <div class="concept__img-main">
+            <img
+              src="assets/img/photo-1.jpg"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=85';"
+              alt="آشپزخانه با شیرآلات لوکس"
+              loading="lazy"
+            >
+          </div>
+          <div class="concept__img-secondary">
+            <img
+              src="assets/img/photo-2.jpg"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=85';"
+              alt="جزئیات شیرآلات"
+              loading="lazy"
+            >
+          </div>
+        </div>
       </div>
-      <div class="zone">
-        <span class="zone__num">02</span>
-        <span class="zone__name">Specify</span>
-        <span class="zone__meta">Stage · Compare · Resolve</span>
+
+    </div>
+  </section>
+
+  <!-- ——— DIVIDER QUOTE ——— -->
+  <div class="quote-strip reveal">
+    <div class="quote-strip__inner">
+      <blockquote>
+        "مکانی که در آن جنس با ایده روبرو می‌شود."
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- ——— 03. BRANDS ——— -->
+  <section class="brands" id="brands">
+    <div class="brands__inner">
+
+      <div class="brands__header reveal">
+        <span class="section-index">۰۳</span>
+        <h2 class="brands__title">برندهای منتخب</h2>
+        <p class="brands__sub">هشت برند پیشرو در طراحی و فناوری، که برای اولین بار رسماً در ایران حضور دارند</p>
       </div>
-      <div class="zone">
-        <span class="zone__num">03</span>
-        <span class="zone__name">Meet</span>
-        <span class="zone__meta">Present · Persuade · Close</span>
+
+      <div class="brands__grid">
+        <a href="#" class="brand-item reveal" data-brand="dorn-bracht">
+          <span class="brand-item__index">۰۱</span>
+          <span class="brand-item__name">DORN&nbsp;BRACHT</span>
+          <span class="brand-item__origin">آلمان · شیرآلات</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-1" data-brand="gessi">
+          <span class="brand-item__index">۰۲</span>
+          <span class="brand-item__name">GESSI</span>
+          <span class="brand-item__origin">ایتالیا · شیرآلات</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-2" data-brand="vola">
+          <span class="brand-item__index">۰۳</span>
+          <span class="brand-item__name">VOLA</span>
+          <span class="brand-item__origin">دانمارک · شیرآلات</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-3" data-brand="fantini">
+          <span class="brand-item__index">۰۴</span>
+          <span class="brand-item__name">FANTINI</span>
+          <span class="brand-item__origin">ایتالیا · شیرآلات</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal" data-brand="lutron">
+          <span class="brand-item__index">۰۵</span>
+          <span class="brand-item__name">LUTRON</span>
+          <span class="brand-item__origin">آمریکا · روشنایی هوشمند</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-1" data-brand="crestron">
+          <span class="brand-item__index">۰۶</span>
+          <span class="brand-item__name">CRESTRON</span>
+          <span class="brand-item__origin">آمریکا · اتوماسیون</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-2" data-brand="savant">
+          <span class="brand-item__index">۰۷</span>
+          <span class="brand-item__name">SAVANT</span>
+          <span class="brand-item__origin">آمریکا · خانه هوشمند</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+        <a href="#" class="brand-item reveal reveal--delay-3" data-brand="bang-olufsen">
+          <span class="brand-item__index">۰۸</span>
+          <span class="brand-item__name">BANG&nbsp;&amp;&nbsp;OLUFSEN</span>
+          <span class="brand-item__origin">دانمارک · صوت و تصویر</span>
+          <span class="brand-item__arrow">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ——— 04. SHOWROOM FULL-BLEED ——— -->
+  <section class="showroom-hero" id="showroom">
+    <div class="showroom-hero__media">
+      <img
+        src="assets/img/photo-3.jpg"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=90';"
+        alt="نمایشگاه دیزاین استیشن"
+        class="showroom-hero__img parallax-img"
+        loading="lazy"
+      >
+      <div class="showroom-hero__overlay"></div>
+    </div>
+    <div class="showroom-hero__content reveal">
+      <span class="section-index section-index--light">۰۴</span>
+      <h2 class="showroom-hero__title">نمایشگاه</h2>
+      <p class="showroom-hero__sub">۶۰۰ متر مربع · پالادیوم · طبقه سوم</p>
+    </div>
+  </section>
+
+  <!-- ——— SHOWROOM DETAIL ——— -->
+  <section class="showroom-detail">
+    <div class="showroom-detail__inner">
+
+      <div class="showroom-detail__grid">
+        <div class="showroom-detail__text reveal">
+          <h3>فضایی برای تجربه</h3>
+          <p>
+            نمایشگاه دیزاین استیشن در طبقه سوم مجتمع تجاری پالادیوم واقع است — مکانی که در آن هر محصول در بستر معمارانه واقعی خود به نمایش درآمده تا امکان لمس، مشاهده و تصمیم‌گیری آگاهانه فراهم شود.
+          </p>
+          <p>
+            از شیرآلات صرفاً زیبا تا سیستم‌های هوشمند یکپارچه، تمام محصولات با هدف ارائه یک تجربه کامل در کنار یکدیگر چیده شده‌اند.
+          </p>
+        </div>
+
+        <div class="showroom-detail__imgs reveal reveal--delay-2">
+          <div class="showroom-detail__img-top">
+            <img
+              src="assets/img/photo-4.jpg"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85';"
+              alt="داخل نمایشگاه"
+              loading="lazy"
+            >
+          </div>
+          <div class="showroom-detail__img-bot">
+            <img
+              src="assets/img/photo-5.jpg"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85';"
+              alt="جزئیات نمایشگاه"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ——— 05. ATELIER / MEETING SPACE ——— -->
+  <section class="atelier" id="atelier">
+    <div class="atelier__inner">
+      <div class="atelier__media reveal">
+        <img
+          src="assets/img/atelier.jpg"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=85';"
+          alt="میز کنفرانس آتلیه"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="atelier__content reveal reveal--delay-2">
+        <span class="section-index">۰۵</span>
+        <h2>میز کنفرانس</h2>
+        <p class="atelier__lead">
+          فضایی برای گفتگو، الهام، و تصمیم‌گیری مشترک.
+        </p>
+        <p>
+          دیزاین استیشن دارای یک فضای کنفرانس اختصاصی است که معماران و طراحان می‌توانند کارفرمایان خود را به آن دعوت کنند. در محیطی آرام، حرفه‌ای و الهام‌بخش، پروژه‌های بزرگ شکل می‌گیرند.
+        </p>
+        <a href="#contact" class="btn btn--outline">رزرو میز کنفرانس</a>
       </div>
     </div>
-  </div>
-  <div class="hub__visual reveal" id="hub-canvas">
-    <span class="hub__caption">Hub · cutaway · 1:24</span>
-  </div>
-</section>
+  </section>
 
-<!-- Threshold -->
-<section class="threshold">
-  <div class="threshold__word">Three <em>disciplines.</em></div>
-  <div class="threshold__sub">— Smart Home · Fixtures · Lighting —</div>
-</section>
+  <!-- ——— 06. CONTACT ——— -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
 
-<!-- 03 — Disciplines -->
-<section class="disciplines">
-  <span class="frame__index">03 / 06</span>
-  <div class="disciplines__head reveal">
-    <h2>One showroom,<br/>three trades.</h2>
-    <p>We do not stock everything. We stock what an architect can specify without an apology — assembled, lit, and ready to be touched.</p>
-  </div>
-  <div class="disciplines__grid">
-    <a href="collections.html#smart" class="discipline discipline--smart reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Smart Home</span>
-        <span class="discipline__count">22 systems</span>
+      <div class="contact__header reveal">
+        <span class="section-index">۰۶</span>
+        <h2 class="contact__title">رزرو بازدید</h2>
+        <p class="contact__sub">
+          دیزاین استیشن تنها با وقت قبلی پذیرای شماست.<br>
+          فرم زیر را تکمیل کنید تا با شما تماس بگیریم.
+        </p>
       </div>
-    </a>
-    <a href="collections.html#fixtures" class="discipline discipline--fixtures reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Fixtures</span>
-        <span class="discipline__count">47 lots</span>
+
+      <div class="contact__grid">
+        <form class="contact__form reveal reveal--delay-1" id="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">نام و نام خانوادگی</label>
+              <input type="text" id="name" name="name" placeholder="نام شما" autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label for="phone">شماره تماس</label>
+              <input type="tel" id="phone" name="phone" placeholder="۰۹۱۲ ···" autocomplete="tel" dir="ltr">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="company">شرکت / دفتر معماری</label>
+              <input type="text" id="company" name="company" placeholder="نام شرکت">
+            </div>
+            <div class="form-field">
+              <label for="role">سمت</label>
+              <select id="role" name="role">
+                <option value="">انتخاب کنید</option>
+                <option value="architect">معمار</option>
+                <option value="interior">طراح داخلی</option>
+                <option value="developer">سازنده</option>
+                <option value="other">سایر</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="message">پیام (اختیاری)</label>
+            <textarea id="message" name="message" rows="4" placeholder="درباره پروژه‌تان بگویید..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">ارسال درخواست</button>
+        </form>
+
+        <div class="contact__info reveal reveal--delay-2">
+          <div class="contact__info-item">
+            <span class="contact__info-label">آدرس</span>
+            <span class="contact__info-val">تهران، الهیه، خیابان ولیعصر<br>مجتمع پالادیوم، طبقه سوم</span>
+          </div>
+          <div class="contact__info-item">
+            <span class="contact__info-label">ساعت کار</span>
+            <span class="contact__info-val">شنبه تا پنجشنبه<br>۱۰ صبح — ۸ شب</span>
+          </div>
+          <div class="contact__info-item">
+            <span class="contact__info-label">تلفن</span>
+            <span class="contact__info-val" dir="ltr">+98 21 000 0000</span>
+          </div>
+          <div class="contact__info-item">
+            <span class="contact__info-label">ایمیل</span>
+            <span class="contact__info-val" dir="ltr">hello@designstation.ir</span>
+          </div>
+
+          <div class="contact__map">
+            <div class="contact__map-grid"></div>
+            <span>پالادیوم · تهران</span>
+          </div>
+        </div>
       </div>
-    </a>
-    <a href="collections.html#lighting" class="discipline discipline--lighting reveal">
-      <div class="discipline__visual"></div>
-      <div class="discipline__label">
-        <span class="discipline__name">Lighting</span>
-        <span class="discipline__count">63 lots</span>
+
+    </div>
+  </section>
+
+  <!-- ——— FOOTER ——— -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__name">DESIGN STATION</span>
+        <span class="footer__tagline">طراحی از جنسِ ماده است.</span>
       </div>
-    </a>
-  </div>
-</section>
+      <div class="footer__links">
+        <a href="#concept">مفهوم</a>
+        <a href="#brands">برندها</a>
+        <a href="#showroom">نمایشگاه</a>
+        <a href="#contact">تماس</a>
+      </div>
+      <div class="footer__copy">
+        <span>© ۱۴۰۴ دیزاین استیشن · پالادیوم، تهران</span>
+      </div>
+    </div>
+  </footer>
 
-<!-- 04 — Curation -->
-<section class="curation">
-  <span class="frame__index">04 / 06</span>
-  <div class="curation__head reveal">
-    <h2>The current<br/>curation.</h2>
-    <span class="lot">— Twelve lots, rotated monthly —</span>
-  </div>
-  <div class="curation__list">
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 01</span>
-      <h4>Flos 2097/30<em>Milano · 1958</em></h4>
-      <span class="meta">Suspension · Brass</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 02</span>
-      <h4>Vola FS1<em>Copenhagen · 1969</em></h4>
-      <span class="meta">Mixer · Brushed steel</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 03</span>
-      <h4>Lutron HomeWorks QSX<em>Coopersburg · system</em></h4>
-      <span class="meta">Control · Whole-residence</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 04</span>
-      <h4>Davide Groppi Sampei<em>Parma · 2003</em></h4>
-      <span class="meta">Floor lamp · Carbon</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 05</span>
-      <h4>Dornbracht Tara<em>Iserlohn · 1991</em></h4>
-      <span class="meta">Mixer · Platinum matte</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 06</span>
-      <h4>Bang &amp; Olufsen Beolab 28<em>Struer · in-wall</em></h4>
-      <span class="meta">Audio · Architectural</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 07</span>
-      <h4>Artemide Tolomeo<em>Pregnana · 1987</em></h4>
-      <span class="meta">Task · Aluminium</span>
-      <span class="arrow">→</span>
-    </a>
-    <a href="#" class="curation__item reveal">
-      <span class="lot">Lot 08</span>
-      <h4>Crestron Horizon<em>Rockleigh · keypad</em></h4>
-      <span class="meta">Control · Hidden installation</span>
-      <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
-
-<!-- 05 — Archive -->
-<section class="archive" id="archive">
-  <span class="frame__index" style="color:rgba(239,235,228,0.4);">05 / 06</span>
-  <div class="archive__head reveal">
-    <h2>Specified through<br/>this room.</h2>
-    <span class="lot" style="color:rgba(239,235,228,0.5);">— Selected residences, 2021–2025 —</span>
-  </div>
-  <div class="archive__grid">
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 014</span><span>Lavasan</span></div>
-      <div class="archive__title">House in Two Plasters</div>
-    </div>
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 018</span><span>Niavaran</span></div>
-      <div class="archive__title">Apartment, North Light</div>
-    </div>
-    <div class="archive__item reveal">
-      <div class="archive__visual"></div>
-      <div class="archive__meta"><span>No. 021</span><span>Farmanieh</span></div>
-      <div class="archive__title">A Quiet Penthouse</div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 — Access -->
-<section class="access" id="access">
-  <span class="frame__index">06 / 06</span>
-  <div class="access__copy reveal">
-    <span class="eyebrow">Access</span>
-    <h2>Open by <em>appointment.</em></h2>
-    <p>Reserve a studio at the Hub for a private consultation, a client presentation, or a quiet morning of material work. Confirmations arrive as a typeset invitation, suitable for forwarding.</p>
-    <a href="reserve.html" class="access__cta">Reserve the Hub</a>
-  </div>
-  <dl class="access__info reveal">
-    <div>
-      <dt>Address</dt>
-      <dd>Palladium Mall<br/>Floor 4, Zafraniyeh<br/>Tehran, Iran</dd>
-    </div>
-    <div>
-      <dt>Hours</dt>
-      <dd>Tue — Sat<br/>11:00 — 22:00<br/>By appointment</dd>
-    </div>
-    <div>
-      <dt>Direct Line</dt>
-      <dd>+98 21 8888 0000</dd>
-    </div>
-    <div>
-      <dt>Correspondence</dt>
-      <dd>studio@designstation.ir</dd>
-    </div>
-  </dl>
-</section>
-
-<footer>
-  <span>Design Station · MMXXV</span>
-  <span>Palladium, Tehran</span>
-  <span>By appointment</span>
-</footer>
-
-<script type="module" src="assets/js/hero-3d.js"></script>
-<script type="module" src="assets/js/hub-3d.js"></script>
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/scroll.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
