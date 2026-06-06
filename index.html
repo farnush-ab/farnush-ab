@@ -3,393 +3,625 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="دیزاین استیشن — نمایشگاه اختصاصی برندهای لوکس شیرآلات، روشنایی و هوشمندسازی خانه. پالادیوم، تهران.">
+  <meta name="description" content="دیزاین استیشن — نمایشگاه اختصاصی برندهای لوکس شیرآلات، روشنایی هوشمند و اتوماسیون خانه. پالادیوم، تهران.">
   <title>Design Station — پالادیوم، تهران</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursor-follower"></div>
+  <!-- ── Cursor ── -->
+  <div class="cursor" id="js-cursor"></div>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <a href="#contact" class="nav__cta">رزرو بازدید</a>
-    <div class="nav__links">
-      <a href="#contact">تماس</a>
-      <a href="#showroom">نمایشگاه</a>
-      <a href="#brands">برندها</a>
-      <a href="#concept">مفهوم</a>
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <header class="nav" id="js-nav">
+    <div class="nav__inner">
+      <a href="#cta" class="nav__cta">رزرو بازدید</a>
+
+      <nav class="nav__links" aria-label="ناوبری اصلی">
+        <a href="#contact">تماس</a>
+        <a href="#smart">هوشمند</a>
+        <a href="#showroom">نمایشگاه</a>
+        <a href="#brands">برندها</a>
+      </nav>
+
+      <a href="#hero" class="nav__brand">
+        <strong>DESIGN STATION</strong>
+        <span>پالادیوم · تهران</span>
+      </a>
     </div>
-    <a href="#hero" class="nav__brand">
-      <span class="nav__brand-en">DESIGN STATION</span>
-      <span class="nav__brand-fa">تهران · پالادیوم</span>
-    </a>
-  </nav>
+  </header>
 
-  <!-- ——— 01. HERO ——— -->
+  <!-- ══════════════════════════════════════
+       01 HERO — 3D faucet + mouse tilt
+  ══════════════════════════════════════ -->
   <section class="hero" id="hero">
-    <div class="hero__media">
-      <video
-        class="hero__video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=85"
-      >
-        <source src="https://videos.pexels.com/video-files/4109317/4109317-uhd_3840_2160_25fps.mp4" type="video/mp4">
+    <div class="hero__bg">
+      <video class="hero__video" autoplay muted loop playsinline
+        poster="assets/img/hero-poster.jpg">
         <source src="https://videos.pexels.com/video-files/4109317/4109317-hd_1920_1080_25fps.mp4" type="video/mp4">
       </video>
-      <div class="hero__overlay"></div>
+      <div class="hero__veil"></div>
     </div>
 
-    <div class="hero__content">
-      <p class="hero__eyebrow">DESIGN STATION · پالادیوم تهران</p>
-      <h1 class="hero__title">
-        <span class="hero__title-line">خانه‌ی</span>
-        <span class="hero__title-line">برندهای منتخبِ</span>
-        <span class="hero__title-line hero__title-line--accent">جهان.</span>
-      </h1>
-      <p class="hero__sub">
-        نمایشگاهی برای معماران، طراحان و سازندگان — جایی که برترین برندهای شیرآلات، روشنایی هوشمند و اتوماسیون خانه از سراسر جهان، برای نخستین‌بار در ایران گرد هم آمده‌اند.
-      </p>
+    <div class="hero__stage" id="js-hero-stage">
+      <div class="hero__card" id="js-hero-card">
+        <img
+          src="assets/img/hero-faucet.jpg"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=90';"
+          alt="شیرآلات لوکس دیزاین استیشن"
+          class="hero__faucet"
+          id="js-hero-img"
+        >
+        <div class="hero__card-gloss"></div>
+      </div>
+
+      <div class="hero__copy">
+        <p class="hero__eyebrow js-reveal">DESIGN STATION · ۰۱</p>
+        <h1 class="hero__title js-reveal" data-delay="60">
+          <span>خانه‌ی برترین</span>
+          <span>برندهای جهان</span>
+          <em>در تهران.</em>
+        </h1>
+        <p class="hero__sub js-reveal" data-delay="120">
+          نمایشگاهی اختصاصی برای معماران، طراحان داخلی و سازندگان — جایی که شیرآلات، روشنایی هوشمند و اتوماسیون لوکس از سراسر جهان برای نخستین‌بار در ایران گرد هم آمده‌اند.
+        </p>
+        <div class="hero__actions js-reveal" data-delay="180">
+          <a href="#showroom" class="btn btn--clay">کشف نمایشگاه</a>
+          <a href="#brands" class="btn btn--ghost">برندهای ما</a>
+        </div>
+      </div>
     </div>
 
-    <div class="hero__scroll">
-      <div class="hero__scroll-line"></div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
       <span>SCROLL</span>
     </div>
-
-    <div class="hero__label">
-      <span>01 / 06</span>
-      <span>DESIGN STATION</span>
-    </div>
   </section>
 
-  <!-- ——— 02. CONCEPT ——— -->
-  <section class="concept" id="concept">
-    <div class="concept__inner">
-
-      <div class="concept__header reveal">
-        <span class="section-index">۰۲</span>
-        <h2 class="concept__title">دیزاین استیشن</h2>
-      </div>
-
-      <div class="concept__grid">
-        <div class="concept__text reveal reveal--delay-1">
-          <p class="concept__lead">
-            ما اعتقاد داریم که طراحی واقعی از انتخاب ماده آغاز می‌شود.
-          </p>
-          <p class="concept__body">
-            دیزاین استیشن، فضایی اختصاصی در مجتمع تجاری پالادیوم تهران است که منتخب‌ترین برندهای شیرآلات، روشنایی هوشمند و اتوماسیون خانه را از سراسر جهان، برای اولین بار به بازار ایران معرفی می‌کند.
-          </p>
-          <p class="concept__body">
-            این نمایشگاه بستری است برای معماران، طراحان داخلی، هنرمندان و سازندگانی که به دنبال تجربه‌ای فراتر از خرید معمول هستند — فضایی برای لمس، انتخاب، و الهام گرفتن.
-          </p>
-          <div class="concept__stats">
-            <div class="stat reveal reveal--delay-2">
-              <span class="stat__num">۶۰۰</span>
-              <span class="stat__unit">متر مربع</span>
-              <span class="stat__label">نمایشگاه</span>
-            </div>
-            <div class="stat reveal reveal--delay-3">
-              <span class="stat__num">۸</span>
-              <span class="stat__unit">برند</span>
-              <span class="stat__label">برتر جهانی</span>
-            </div>
-            <div class="stat reveal reveal--delay-4">
-              <span class="stat__num">By</span>
-              <span class="stat__unit">Appointment</span>
-              <span class="stat__label">تنها با وقت قبلی</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="concept__visuals reveal reveal--delay-2">
-          <div class="concept__img-main">
-            <img
-              src="assets/img/photo-1.jpg"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=85';"
-              alt="آشپزخانه با شیرآلات لوکس"
-              loading="lazy"
-            >
-          </div>
-          <div class="concept__img-secondary">
-            <img
-              src="assets/img/photo-2.jpg"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=85';"
-              alt="جزئیات شیرآلات"
-              loading="lazy"
-            >
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ——— DIVIDER QUOTE ——— -->
-  <div class="quote-strip reveal">
-    <div class="quote-strip__inner">
-      <blockquote>
-        "مکانی که در آن جنس با ایده روبرو می‌شود."
-      </blockquote>
-    </div>
-  </div>
-
-  <!-- ——— 03. BRANDS ——— -->
+  <!-- ══════════════════════════════════════
+       02 BRANDS — expandable list drawers
+  ══════════════════════════════════════ -->
   <section class="brands" id="brands">
-    <div class="brands__inner">
+    <div class="container">
+      <header class="section-header js-reveal">
+        <span class="section-label">۰۲ — برندها</span>
+        <h2>برندهای منتخب</h2>
+        <p>هشت برند پیشرو در طراحی، فناوری و جنس — که برای اولین بار رسماً در ایران حضور دارند.</p>
+      </header>
 
-      <div class="brands__header reveal">
-        <span class="section-index">۰۳</span>
-        <h2 class="brands__title">برندهای منتخب</h2>
-        <p class="brands__sub">هشت برند پیشرو در طراحی و فناوری، که برای اولین بار رسماً در ایران حضور دارند</p>
-      </div>
+      <ul class="brand-list" role="list">
 
-      <div class="brands__grid">
-        <a href="#" class="brand-item reveal" data-brand="dorn-bracht">
-          <span class="brand-item__index">۰۱</span>
-          <span class="brand-item__name">DORN&nbsp;BRACHT</span>
-          <span class="brand-item__origin">آلمان · شیرآلات</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-1" data-brand="gessi">
-          <span class="brand-item__index">۰۲</span>
-          <span class="brand-item__name">GESSI</span>
-          <span class="brand-item__origin">ایتالیا · شیرآلات</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-2" data-brand="vola">
-          <span class="brand-item__index">۰۳</span>
-          <span class="brand-item__name">VOLA</span>
-          <span class="brand-item__origin">دانمارک · شیرآلات</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-3" data-brand="fantini">
-          <span class="brand-item__index">۰۴</span>
-          <span class="brand-item__name">FANTINI</span>
-          <span class="brand-item__origin">ایتالیا · شیرآلات</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal" data-brand="lutron">
-          <span class="brand-item__index">۰۵</span>
-          <span class="brand-item__name">LUTRON</span>
-          <span class="brand-item__origin">آمریکا · روشنایی هوشمند</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-1" data-brand="crestron">
-          <span class="brand-item__index">۰۶</span>
-          <span class="brand-item__name">CRESTRON</span>
-          <span class="brand-item__origin">آمریکا · اتوماسیون</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-2" data-brand="savant">
-          <span class="brand-item__index">۰۷</span>
-          <span class="brand-item__name">SAVANT</span>
-          <span class="brand-item__origin">آمریکا · خانه هوشمند</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-        <a href="#" class="brand-item reveal reveal--delay-3" data-brand="bang-olufsen">
-          <span class="brand-item__index">۰۸</span>
-          <span class="brand-item__name">BANG&nbsp;&amp;&nbsp;OLUFSEN</span>
-          <span class="brand-item__origin">دانمارک · صوت و تصویر</span>
-          <span class="brand-item__arrow">→</span>
-        </a>
-      </div>
+        <li class="brand-row js-reveal" data-brand="dorn-bracht">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-dorn">
+            <span class="brand-row__num">۰۱</span>
+            <span class="brand-row__name">DORN BRACHT</span>
+            <span class="brand-row__tag">شیرآلات · آلمان</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-dorn" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-dorn.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1620626011761-996317702519?auto=format&fit=crop&w=600&q=80';"
+                  alt="Dorn Bracht" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Dorn Bracht شیرآلات‌های معماری است — مکمل فضا، نه صرفاً تجهیز آن. از ۱۹۵۰ در آلمان، با دقت ساعت‌ساز و زیبایی معمار.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>آلمان، مدل ۱۹۵۰</strong></li>
+                  <li><span>تخصص</span><strong>شیرآلات معماری لوکس</strong></li>
+                  <li><span>متریال</span><strong>برنز، کروم، فلز خاص‌پوش</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
 
+        <li class="brand-row js-reveal" data-delay="60" data-brand="gessi">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-gessi">
+            <span class="brand-row__num">۰۲</span>
+            <span class="brand-row__name">GESSI</span>
+            <span class="brand-row__tag">شیرآلات · ایتالیا</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-gessi" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-gessi.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80';"
+                  alt="Gessi" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">GESSI رابطه‌ای احساسی میان انسان و آب خلق می‌کند. طراحی ایتالیایی که با پوست‌های طبیعی، چوب و کریستال ترکیب می‌شود.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>ایتالیا، Rozzano · 1992</strong></li>
+                  <li><span>تخصص</span><strong>شیرآلات حسی و تجربی</strong></li>
+                  <li><span>متریال</span><strong>برنج، چوب، سنگ، کریستال</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="120" data-brand="vola">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-vola">
+            <span class="brand-row__num">۰۳</span>
+            <span class="brand-row__name">VOLA</span>
+            <span class="brand-row__tag">شیرآلات · دانمارک</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-vola" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-vola.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80';"
+                  alt="VOLA" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">VOLA نماد طراحی اسکاندیناوی در شیرآلات است. طراح اصلی آن Arne Jacobsen در ۱۹۶۸ اولین شیر را ساخت — همان که هنوز تولید می‌شود.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>دانمارک، ۱۹۶۸</strong></li>
+                  <li><span>تخصص</span><strong>مینیمالیسم اسکاندیناوی</strong></li>
+                  <li><span>متریال</span><strong>استیل، برنج، ۱۴۰+ رنگ‌بندی</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="60" data-brand="fantini">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-fantini">
+            <span class="brand-row__num">۰۴</span>
+            <span class="brand-row__name">FANTINI</span>
+            <span class="brand-row__tag">شیرآلات · ایتالیا</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-fantini" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-fantini.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=600&q=80';"
+                  alt="Fantini" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Fantini صنعتگری ایتالیایی است که در دره‌ی Val d'Ossola ریشه دارد. هر شیر دست‌ساز، آزمایش‌شده و فلسفه‌ای منحصربه‌فرد دارد.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>ایتالیا، Val d'Ossola</strong></li>
+                  <li><span>تخصص</span><strong>صنعتگری دست‌ساز</strong></li>
+                  <li><span>متریال</span><strong>برنج اصل، فلزات ویژه</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="120" data-brand="lutron">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-lutron">
+            <span class="brand-row__num">۰۵</span>
+            <span class="brand-row__name">LUTRON</span>
+            <span class="brand-row__tag">روشنایی هوشمند · آمریکا</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-lutron" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-lutron.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80';"
+                  alt="Lutron" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Lutron اختراع‌کننده‌ی دیمر مدرن است. سیستم‌های روشنایی هوشمند آن‌ها در بهترین هتل‌ها، موزه‌ها و خانه‌های خصوصی جهان نصب است.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>آمریکا، ۱۹۶۱</strong></li>
+                  <li><span>تخصص</span><strong>دیمر و کنترل روشنایی</strong></li>
+                  <li><span>پروتکل</span><strong>GRAFIK Eye · RadioRA · Caséta</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="60" data-brand="crestron">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-crestron">
+            <span class="brand-row__num">۰۶</span>
+            <span class="brand-row__name">CRESTRON</span>
+            <span class="brand-row__tag">اتوماسیون · آمریکا</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-crestron" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-crestron.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80';"
+                  alt="Crestron" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Crestron مغز هوشمند خانه‌های فوق‌لوکس است. یکپارچه‌سازی کامل AV، روشنایی، گرمایش، امنیت و پرده در یک رابط واحد.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>آمریکا، ۱۹۷۱</strong></li>
+                  <li><span>تخصص</span><strong>کنترل کامل خانه هوشمند</strong></li>
+                  <li><span>ادغام</span><strong>Lutron · Savant · B&O</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="120" data-brand="savant">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-savant">
+            <span class="brand-row__num">۰۷</span>
+            <span class="brand-row__name">SAVANT</span>
+            <span class="brand-row__tag">خانه هوشمند · آمریکا</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-savant" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-savant.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80';"
+                  alt="Savant" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Savant سیستم هوشمند خانه‌ای است که بر پایه‌ی Apple طراحی شده. رابط کاربری بی‌نظیر، قدرت بالا، و ادغام کامل با اکوسیستم Apple.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>آمریکا، Hyannis</strong></li>
+                  <li><span>تخصص</span><strong>Smart Home بر پایه Apple</strong></li>
+                  <li><span>رابط</span><strong>iOS · iPad · Apple Watch</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="brand-row js-reveal" data-delay="60" data-brand="bang">
+          <button class="brand-row__trigger" aria-expanded="false" aria-controls="drawer-bang">
+            <span class="brand-row__num">۰۸</span>
+            <span class="brand-row__name">BANG &amp; OLUFSEN</span>
+            <span class="brand-row__tag">صوت و تصویر · دانمارک</span>
+            <span class="brand-row__icon" aria-hidden="true"></span>
+          </button>
+          <div class="brand-drawer" id="drawer-bang" hidden>
+            <div class="brand-drawer__inner">
+              <div class="brand-drawer__img">
+                <img src="assets/img/brand-bo.jpg"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80';"
+                  alt="Bang & Olufsen" loading="lazy">
+              </div>
+              <div class="brand-drawer__body">
+                <p class="brand-drawer__desc">Bang & Olufsen در جایی بین هنر و صدا زندگی می‌کند. بلندگوهایشان مجسمه‌اند — اما بهترین صدای جهان را پخش می‌کنند.</p>
+                <ul class="brand-drawer__specs">
+                  <li><span>منشأ</span><strong>دانمارک، ۱۹۲۵</strong></li>
+                  <li><span>تخصص</span><strong>صوت و تصویر لوکس</strong></li>
+                  <li><span>مکان‌ها</span><strong>اتاق نشیمن · هوم‌سینما · محیط</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
     </div>
   </section>
 
-  <!-- ——— 04. SHOWROOM FULL-BLEED ——— -->
-  <section class="showroom-hero" id="showroom">
-    <div class="showroom-hero__media">
-      <img
-        src="assets/img/photo-3.jpg"
-        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=90';"
-        alt="نمایشگاه دیزاین استیشن"
-        class="showroom-hero__img parallax-img"
-        loading="lazy"
-      >
-      <div class="showroom-hero__overlay"></div>
+  <!-- ══════════════════════════════════════
+       03 SHOWROOM — auto-advance carousel
+  ══════════════════════════════════════ -->
+  <section class="showroom" id="showroom">
+    <div class="showroom__carousel" id="js-carousel" aria-label="گالری نمایشگاه">
+
+      <div class="showroom__slide is-active" data-index="0">
+        <img src="assets/img/show-1.jpg"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=90';"
+          alt="نمایشگاه دیزاین استیشن — سالن اصلی" loading="eager">
+        <div class="showroom__slide-caption">
+          <span class="section-label section-label--light">۰۳ — نمایشگاه</span>
+          <h2>۶۰۰ متر از الهام</h2>
+          <p>پالادیوم · طبقه سوم · تهران</p>
+        </div>
+      </div>
+
+      <div class="showroom__slide" data-index="1">
+        <img src="assets/img/show-2.jpg"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1920&q=90';"
+          alt="سالن حمام دیزاین استیشن" loading="lazy">
+        <div class="showroom__slide-caption">
+          <span class="section-label section-label--light">۰۳ — نمایشگاه</span>
+          <h2>تجربه‌ی زیسته</h2>
+          <p>هر محصول در بستر معمارانه واقعی خود</p>
+        </div>
+      </div>
+
+      <div class="showroom__slide" data-index="2">
+        <img src="assets/img/show-3.jpg"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=90';"
+          alt="میز کنفرانس دیزاین استیشن" loading="lazy">
+        <div class="showroom__slide-caption">
+          <span class="section-label section-label--light">۰۳ — نمایشگاه</span>
+          <h2>میز گفتگو</h2>
+          <p>فضایی برای جلسات معماران با کارفرمایان</p>
+        </div>
+      </div>
+
     </div>
-    <div class="showroom-hero__content reveal">
-      <span class="section-index section-index--light">۰۴</span>
-      <h2 class="showroom-hero__title">نمایشگاه</h2>
-      <p class="showroom-hero__sub">۶۰۰ متر مربع · پالادیوم · طبقه سوم</p>
+
+    <div class="showroom__controls">
+      <button class="showroom__btn" id="js-prev" aria-label="قبلی">&#8592;</button>
+      <div class="showroom__progress">
+        <button class="showroom__dot is-active" data-target="0" aria-label="اسلاید ۱"></button>
+        <button class="showroom__dot" data-target="1" aria-label="اسلاید ۲"></button>
+        <button class="showroom__dot" data-target="2" aria-label="اسلاید ۳"></button>
+      </div>
+      <button class="showroom__btn" id="js-next" aria-label="بعدی">&#8594;</button>
+    </div>
+
+    <div class="showroom__ticker" aria-hidden="true">
+      <div class="showroom__ticker-inner">
+        <span>DESIGN STATION</span><span>·</span>
+        <span>PALLADIUM MALL</span><span>·</span>
+        <span>TEHRAN</span><span>·</span>
+        <span>BY APPOINTMENT</span><span>·</span>
+        <span>DESIGN STATION</span><span>·</span>
+        <span>PALLADIUM MALL</span><span>·</span>
+        <span>TEHRAN</span><span>·</span>
+        <span>BY APPOINTMENT</span><span>·</span>
+      </div>
     </div>
   </section>
 
-  <!-- ——— SHOWROOM DETAIL ——— -->
-  <section class="showroom-detail">
-    <div class="showroom-detail__inner">
+  <!-- ══════════════════════════════════════
+       04 SMART HOME — scroll-staggered
+  ══════════════════════════════════════ -->
+  <section class="smart" id="smart">
+    <div class="container">
+      <header class="section-header js-reveal">
+        <span class="section-label">۰۴ — هوشمند</span>
+        <h2>خانه‌ی هوشمند</h2>
+        <p>یکپارچه‌سازی کامل روشنایی، دما، صدا، امنیت و شیرآلات — همه در یک رابط.</p>
+      </header>
 
-      <div class="showroom-detail__grid">
-        <div class="showroom-detail__text reveal">
-          <h3>فضایی برای تجربه</h3>
-          <p>
-            نمایشگاه دیزاین استیشن در طبقه سوم مجتمع تجاری پالادیوم واقع است — مکانی که در آن هر محصول در بستر معمارانه واقعی خود به نمایش درآمده تا امکان لمس، مشاهده و تصمیم‌گیری آگاهانه فراهم شود.
-          </p>
-          <p>
-            از شیرآلات صرفاً زیبا تا سیستم‌های هوشمند یکپارچه، تمام محصولات با هدف ارائه یک تجربه کامل در کنار یکدیگر چیده شده‌اند.
-          </p>
+      <div class="smart__grid">
+        <div class="smart__visual js-reveal">
+          <div class="smart__house">
+            <div class="smart__hub js-reveal" data-delay="0">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+                <circle cx="28" cy="28" r="27" stroke="currentColor" stroke-width="1"/>
+                <circle cx="28" cy="28" r="8" fill="currentColor"/>
+              </svg>
+              <span>کنترل مرکزی</span>
+            </div>
+            <div class="smart__nodes">
+              <div class="smart__node js-reveal" data-delay="80" style="--a:0deg">
+                <span class="smart__node-icon">💡</span>
+                <span>روشنایی</span>
+              </div>
+              <div class="smart__node js-reveal" data-delay="140" style="--a:72deg">
+                <span class="smart__node-icon">🌡</span>
+                <span>دما</span>
+              </div>
+              <div class="smart__node js-reveal" data-delay="200" style="--a:144deg">
+                <span class="smart__node-icon">🔊</span>
+                <span>صدا</span>
+              </div>
+              <div class="smart__node js-reveal" data-delay="260" style="--a:216deg">
+                <span class="smart__node-icon">🔒</span>
+                <span>امنیت</span>
+              </div>
+              <div class="smart__node js-reveal" data-delay="320" style="--a:288deg">
+                <span class="smart__node-icon">🚿</span>
+                <span>شیرآلات</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="showroom-detail__imgs reveal reveal--delay-2">
-          <div class="showroom-detail__img-top">
-            <img
-              src="assets/img/photo-4.jpg"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85';"
-              alt="داخل نمایشگاه"
-              loading="lazy"
-            >
+        <div class="smart__features">
+          <div class="smart__feat js-reveal" data-delay="0">
+            <span class="smart__feat-num">01</span>
+            <div>
+              <h3>روشنایی Lutron</h3>
+              <p>دیمر هوشمند، صحنه‌های نوری از پیش برنامه‌ریزی‌شده، کنترل با لمس یا صدا.</p>
+            </div>
           </div>
-          <div class="showroom-detail__img-bot">
-            <img
-              src="assets/img/photo-5.jpg"
-              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85';"
-              alt="جزئیات نمایشگاه"
-              loading="lazy"
-            >
+          <div class="smart__feat js-reveal" data-delay="80">
+            <span class="smart__feat-num">02</span>
+            <div>
+              <h3>اتوماسیون Crestron</h3>
+              <p>یکپارچه‌سازی تمام سیستم‌ها در یک رابط واحد — ساده‌ترین تجربه‌ی کنترل ممکن.</p>
+            </div>
+          </div>
+          <div class="smart__feat js-reveal" data-delay="160">
+            <span class="smart__feat-num">03</span>
+            <div>
+              <h3>صوت و تصویر B&amp;O</h3>
+              <p>بلندگوهای معماری که در دیوار ناپدید می‌شوند. صدای بی‌نظیر در هر اتاق.</p>
+            </div>
+          </div>
+          <div class="smart__feat js-reveal" data-delay="240">
+            <span class="smart__feat-num">04</span>
+            <div>
+              <h3>کنترل Savant</h3>
+              <p>رابط Apple‌محور که مدیریت کل خانه را از iPhone یا iPad ممکن می‌کند.</p>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ——— 05. ATELIER / MEETING SPACE ——— -->
-  <section class="atelier" id="atelier">
-    <div class="atelier__inner">
-      <div class="atelier__media reveal">
-        <img
-          src="assets/img/atelier.jpg"
-          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=85';"
-          alt="میز کنفرانس آتلیه"
-          loading="lazy"
-        >
-      </div>
+  <!-- ══════════════════════════════════════
+       05 TESTIMONIALS — auto-scroll
+  ══════════════════════════════════════ -->
+  <section class="testimonials">
+    <div class="container">
+      <span class="section-label js-reveal">۰۵ — نظرات</span>
+    </div>
 
-      <div class="atelier__content reveal reveal--delay-2">
-        <span class="section-index">۰۵</span>
-        <h2>میز کنفرانس</h2>
-        <p class="atelier__lead">
-          فضایی برای گفتگو، الهام، و تصمیم‌گیری مشترک.
-        </p>
-        <p>
-          دیزاین استیشن دارای یک فضای کنفرانس اختصاصی است که معماران و طراحان می‌توانند کارفرمایان خود را به آن دعوت کنند. در محیطی آرام، حرفه‌ای و الهام‌بخش، پروژه‌های بزرگ شکل می‌گیرند.
-        </p>
-        <a href="#contact" class="btn btn--outline">رزرو میز کنفرانس</a>
+    <div class="testimonials__track-wrap" aria-label="نظرات مشتریان">
+      <div class="testimonials__track" id="js-testimonials">
+
+        <blockquote class="testimonial">
+          <p>«دیزاین استیشن نه یک فروشگاه، بلکه یک تجربه است. اولین بار که با کارفرمایم آنجا رفتیم، در عرض یک جلسه تمام آیتم‌های حمام را انتخاب کردیم.»</p>
+          <footer><strong>آرشیتکت نیلوفر رضایی</strong><span>دفتر معماری پارسه، تهران</span></footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>«فضای میز کنفرانس‌شان فوق‌العاده است — آرام، حرفه‌ای و الهام‌بخش. کارفرما وقتی می‌بیند محصول را در محیط واقعی، تصمیم‌گیری عمیق‌تر و سریع‌تر است.»</p>
+          <footer><strong>سینا موسوی</strong><span>طراح داخلی، تهران</span></footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>«Dorn Bracht را می‌شناختم اما تا لمسش نکردم نمی‌فهمیدم چرا این قدر متفاوت است. نمایشگاه دیزاین استیشن همان تفاوت را حس می‌دهد.»</p>
+          <footer><strong>مهندس کامران احمدی</strong><span>سازنده‌ی مجتمع‌های مسکونی لوکس</span></footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>«سیستم Savant که از طریق دیزاین استیشن نصب کردیم، تجربه‌ی زندگی در خانه را کاملاً تغییر داد. همه‌چیز با یک لمس — روشنایی، صدا، پرده‌ها.»</p>
+          <footer><strong>خانم دکتر شیرین نوری</strong><span>مالک ویلا، کردان</span></footer>
+        </blockquote>
+
+      </div>
+    </div>
+
+    <div class="testimonials__nav js-reveal">
+      <button id="js-tprev" class="testimonials__btn" aria-label="قبلی">&#8592;</button>
+      <div class="testimonials__dots" id="js-tdots">
+        <button class="testimonials__dot is-active" data-target="0"></button>
+        <button class="testimonials__dot" data-target="1"></button>
+        <button class="testimonials__dot" data-target="2"></button>
+        <button class="testimonials__dot" data-target="3"></button>
+      </div>
+      <button id="js-tnext" class="testimonials__btn" aria-label="بعدی">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       06 CTA — dual conversion
+  ══════════════════════════════════════ -->
+  <section class="cta" id="cta">
+    <div class="cta__bg">
+      <img src="assets/img/cta-bg.jpg"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=90';"
+        alt="" aria-hidden="true" loading="lazy">
+      <div class="cta__veil"></div>
+    </div>
+    <div class="container">
+      <div class="cta__content js-reveal">
+        <span class="section-label section-label--light">۰۶ — بازدید</span>
+        <h2>تجربه را از نزدیک حس کنید</h2>
+        <p>دیزاین استیشن تنها با وقت قبلی پذیرای شماست.<br>جلسه‌ی اختصاصی با معمار یا مشاور طراحی ترتیب دهید.</p>
+        <div class="cta__btns">
+          <a href="#contact" class="btn btn--clay btn--lg">رزرو بازدید</a>
+          <a href="#contact" class="btn btn--outline-light btn--lg">درخواست مشاوره</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ——— 06. CONTACT ——— -->
+  <!-- ══════════════════════════════════════
+       07 CONTACT
+  ══════════════════════════════════════ -->
   <section class="contact" id="contact">
-    <div class="contact__inner">
-
-      <div class="contact__header reveal">
-        <span class="section-index">۰۶</span>
-        <h2 class="contact__title">رزرو بازدید</h2>
-        <p class="contact__sub">
-          دیزاین استیشن تنها با وقت قبلی پذیرای شماست.<br>
-          فرم زیر را تکمیل کنید تا با شما تماس بگیریم.
-        </p>
-      </div>
-
+    <div class="container">
       <div class="contact__grid">
-        <form class="contact__form reveal reveal--delay-1" id="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="name">نام و نام خانوادگی</label>
-              <input type="text" id="name" name="name" placeholder="نام شما" autocomplete="name">
-            </div>
-            <div class="form-field">
-              <label for="phone">شماره تماس</label>
-              <input type="tel" id="phone" name="phone" placeholder="۰۹۱۲ ···" autocomplete="tel" dir="ltr">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="company">شرکت / دفتر معماری</label>
-              <input type="text" id="company" name="company" placeholder="نام شرکت">
-            </div>
-            <div class="form-field">
-              <label for="role">سمت</label>
-              <select id="role" name="role">
-                <option value="">انتخاب کنید</option>
-                <option value="architect">معمار</option>
-                <option value="interior">طراح داخلی</option>
-                <option value="developer">سازنده</option>
-                <option value="other">سایر</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-field form-field--full">
-            <label for="message">پیام (اختیاری)</label>
-            <textarea id="message" name="message" rows="4" placeholder="درباره پروژه‌تان بگویید..."></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary">ارسال درخواست</button>
-        </form>
 
-        <div class="contact__info reveal reveal--delay-2">
-          <div class="contact__info-item">
-            <span class="contact__info-label">آدرس</span>
-            <span class="contact__info-val">تهران، الهیه، خیابان ولیعصر<br>مجتمع پالادیوم، طبقه سوم</span>
-          </div>
-          <div class="contact__info-item">
-            <span class="contact__info-label">ساعت کار</span>
-            <span class="contact__info-val">شنبه تا پنجشنبه<br>۱۰ صبح — ۸ شب</span>
-          </div>
-          <div class="contact__info-item">
-            <span class="contact__info-label">تلفن</span>
-            <span class="contact__info-val" dir="ltr">+98 21 000 0000</span>
-          </div>
-          <div class="contact__info-item">
-            <span class="contact__info-label">ایمیل</span>
-            <span class="contact__info-val" dir="ltr">hello@designstation.ir</span>
-          </div>
+        <div class="contact__form-col js-reveal">
+          <header class="section-header">
+            <span class="section-label">۰۷ — تماس</span>
+            <h2>رزرو بازدید</h2>
+            <p>فرم زیر را تکمیل کنید. ظرف ۲۴ ساعت با شما تماس می‌گیریم.</p>
+          </header>
 
-          <div class="contact__map">
-            <div class="contact__map-grid"></div>
-            <span>پالادیوم · تهران</span>
+          <form class="contact__form" id="js-contact-form" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-name">نام و نام خانوادگی</label>
+                <input type="text" id="f-name" name="name" placeholder="نام شما" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-phone">شماره تماس</label>
+                <input type="tel" id="f-phone" name="phone" placeholder="۰۹۱۲ ···" autocomplete="tel" dir="ltr" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-company">شرکت / دفتر</label>
+                <input type="text" id="f-company" name="company" placeholder="نام شرکت یا دفتر معماری">
+              </div>
+              <div class="field">
+                <label for="f-role">سمت</label>
+                <select id="f-role" name="role">
+                  <option value="">انتخاب کنید</option>
+                  <option value="architect">معمار</option>
+                  <option value="interior">طراح داخلی</option>
+                  <option value="developer">سازنده</option>
+                  <option value="owner">مالک</option>
+                  <option value="other">سایر</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-msg">پیام</label>
+              <textarea id="f-msg" name="message" rows="4" placeholder="درباره پروژه‌تان بگویید…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--clay btn--lg btn--full">ارسال درخواست</button>
+          </form>
+        </div>
+
+        <div class="contact__info-col js-reveal" data-delay="120">
+          <div class="contact__info-block">
+            <span class="info-label">آدرس</span>
+            <p>تهران، الهیه، خیابان ولیعصر<br>مجتمع پالادیوم، طبقه سوم</p>
+          </div>
+          <div class="contact__info-block">
+            <span class="info-label">ساعات</span>
+            <p>شنبه تا پنجشنبه<br>۱۰:۰۰ صبح — ۲۰:۰۰ شب</p>
+          </div>
+          <div class="contact__info-block">
+            <span class="info-label">تلفن</span>
+            <p dir="ltr">+98 21 000 0000</p>
+          </div>
+          <div class="contact__info-block">
+            <span class="info-label">ایمیل</span>
+            <p dir="ltr">hello@designstation.ir</p>
+          </div>
+          <div class="contact__map-pin">
+            <div class="map-grid"></div>
+            <span class="map-label">پالادیوم · تهران</span>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
 
-  <!-- ——— FOOTER ——— -->
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
   <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="footer__name">DESIGN STATION</span>
-        <span class="footer__tagline">طراحی از جنسِ ماده است.</span>
-      </div>
-      <div class="footer__links">
-        <a href="#concept">مفهوم</a>
-        <a href="#brands">برندها</a>
-        <a href="#showroom">نمایشگاه</a>
-        <a href="#contact">تماس</a>
-      </div>
-      <div class="footer__copy">
-        <span>© ۱۴۰۴ دیزاین استیشن · پالادیوم، تهران</span>
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>DESIGN STATION</strong>
+          <span>خانه‌ی برترین برندهای جهان در تهران.</span>
+        </div>
+        <nav class="footer__nav" aria-label="ناوبری فوتر">
+          <a href="#brands">برندها</a>
+          <a href="#showroom">نمایشگاه</a>
+          <a href="#smart">هوشمند</a>
+          <a href="#contact">تماس</a>
+        </nav>
+        <p class="footer__copy">© ۱۴۰۴ دیزاین استیشن</p>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
