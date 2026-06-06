@@ -328,28 +328,19 @@ button { font-family: var(--font); background: none; border: none; cursor: point
   width: 100%;
 }
 
-/* 3D tilt card */
-.hero__card {
+/* Three.js 3D canvas wrap */
+.hero__3d-wrap {
   position: relative;
   aspect-ratio: 4/5;
   max-height: 600px;
+  border-radius: 2px;
   overflow: hidden;
-  will-change: transform;
-  transform-style: preserve-3d;
-  transition: transform 80ms linear; /* intentionally fast for responsiveness */
-  box-shadow: 0 32px 80px rgba(28,23,18,0.14);
 }
-.hero__faucet {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-.hero__card-gloss {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-  pointer-events: none;
+.hero__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: none;
 }
 
 .hero__copy {
@@ -1087,7 +1078,7 @@ button { font-family: var(--font); background: none; border: none; cursor: point
 ══════════════════════════════════════ */
 @media (max-width: 1024px) {
   .hero__stage       { grid-template-columns: 1fr; padding: 4rem var(--gutter); gap: 3rem; }
-  .hero__card        { max-height: 440px; order: -1; }
+  .hero__3d-wrap     { max-height: 440px; order: -1; }
   .smart__grid       { grid-template-columns: 1fr; gap: 4rem; }
   .smart__visual     { display: none; }
   .contact__grid     { grid-template-columns: 1fr; gap: 4rem; }

@@ -48,23 +48,192 @@
 
   qsa('.js-reveal').forEach(el => revealObs.observe(el));
 
-  /* ── Hero 3D tilt ────────────────────── */
-  const heroStage = qs('#js-hero-stage');
-  const heroCard  = qs('#js-hero-card');
+  /* ── Hero Three.js 3D scene ──────────── */
+  (function initHero3D() {
+    if (typeof THREE === 'undefined') return;
+    const canvas = qs('#js-hero-canvas');
+    if (!canvas) return;
 
-  if (heroCard && window.matchMedia('(hover: hover)').matches) {
-    heroStage.addEventListener('mousemove', e => {
-      const rect = heroCard.getBoundingClientRect();
-      const cx   = rect.left + rect.width  / 2;
-      const cy   = rect.top  + rect.height / 2;
-      const dx   = (e.clientX - cx) / (rect.width  / 2); // -1 to 1
-      const dy   = (e.clientY - cy) / (rect.height / 2);
-      heroCard.style.transform = `perspective(900px) rotateY(${dx * 7}deg) rotateX(${-dy * 5}deg) translateZ(8px)`;
+    const wrap   = canvas.parentElement;
+    const W      = wrap.clientWidth;
+    const H      = wrap.clientHeight;
+
+    /* Renderer */
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(W, H);
+    renderer.shadowMap.enabled = true;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
+    /* Scene & Camera */
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
+    camera.position.set(0, 0, 9);
+
+    /* Materials */
+    const brassMat = new THREE.MeshPhysicalMaterial({
+      color: 0xd0bfa8, metalness: 0.88, roughness: 0.14,
+      clearcoat: 1.0, clearcoatRoughness: 0.08,
     });
-    heroStage.addEventListener('mouseleave', () => {
-      heroCard.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+
+    /* ─ Arch faucet body (TubeGeometry) ─ */
+    const archCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3( 0.00, -2.10, 0),
+      new THREE.Vector3( 0.00, -1.30, 0),
+      new THREE.Vector3( 0.00, -0.40, 0),
+      new THREE.Vector3( 0.05,  0.20, 0),
+      new THREE.Vector3( 0.20,  0.90, 0),
+      new THREE.Vector3( 0.55,  1.50, 0),
+      new THREE.Vector3( 1.05,  1.85, 0),
+      new THREE.Vector3( 1.55,  1.80, 0),
+      new THREE.Vector3( 1.88,  1.50, 0),
+      new THREE.Vector3( 2.00,  1.10, 0),
+      new THREE.Vector3( 1.98,  0.65, 0),
+    ], false, 'catmullrom', 0.45);
+
+    const tubeMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(archCurve, 140, 0.072, 28, false),
+      brassMat
+    );
+    tubeMesh.castShadow = true;
+    scene.add(tubeMesh);
+
+    /* ─ Spout tip cap ─ */
+    const tipPt  = archCurve.getPoint(1);
+    const tipCap = new THREE.Mesh(new THREE.SphereGeometry(0.072, 20, 20), brassMat);
+    tipCap.position.copy(tipPt);
+    scene.add(tipCap);
+
+    /* ─ Base cylinder ─ */
+    const base = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.22, 0.28, 0.35, 32),
+      brassMat
+    );
+    base.position.set(0, -2.28, 0);
+    base.castShadow = true;
+    scene.add(base);
+
+    /* ─ Valve / cross handle ─ */
+    const valveGroup = new THREE.Group();
+    valveGroup.position.set(0, -1.55, 0);
+
+    const valveBody = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.10, 32), brassMat);
+    valveGroup.add(valveBody);
+
+    const armMat  = brassMat.clone();
+    const armGeo  = new THREE.CylinderGeometry(0.035, 0.035, 0.72, 16);
+    const arm1    = new THREE.Mesh(armGeo, armMat);
+    const arm2    = new THREE.Mesh(armGeo, armMat);
+    arm2.rotation.z = Math.PI / 2;
+    valveGroup.add(arm1, arm2);
+    scene.add(valveGroup);
+
+    /* Center faucet group */
+    const faucetGroup = new THREE.Group();
+    faucetGroup.add(tubeMesh, tipCap, base, valveGroup);
+    faucetGroup.position.x = -0.8;
+    faucetGroup.position.y = 0.3;
+    scene.add(faucetGroup);
+
+    /* ─ Water particles ─ */
+    const particleCount = 280;
+    const positions     = new Float32Array(particleCount * 3);
+    const velocities    = new Float32Array(particleCount);   // y velocity
+
+    function resetParticle(i) {
+      const worldTip = tipPt.clone();
+      faucetGroup.localToWorld(worldTip);
+      positions[i * 3]     = worldTip.x + (Math.random() - 0.5) * 0.06;
+      positions[i * 3 + 1] = worldTip.y;
+      positions[i * 3 + 2] = worldTip.z + (Math.random() - 0.5) * 0.06;
+      velocities[i]         = -(Math.random() * 0.04 + 0.02);
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      resetParticle(i);
+      positions[i * 3 + 1] -= Math.random() * 3.5;   // spread vertically at start
+    }
+
+    const pGeo  = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const pMat  = new THREE.PointsMaterial({
+      color: 0xb8d8e8, size: 0.055, transparent: true, opacity: 0.7,
+      sizeAttenuation: true,
     });
-  }
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    const dropFloor = faucetGroup.position.y - 4.5;
+
+    /* ─ Lighting ─ */
+    scene.add(new THREE.AmbientLight(0xfdf6ee, 0.55));
+
+    const keyLight = new THREE.DirectionalLight(0xfff5e6, 1.6);
+    keyLight.position.set(3, 6, 4);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xe8f4ff, 0.5);
+    fillLight.position.set(-4, 2, 2);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.PointLight(0xbc846c, 1.2, 18);
+    rimLight.position.set(-3, 4, -3);
+    scene.add(rimLight);
+
+    /* ─ Mouse tracking ─ */
+    let mouseNX = 0, mouseNY = 0;
+    let targetRotY = 0, targetRotX = 0;
+    let currentRotY = 0, currentRotX = 0;
+
+    const heroSection = qs('#hero');
+    heroSection && heroSection.addEventListener('mousemove', e => {
+      const rect = heroSection.getBoundingClientRect();
+      mouseNX = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+      mouseNY = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+    });
+
+    /* ─ Resize ─ */
+    const resizeObs = new ResizeObserver(() => {
+      const w = wrap.clientWidth;
+      const h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+    resizeObs.observe(wrap);
+
+    /* ─ Animate ─ */
+    let autoAngle = 0;
+    function tick() {
+      requestAnimationFrame(tick);
+
+      autoAngle += 0.006;
+
+      targetRotY = mouseNX * 0.35 + Math.sin(autoAngle) * 0.18;
+      targetRotX = mouseNY * 0.18 + Math.cos(autoAngle * 0.7) * 0.08;
+
+      currentRotY += (targetRotY - currentRotY) * 0.04;
+      currentRotX += (targetRotX - currentRotX) * 0.04;
+
+      faucetGroup.rotation.y = currentRotY;
+      faucetGroup.rotation.x = currentRotX;
+      valveGroup.rotation.y  = autoAngle * 0.4;
+
+      /* Update particles */
+      const pArr = pGeo.attributes.position.array;
+      for (let i = 0; i < particleCount; i++) {
+        velocities[i] -= 0.0018;
+        pArr[i * 3 + 1] += velocities[i];
+        if (pArr[i * 3 + 1] < dropFloor) resetParticle(i);
+      }
+      pGeo.attributes.position.needsUpdate = true;
+
+      renderer.render(scene, camera);
+    }
+    tick();
+  })();
 
   /* ── Brand drawers ───────────────────── */
   qsa('.brand-row').forEach(row => {

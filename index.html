@@ -51,15 +51,8 @@
     </div>
 
     <div class="hero__stage" id="js-hero-stage">
-      <div class="hero__card" id="js-hero-card">
-        <img
-          src="assets/img/hero-faucet.jpg"
-          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=90';"
-          alt="شیرآلات لوکس دیزاین استیشن"
-          class="hero__faucet"
-          id="js-hero-img"
-        >
-        <div class="hero__card-gloss"></div>
+      <div class="hero__3d-wrap" id="js-3d-wrap">
+        <canvas id="js-hero-canvas" class="hero__canvas"></canvas>
       </div>
 
       <div class="hero__copy">
@@ -622,6 +615,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
