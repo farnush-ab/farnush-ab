@@ -227,7 +227,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
    HERO
 ════════════════════════════════════════ */
 .hero {
-  min-height: 100vh;
+  min-height: 88vh;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   overflow: hidden;
@@ -237,7 +237,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem var(--gutter) 6rem calc(var(--gutter) + 2rem);
+  padding: 4rem var(--gutter) 4rem calc(var(--gutter) + 2rem);
   background: var(--cream);
 }
 .hero__eyebrow {
@@ -316,7 +316,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   cursor: pointer;
 }
 .col-card__img-wrap {
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5;
   overflow: hidden;
 }
 .col-card__img {
@@ -330,7 +330,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   transform: scale(1.04);
 }
 .col-card__body {
-  padding: 2rem 2rem 2.5rem;
+  padding: 1.4rem 1.6rem 2rem;
   background: var(--ink);
 }
 .col-card__label {
@@ -377,7 +377,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 ════════════════════════════════════════ */
 .brands {
   background: var(--cream);
-  padding: 8rem 0;
+  padding: 5rem 0;
 }
 .brand-list {
   border-top: 1px solid var(--cream-3);
@@ -454,8 +454,8 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 ════════════════════════════════════════ */
 .showroom {
   position: relative;
-  height: 92vh;
-  min-height: 600px;
+  height: 65vh;
+  min-height: 420px;
   overflow: hidden;
   background: var(--ink);
 }
@@ -474,7 +474,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 }
 .showroom__caption {
   position: absolute;
-  bottom: 10rem;
+  bottom: 7rem;
   right: var(--gutter);
   color: var(--cream);
 }
@@ -527,7 +527,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
    MOSAIC
 ════════════════════════════════════════ */
 .mosaic {
-  padding: 8rem 0 0;
+  padding: 5rem 0 0;
   background: var(--cream);
 }
 .mosaic__header {
@@ -538,7 +538,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 .mosaic__grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
-  grid-template-rows: 300px 300px;
+  grid-template-rows: 200px 200px;
   gap: 3px;
 }
 .mosaic__cell { overflow: hidden; }
@@ -557,7 +557,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 .meet {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 600px;
+  min-height: 420px;
   background: var(--cream-2);
 }
 .meet__visual { overflow: hidden; }
@@ -571,7 +571,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem var(--gutter) 6rem 5rem;
+  padding: 4rem var(--gutter) 4rem 4rem;
 }
 .meet__title {
   font-family: var(--serif);
@@ -610,7 +610,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 ════════════════════════════════════════ */
 .testimonials {
   background: var(--cream);
-  padding: 8rem 0;
+  padding: 5rem 0;
 }
 .testimonials__grid {
   display: grid;
@@ -659,7 +659,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 ════════════════════════════════════════ */
 .cta-bar {
   background: var(--sage);
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 .cta-bar__inner {
   display: flex;
@@ -696,7 +696,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 ════════════════════════════════════════ */
 .contact {
   background: var(--ink);
-  padding: 8rem 0;
+  padding: 5rem 0;
 }
 .contact__grid {
   display: grid;
@@ -847,7 +847,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   .contact__grid { grid-template-columns: 1fr; gap: 4rem; }
 
   .footer__top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
+  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
   .mosaic__cell--tall { grid-row: 1 / 2; }
 }
 
@@ -865,7 +865,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   .footer__top { grid-template-columns: 1fr; }
   .footer__bottom { flex-direction: column; gap: .5rem; text-align: center; }
 
-  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 130px 130px 130px; }
   .mosaic__cell--tall { grid-row: 1 / 2; }
-  .showroom__caption { bottom: 7rem; }
+  .showroom__caption { bottom: 5rem; }
 }
