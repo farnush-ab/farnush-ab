@@ -1,11 +1,5 @@
 /* ═══════════════════════════════════════
    DESIGN STATION — app.js
-   Emil animation principles:
-   ✓ Durations 180-250ms
-   ✓ ease-out on all hover interactions
-   ✓ Stagger 50-80ms between entries
-   ✓ Keyboard actions → no animation
-   ✓ Hover gated with CSS @media(hover:hover)
 ═══════════════════════════════════════ */
 
 (function () {
@@ -14,28 +8,28 @@
   const qs  = (s, p = document) => p.querySelector(s);
   const qsa = (s, p = document) => [...p.querySelectorAll(s)];
 
-  /* ── Custom cursor ───────────────────── */
+  /* ── Custom cursor ── */
   const cursor = qs('#js-cursor');
   if (cursor && window.matchMedia('(hover: hover)').matches) {
-    let cx = 0, cy = 0;
     document.addEventListener('mousemove', e => {
-      cx = e.clientX; cy = e.clientY;
-      cursor.style.left = cx + 'px';
-      cursor.style.top  = cy + 'px';
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
     });
-    document.querySelectorAll('a, button, .brand-row__trigger').forEach(el => {
+    qsa('a, button, .col-card, .brand-item').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('cursor--big'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--big'));
     });
   }
 
-  /* ── Nav scroll state ────────────────── */
+  /* ── Nav scroll state ── */
   const nav = qs('#js-nav');
-  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 60);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
-  /* ── Scroll reveal ───────────────────── */
+  /* ── Scroll reveal ── */
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -44,242 +38,204 @@
       setTimeout(() => el.classList.add('is-visible'), delay);
       revealObs.unobserve(el);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   qsa('.js-reveal').forEach(el => revealObs.observe(el));
 
-  /* ── Hero Three.js 3D scene ──────────── */
+  /* ── Hero Three.js 3D faucet ── */
   (function initHero3D() {
     if (typeof THREE === 'undefined') return;
     const canvas = qs('#js-hero-canvas');
     if (!canvas) return;
 
-    const wrap   = canvas.parentElement;
-    const W      = wrap.clientWidth;
-    const H      = wrap.clientHeight;
+    const wrap = canvas.parentElement;
 
-    /* Renderer */
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(W, H);
-    renderer.shadowMap.enabled = true;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.15;
+    renderer.shadowMap.enabled = true;
 
-    /* Scene & Camera */
     const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
-    camera.position.set(0, 0, 9);
+    scene.background = new THREE.Color(0xede8dc);
 
-    /* Materials */
+    function getSize() { return { w: wrap.clientWidth, h: wrap.clientHeight || window.innerHeight }; }
+    const { w, h } = getSize();
+
+    const camera = new THREE.PerspectiveCamera(36, w / h, 0.1, 100);
+    camera.position.set(0, 0, 10);
+    renderer.setSize(w, h);
+
+    /* Brass material */
     const brassMat = new THREE.MeshPhysicalMaterial({
-      color: 0xd0bfa8, metalness: 0.88, roughness: 0.14,
-      clearcoat: 1.0, clearcoatRoughness: 0.08,
+      color: 0xc0a878,
+      metalness: 0.92,
+      roughness: 0.10,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05,
     });
 
-    /* ─ Arch faucet body (TubeGeometry) ─ */
+    /* Arch faucet body */
     const archCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3( 0.00, -2.10, 0),
-      new THREE.Vector3( 0.00, -1.30, 0),
-      new THREE.Vector3( 0.00, -0.40, 0),
+      new THREE.Vector3( 0.00, -2.20, 0),
+      new THREE.Vector3( 0.00, -1.40, 0),
+      new THREE.Vector3( 0.00, -0.50, 0),
       new THREE.Vector3( 0.05,  0.20, 0),
-      new THREE.Vector3( 0.20,  0.90, 0),
-      new THREE.Vector3( 0.55,  1.50, 0),
-      new THREE.Vector3( 1.05,  1.85, 0),
-      new THREE.Vector3( 1.55,  1.80, 0),
-      new THREE.Vector3( 1.88,  1.50, 0),
-      new THREE.Vector3( 2.00,  1.10, 0),
-      new THREE.Vector3( 1.98,  0.65, 0),
+      new THREE.Vector3( 0.22,  1.00, 0),
+      new THREE.Vector3( 0.60,  1.65, 0),
+      new THREE.Vector3( 1.10,  2.00, 0),
+      new THREE.Vector3( 1.62,  1.95, 0),
+      new THREE.Vector3( 1.98,  1.60, 0),
+      new THREE.Vector3( 2.12,  1.15, 0),
+      new THREE.Vector3( 2.10,  0.62, 0),
     ], false, 'catmullrom', 0.45);
 
-    const tubeMesh = new THREE.Mesh(
-      new THREE.TubeGeometry(archCurve, 140, 0.072, 28, false),
+    const tube = new THREE.Mesh(
+      new THREE.TubeGeometry(archCurve, 160, 0.075, 32, false),
       brassMat
     );
-    tubeMesh.castShadow = true;
-    scene.add(tubeMesh);
+    tube.castShadow = true;
 
-    /* ─ Spout tip cap ─ */
+    /* Tip cap */
     const tipPt  = archCurve.getPoint(1);
-    const tipCap = new THREE.Mesh(new THREE.SphereGeometry(0.072, 20, 20), brassMat);
+    const tipCap = new THREE.Mesh(new THREE.SphereGeometry(0.075, 24, 24), brassMat);
     tipCap.position.copy(tipPt);
-    scene.add(tipCap);
 
-    /* ─ Base cylinder ─ */
+    /* Base cylinder */
     const base = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.22, 0.28, 0.35, 32),
+      new THREE.CylinderGeometry(0.24, 0.30, 0.40, 40),
       brassMat
     );
-    base.position.set(0, -2.28, 0);
+    base.position.set(0, -2.40, 0);
     base.castShadow = true;
-    scene.add(base);
 
-    /* ─ Valve / cross handle ─ */
-    const valveGroup = new THREE.Group();
-    valveGroup.position.set(0, -1.55, 0);
+    /* Round valve knob */
+    const knob = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.21, 0.21, 0.14, 40),
+      brassMat
+    );
+    knob.position.set(0, -1.58, 0);
 
-    const valveBody = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.10, 32), brassMat);
-    valveGroup.add(valveBody);
+    /* Knurling detail ring */
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.21, 0.026, 14, 48),
+      brassMat
+    );
+    ring.rotation.x = Math.PI / 2;
+    ring.position.copy(knob.position);
 
-    const armMat  = brassMat.clone();
-    const armGeo  = new THREE.CylinderGeometry(0.035, 0.035, 0.72, 16);
-    const arm1    = new THREE.Mesh(armGeo, armMat);
-    const arm2    = new THREE.Mesh(armGeo, armMat);
-    arm2.rotation.z = Math.PI / 2;
-    valveGroup.add(arm1, arm2);
-    scene.add(valveGroup);
-
-    /* Center faucet group */
     const faucetGroup = new THREE.Group();
-    faucetGroup.add(tubeMesh, tipCap, base, valveGroup);
-    faucetGroup.position.x = -0.8;
-    faucetGroup.position.y = 0.3;
+    faucetGroup.add(tube, tipCap, base, knob, ring);
+    faucetGroup.position.set(-0.85, 0.15, 0);
     scene.add(faucetGroup);
 
-    /* ─ Water particles ─ */
-    const particleCount = 280;
-    const positions     = new Float32Array(particleCount * 3);
-    const velocities    = new Float32Array(particleCount);   // y velocity
+    /* Water particles */
+    const COUNT   = 300;
+    const pos     = new Float32Array(COUNT * 3);
+    const vel     = new Float32Array(COUNT);
+    const worldTip = tipPt.clone().add(faucetGroup.position);
 
-    function resetParticle(i) {
-      const worldTip = tipPt.clone();
-      faucetGroup.localToWorld(worldTip);
-      positions[i * 3]     = worldTip.x + (Math.random() - 0.5) * 0.06;
-      positions[i * 3 + 1] = worldTip.y;
-      positions[i * 3 + 2] = worldTip.z + (Math.random() - 0.5) * 0.06;
-      velocities[i]         = -(Math.random() * 0.04 + 0.02);
+    for (let i = 0; i < COUNT; i++) {
+      pos[i*3]   = worldTip.x + (Math.random() - 0.5) * 0.08;
+      pos[i*3+1] = worldTip.y - Math.random() * 4.2;
+      pos[i*3+2] = (Math.random() - 0.5) * 0.08;
+      vel[i]     = -(Math.random() * 0.045 + 0.02);
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      resetParticle(i);
-      positions[i * 3 + 1] -= Math.random() * 3.5;   // spread vertically at start
-    }
-
-    const pGeo  = new THREE.BufferGeometry();
-    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const pMat  = new THREE.PointsMaterial({
-      color: 0xb8d8e8, size: 0.055, transparent: true, opacity: 0.7,
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const pMat = new THREE.PointsMaterial({
+      color: 0x7a9baa,
+      size: 0.052,
+      transparent: true,
+      opacity: 0.6,
       sizeAttenuation: true,
     });
-    const particles = new THREE.Points(pGeo, pMat);
-    scene.add(particles);
+    scene.add(new THREE.Points(pGeo, pMat));
+    const dropFloor = worldTip.y - 5.8;
 
-    const dropFloor = faucetGroup.position.y - 4.5;
+    function resetDrop(i) {
+      pos[i*3]   = worldTip.x + (Math.random() - 0.5) * 0.08;
+      pos[i*3+1] = worldTip.y;
+      pos[i*3+2] = (Math.random() - 0.5) * 0.08;
+      vel[i]     = -(Math.random() * 0.045 + 0.02);
+    }
 
-    /* ─ Lighting ─ */
-    scene.add(new THREE.AmbientLight(0xfdf6ee, 0.55));
+    /* Lighting — warm studio */
+    scene.add(new THREE.AmbientLight(0xfdf4e8, 0.55));
 
-    const keyLight = new THREE.DirectionalLight(0xfff5e6, 1.6);
-    keyLight.position.set(3, 6, 4);
-    keyLight.castShadow = true;
-    scene.add(keyLight);
+    const key = new THREE.DirectionalLight(0xfff8f0, 2.0);
+    key.position.set(4, 7, 5);
+    key.castShadow = true;
+    scene.add(key);
 
-    const fillLight = new THREE.DirectionalLight(0xe8f4ff, 0.5);
-    fillLight.position.set(-4, 2, 2);
-    scene.add(fillLight);
+    const fill = new THREE.DirectionalLight(0xe0eef8, 0.6);
+    fill.position.set(-5, 2, 3);
+    scene.add(fill);
 
-    const rimLight = new THREE.PointLight(0xbc846c, 1.2, 18);
-    rimLight.position.set(-3, 4, -3);
-    scene.add(rimLight);
+    const rim = new THREE.PointLight(0x9a9b78, 1.6, 22); // sage rim
+    rim.position.set(-4, 5, -4);
+    scene.add(rim);
 
-    /* ─ Mouse tracking ─ */
-    let mouseNX = 0, mouseNY = 0;
-    let targetRotY = 0, targetRotX = 0;
-    let currentRotY = 0, currentRotX = 0;
+    const bot = new THREE.PointLight(0xc0a878, 0.5, 14);
+    bot.position.set(2, -4, 3);
+    scene.add(bot);
 
-    const heroSection = qs('#hero');
-    heroSection && heroSection.addEventListener('mousemove', e => {
-      const rect = heroSection.getBoundingClientRect();
-      mouseNX = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
-      mouseNY = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
-    });
+    /* Mouse interaction */
+    let mx = 0, my = 0, rY = 0, rX = 0;
+    const heroEl = qs('#hero');
+    if (heroEl) {
+      heroEl.addEventListener('mousemove', e => {
+        const r = heroEl.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width)  * 2 - 1;
+        my = ((e.clientY - r.top)  / r.height) * 2 - 1;
+      });
+      heroEl.addEventListener('mouseleave', () => { mx = 0; my = 0; });
+    }
 
-    /* ─ Resize ─ */
-    const resizeObs = new ResizeObserver(() => {
-      const w = wrap.clientWidth;
-      const h = wrap.clientHeight;
+    /* Resize */
+    new ResizeObserver(() => {
+      const { w, h } = getSize();
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
-    });
-    resizeObs.observe(wrap);
+    }).observe(wrap);
 
-    /* ─ Animate ─ */
-    let autoAngle = 0;
-    function tick() {
+    /* Animate */
+    let t = 0;
+    (function tick() {
       requestAnimationFrame(tick);
+      t += 0.007;
 
-      autoAngle += 0.006;
+      const tY = mx * 0.42 + Math.sin(t)       * 0.20;
+      const tX = my * 0.20 + Math.cos(t * 0.6) * 0.09;
+      rY += (tY - rY) * 0.035;
+      rX += (tX - rX) * 0.035;
 
-      targetRotY = mouseNX * 0.35 + Math.sin(autoAngle) * 0.18;
-      targetRotX = mouseNY * 0.18 + Math.cos(autoAngle * 0.7) * 0.08;
+      faucetGroup.rotation.y = rY;
+      faucetGroup.rotation.x = rX;
+      knob.rotation.y  = t * 0.45;
+      ring.rotation.y  = t * 0.45;
 
-      currentRotY += (targetRotY - currentRotY) * 0.04;
-      currentRotX += (targetRotX - currentRotX) * 0.04;
-
-      faucetGroup.rotation.y = currentRotY;
-      faucetGroup.rotation.x = currentRotX;
-      valveGroup.rotation.y  = autoAngle * 0.4;
-
-      /* Update particles */
       const pArr = pGeo.attributes.position.array;
-      for (let i = 0; i < particleCount; i++) {
-        velocities[i] -= 0.0018;
-        pArr[i * 3 + 1] += velocities[i];
-        if (pArr[i * 3 + 1] < dropFloor) resetParticle(i);
+      for (let i = 0; i < COUNT; i++) {
+        vel[i] -= 0.0018;
+        pArr[i*3+1] += vel[i];
+        if (pArr[i*3+1] < dropFloor) resetDrop(i);
       }
       pGeo.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
-    }
-    tick();
+    })();
   })();
 
-  /* ── Brand drawers ───────────────────── */
-  qsa('.brand-row').forEach(row => {
-    const btn    = qs('.brand-row__trigger', row);
-    const drawer = qs('.brand-drawer', row);
-    if (!btn || !drawer) return;
-
-    // Remove native hidden so CSS max-height transition works
-    drawer.removeAttribute('hidden');
-    drawer.style.maxHeight = '0';
-    drawer.style.opacity   = '0';
-    drawer.style.overflow  = 'hidden';
-
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-      // Close any open drawer first
-      qsa('.brand-row__trigger[aria-expanded="true"]').forEach(other => {
-        if (other === btn) return;
-        other.setAttribute('aria-expanded', 'false');
-        const otherDrawer = other.nextElementSibling;
-        if (otherDrawer) {
-          otherDrawer.style.maxHeight = '0';
-          otherDrawer.style.opacity   = '0';
-        }
-      });
-
-      if (isOpen) {
-        btn.setAttribute('aria-expanded', 'false');
-        drawer.style.maxHeight = '0';
-        drawer.style.opacity   = '0';
-      } else {
-        btn.setAttribute('aria-expanded', 'true');
-        drawer.style.maxHeight = '400px';
-        drawer.style.opacity   = '1';
-      }
-    });
-  });
-
-  /* ── Showroom carousel ───────────────── */
-  const slides    = qsa('.showroom__slide');
-  const dots      = qsa('.showroom__dot');
-  const prevBtn   = qs('#js-prev');
-  const nextBtn   = qs('#js-next');
-  let   current   = 0;
-  let   carouselTimer;
+  /* ── Showroom carousel ── */
+  const slides   = qsa('.showroom__slide');
+  const dots     = qsa('.showroom__dot');
+  const prevBtn  = qs('#js-prev');
+  const nextBtn  = qs('#js-next');
+  let   current  = 0;
+  let   stTimer;
 
   function goTo(idx) {
     slides[current].classList.remove('is-active');
@@ -288,12 +244,10 @@
     slides[current].classList.add('is-active');
     dots[current].classList.add('is-active');
   }
-
   function startCarousel() {
-    clearInterval(carouselTimer);
-    carouselTimer = setInterval(() => goTo(current + 1), 5000);
+    clearInterval(stTimer);
+    stTimer = setInterval(() => goTo(current + 1), 5000);
   }
-
   if (slides.length) {
     prevBtn?.addEventListener('click', () => { goTo(current - 1); startCarousel(); });
     nextBtn?.addEventListener('click', () => { goTo(current + 1); startCarousel(); });
@@ -301,58 +255,19 @@
     startCarousel();
   }
 
-  /* ── Testimonials carousel ───────────── */
-  const tTrack  = qs('#js-testimonials');
-  const tDots   = qsa('#js-tdots .testimonials__dot');
-  const tPrev   = qs('#js-tprev');
-  const tNext   = qs('#js-tnext');
-  const tSlides = qsa('.testimonial');
-  let   tCur    = 0;
-  let   tTimer;
-
-  function tGoTo(idx) {
-    tDots[tCur]?.classList.remove('is-active');
-    tCur = (idx + tSlides.length) % tSlides.length;
-    tTrack.style.transform = `translateX(${tCur * 100}%)`;
-    tDots[tCur]?.classList.add('is-active');
-  }
-
-  function startTestimonials() {
-    clearInterval(tTimer);
-    tTimer = setInterval(() => tGoTo(tCur + 1), 6000);
-  }
-
-  if (tSlides.length) {
-    tPrev?.addEventListener('click', () => { tGoTo(tCur - 1); startTestimonials(); });
-    tNext?.addEventListener('click', () => { tGoTo(tCur + 1); startTestimonials(); });
-    tDots.forEach(d => d.addEventListener('click', () => { tGoTo(+d.dataset.target); startTestimonials(); }));
-    startTestimonials();
-
-    // RTL: translateX is positive direction since body is RTL
-    // Override: use negative for visual left-motion
-    function tGoTo(idx) {
-      tDots[tCur]?.classList.remove('is-active');
-      tCur = (idx + tSlides.length) % tSlides.length;
-      // Each slide is 100% wide; shift left by tCur steps
-      tTrack.style.transform = `translateX(${tCur * -100}%)`;
-      tDots[tCur]?.classList.add('is-active');
-    }
-    tGoTo(0);
-  }
-
-  /* ── Contact form ────────────────────── */
+  /* ── Contact form ── */
   const form = qs('#js-contact-form');
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const btn = qs('button[type="submit"]', form);
       btn.textContent = '✓ درخواست ارسال شد';
-      btn.style.background = 'var(--taupe-dk)';
+      btn.style.background = 'var(--sage-dk)';
       btn.disabled = true;
     });
   }
 
-  /* ── Smooth anchor scroll ─────────────── */
+  /* ── Smooth anchor scroll ── */
   qsa('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = qs(a.getAttribute('href'));
