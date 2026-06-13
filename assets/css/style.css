@@ -474,7 +474,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
 }
 .showroom__caption {
   position: absolute;
-  bottom: 7rem;
+  bottom: 10rem;
   right: var(--gutter);
   color: var(--cream);
 }
@@ -847,7 +847,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   .contact__grid { grid-template-columns: 1fr; gap: 4rem; }
 
   .footer__top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
+  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
   .mosaic__cell--tall { grid-row: 1 / 2; }
 }
 
@@ -865,7 +865,7 @@ button { font-family: var(--sans); background: none; border: none; cursor: point
   .footer__top { grid-template-columns: 1fr; }
   .footer__bottom { flex-direction: column; gap: .5rem; text-align: center; }
 
-  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 130px 130px 130px; }
+  .mosaic__grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
   .mosaic__cell--tall { grid-row: 1 / 2; }
-  .showroom__caption { bottom: 5rem; }
+  .showroom__caption { bottom: 7rem; }
 }
