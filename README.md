@@ -7,7 +7,7 @@ UI/UX designer
 i'm an UI/UX designer, passionate about crafting visually stunning and user-friendly digital expriences using figma.
 
 *   🌍  I'm based in Iran, Kashan.
-*   ✉️  You can contact me at [farnush.wexen@gmail.com.](mailto:farnush.wexen@gmail.com.)
+*   ✉️  You can contact me at [farnush.wexen@gmail.com.](mailto:farnooshabdollahi8110@gmail.com.)
 *   🧠  I'm learning figma.
 *   🤝  I'm open to collaborating on projects.
 *   ⚡  I'm a wizard who turns pixels into magic.🪄### Skills 
